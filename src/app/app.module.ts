@@ -17,6 +17,13 @@ import { OrganizationsModule } from './features/organizations/organizations.modu
 import { PaymentsModule } from './features/payments/payments.module';
 import { provideNgVibeDialog } from '@ng-vibe/dialog';
 import { HomeModule } from './features/home/home.module';
+import { ShopModule } from './features/shop/shop.module';
+import { ContactModule } from './features/contact/contact.module';
+import { ProductsModule } from './features/products/products.module';
+import { CategoriesModule } from './features/categories/categories.module';
+import { BlogsModule } from './features/blogs/blogs.module';
+import { AboutUsModule } from './features/about-us/about-us.module';
+import { AdminModule } from './features/admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -37,6 +44,13 @@ import { HomeModule } from './features/home/home.module';
     ReactiveFormsModule,
     FormsModule,
     HomeModule,
+    ShopModule,
+    ContactModule,
+    ProductsModule,
+    CategoriesModule,
+    AboutUsModule,
+    BlogsModule,
+    AdminModule,
     HttpClientModule,
   
   ],

@@ -1,0 +1,133 @@
+<!-- home.component.html -->
+<div class="space-y-12">
+    <!-- Hero Section -->
+    <section class="relative bg-slate-900 overflow-hidden">
+      <div class="container mx-auto px-4 py-16 sm:py-24">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div class="text-center lg:text-left">
+            <h1 class="text-4xl sm:text-5xl font-bold text-white mb-6">
+              Quality Lead Africa at Your Fingertips
+            </h1>
+            <p class="text-lg text-slate-300 mb-8">
+              Discover the latest in LED innovation. From Lighting to smart home devices, 
+              find tomorrow's LED today.
+            </p>
+            <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
+              <button class="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-lg font-medium">
+                Shop Now
+              </button>
+              <button class="bg-slate-800 hover:bg-slate-700 text-white px-8 py-3 rounded-lg font-medium">
+                View Deals
+              </button>
+            </div>
+          </div>
+          <div class="relative">
+            <img src="https://res.cloudinary.com/dfsd8beyu/image/upload/v1732995563/Apple_MacBook-Pro_14-16-inch_10182021_big.jpg.large_pdjiwf.jpg" 
+                 alt="Latest MacBook Pro" 
+                 class="rounded-lg shadow-2xl">
+            <div class="absolute inset-0 bg-gradient-to-r from-slate-900 via-transparent to-transparent lg:hidden"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Categories -->
+    <section class="container mx-auto px-4">
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6">Shop by Category</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+        <ng-container *ngFor="let category of categories">
+          <a [routerLink]="['/category', category.slug]" 
+             class="group relative bg-white dark:bg-slate-800 rounded-lg p-6 hover:shadow-lg transition-shadow">
+            <div class="aspect-square rounded-lg bg-slate-100 dark:bg-slate-700 flex items-center justify-center mb-4">
+              <i [class]="category.icon + ' text-3xl text-slate-600 dark:text-slate-300 group-hover:text-indigo-600 dark:group-hover:text-indigo-400'"></i>
+            </div>
+            <h3 class="text-sm font-medium text-slate-900 dark:text-white text-center group-hover:text-indigo-600 dark:group-hover:text-indigo-400">
+              {{ category.name }}
+            </h3>
+          </a>
+        </ng-container>
+      </div>
+    </section>
+  
+    <!-- Featured Products -->
+    <section class="container mx-auto px-4">
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-2xl font-bold text-slate-900 dark:text-white">Featured Products</h2>
+        <a routerLink="/products" class="text-indigo-600 dark:text-indigo-400 hover:underline">View All</a>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <ng-container *ngFor="let product of featuredProducts">
+          <div class="group bg-white dark:bg-slate-800 rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
+            <div class="relative aspect-square overflow-hidden">
+              <img [src]="product.image" 
+                   [alt]="product.name"
+                   class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300">
+              <button class="absolute top-3 right-3 p-2 rounded-full bg-white dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:text-rose-600 dark:hover:text-rose-400">
+                <i class="fas fa-heart"></i>
+              </button>
+            </div>
+            <div class="p-4">
+              <h3 class="text-lg font-medium text-slate-900 dark:text-white mb-2">{{ product.name }}</h3>
+              <p class="text-slate-600 dark:text-slate-400 text-sm mb-4">{{ product.description }}</p>
+              <div class="flex items-center justify-between">
+                <span class="text-xl font-bold text-slate-900 dark:text-white">{{ product.price | currency }}</span>
+                <button class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-sm">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </section>
+  
+    <!-- Special Offers -->
+    <section class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="relative rounded-lg overflow-hidden">
+          <img src="https://res.cloudinary.com/dfsd8beyu/image/upload/v1732995563/Apple_MacBook-Pro_14-16-inch_10182021_big.jpg.large_pdjiwf.jpg" 
+               alt="Special Offer" 
+               class="w-full h-64 object-cover">
+          <div class="absolute inset-0 bg-gradient-to-r from-slate-900/80 to-slate-900/40 p-8 flex flex-col justify-center">
+            <h3 class="text-2xl font-bold text-white mb-2">Summer Sale</h3>
+            <p class="text-slate-200 mb-4">Up to 40% off on selected laptops</p>
+            <button class="bg-white text-slate-900 px-6 py-2 rounded-lg w-fit hover:bg-slate-100">
+              Shop Now
+            </button>
+          </div>
+        </div>
+        <div class="relative rounded-lg overflow-hidden">
+          <img src="https://res.cloudinary.com/dfsd8beyu/image/upload/v1732995563/Apple_MacBook-Pro_14-16-inch_10182021_big.jpg.large_pdjiwf.jpg" 
+               alt="Special Offer" 
+               class="w-full h-64 object-cover">
+          <div class="absolute inset-0 bg-gradient-to-r from-slate-900/80 to-slate-900/40 p-8 flex flex-col justify-center">
+            <h3 class="text-2xl font-bold text-white mb-2">New Arrivals</h3>
+            <p class="text-slate-200 mb-4">Latest smartphones and accessories</p>
+            <button class="bg-white text-slate-900 px-6 py-2 rounded-lg w-fit hover:bg-slate-100">
+              Explore
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Newsletter -->
+    <section class="bg-slate-900">
+      <div class="container mx-auto px-4 py-12">
+        <div class="max-w-2xl mx-auto text-center">
+          <h2 class="text-2xl font-bold text-white mb-4">Stay Updated</h2>
+          <p class="text-slate-300 mb-6">
+            Subscribe to our newsletter for exclusive deals, new arrivals, and tech news.
+          </p>
+          <form class="flex gap-2 max-w-md mx-auto">
+            <input type="email" 
+                   placeholder="Enter your email" 
+                   class="flex-1 rounded-lg border-0 bg-white/10 px-4 py-2 text-white placeholder:text-slate-400 focus:ring-2 focus:ring-indigo-500">
+            <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-lg">
+              Subscribe
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </div>

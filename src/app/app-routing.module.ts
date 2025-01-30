@@ -8,6 +8,7 @@ import { OrganizationFormComponent } from './features/organizations/components/o
 import { SubscritionsComponent } from './features/organizations/components/subscritions/subscritions.component';
 import { MainDashbordComponent } from './features/dashboard/components/main-dashbord/main-dashbord.component';
 import { PaymentsListComponent } from './features/payments/components/payments-list/payments-list.component';
+import { HomeComponent } from './features/home/components/home/home.component';
 
 // app-routing.module.ts
 const routes: Routes = [
@@ -16,8 +17,8 @@ const routes: Routes = [
     component: MainLayoutComponent,
     children: [
       {
-        path: 'dashboard',
-       component: MainDashbordComponent,
+        path: '',
+       component: HomeComponent,
       },
       {
         path: 'login',

@@ -16,6 +16,7 @@ import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { OrganizationsModule } from './features/organizations/organizations.module';
 import { PaymentsModule } from './features/payments/payments.module';
 import { provideNgVibeDialog } from '@ng-vibe/dialog';
+import { HomeModule } from './features/home/home.module';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { provideNgVibeDialog } from '@ng-vibe/dialog';
     PaymentsModule,
     ReactiveFormsModule,
     FormsModule,
+    HomeModule,
     HttpClientModule,
   
   ],

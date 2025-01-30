@@ -1,1 +1,213 @@
-<p>products works!</p>
+<!-- products.component.html -->
+<div class="min-h-screen bg-slate-50 dark:bg-slate-900 pt-24 pb-12">
+    <div class="container mx-auto px-4">
+        <!-- Header -->
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold text-slate-900 dark:text-white mb-2">Our Products</h1>
+            <p class="text-slate-600 dark:text-slate-400">Discover the latest in tech innovation</p>
+        </div>
+
+        <div class="lg:grid lg:grid-cols-4 lg:gap-8">
+            <!-- Filters Sidebar -->
+            <div class="hidden lg:block space-y-6">
+                <!-- Categories -->
+                <div class="bg-white dark:bg-slate-800 rounded-lg shadow-sm p-6">
+                    <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-4">Categories</h3>
+                    <div class="space-y-2">
+                        <label *ngFor="let category of filters.categories" 
+                               class="flex items-center space-x-3 text-slate-600 dark:text-slate-300">
+                            <input type="checkbox"
+                                   [checked]="selectedFilters.categories.includes(category)"
+                                   (change)="toggleFilter('categories', category)"
+                                   class="rounded border-slate-300 dark:border-slate-600 text-indigo-600 focus:ring-indigo-500">
+                            <span>{{ category }}</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Brands -->
+                <div class="bg-white dark:bg-slate-800 rounded-lg shadow-sm p-6">
+                    <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-4">Brands</h3>
+                    <div class="space-y-2">
+                        <label *ngFor="let brand of filters.brands" 
+                               class="flex items-center space-x-3 text-slate-600 dark:text-slate-300">
+                            <input type="checkbox"
+                                   [checked]="selectedFilters.brands.includes(brand)"
+                                   (change)="toggleFilter('brands', brand)"
+                                   class="rounded border-slate-300 dark:border-slate-600 text-indigo-600 focus:ring-indigo-500">
+                            <span>{{ brand }}</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Price Range -->
+                <div class="bg-white dark:bg-slate-800 rounded-lg shadow-sm p-6">
+                    <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-4">Price Range</h3>
+                    <div class="space-y-2">
+                        <label *ngFor="let range of filters.priceRanges" 
+                               class="flex items-center space-x-3 text-slate-600 dark:text-slate-300">
+                            <input type="radio"
+                                   name="price-range"
+                                   [checked]="selectedFilters.priceRange?.label === range.label"
+                                   (change)="setPriceRange(range)"
+                                   class="rounded-full border-slate-300 dark:border-slate-600 text-indigo-600 focus:ring-indigo-500">
+                            <span>{{ range.label }}</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="lg:col-span-3">
+                <!-- Sorting and View Options -->
+                <div class="flex flex-col sm:flex-row justify-between items-center mb-6 bg-white dark:bg-slate-800 rounded-lg shadow-sm p-4">
+                    <div class="flex items-center space-x-4 mb-4 sm:mb-0">
+                        <span class="text-sm text-slate-600 dark:text-slate-400">Sort by:</span>
+                        <select [(ngModel)]="selectedSort"
+                                (change)="sortProducts(selectedSort)"
+                                class="rounded-md border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white text-sm focus:ring-indigo-500 focus:border-indigo-500">
+                            <option *ngFor="let option of sortOptions" [value]="option.value">
+                                {{ option.label }}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="text-sm text-slate-600 dark:text-slate-400">
+                        Showing {{ products.length }} products
+                    </div>
+                </div>
+
+                <!-- Products Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div *ngFor="let product of products" 
+                         class="bg-white dark:bg-slate-800 rounded-lg shadow-sm overflow-hidden group">
+                        <!-- Product Image -->
+                        <div class="relative aspect-square overflow-hidden">
+                            <img [src]="product.image" 
+                                 [alt]="product.name"
+                                 class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300">
+                            
+                            <!-- Quick Action Buttons -->
+                            <div class="absolute top-4 right-4 space-y-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <button (click)="addToWishlist(product)"
+                                        class="flex items-center justify-center w-9 h-9 rounded-full bg-white dark:bg-slate-700 shadow-lg text-slate-600 dark:text-slate-300 hover:text-rose-600 dark:hover:text-rose-400 transition-colors">
+                                    <i class="fas fa-heart"></i>
+                                </button>
+                                <button (click)="addToCart(product)"
+                                        class="flex items-center justify-center w-9 h-9 rounded-full bg-white dark:bg-slate-700 shadow-lg text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </button>
+                            </div>
+
+                            <!-- Badges -->
+                            <div class="absolute top-4 left-4 flex flex-col gap-2">
+                                <span *ngIf="product.isNew"
+                                      class="px-2 py-1 text-xs font-semibold bg-green-500 text-white rounded">
+                                    New
+                                </span>
+                                <span *ngIf="product.originalPrice && product.originalPrice > product.price"
+                                      class="px-2 py-1 text-xs font-semibold bg-rose-500 text-white rounded">
+                                    Sale
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Product Info -->
+                        <div class="p-4">
+                            <div class="mb-2">
+                                <h3 class="text-lg font-semibold text-slate-900 dark:text-white">
+                                    {{ product.name }}
+                                </h3>
+                                <p class="text-sm text-slate-600 dark:text-slate-400">{{ product.brand }}</p>
+                            </div>
+
+                            <!-- Rating -->
+                            <div class="flex items-center mb-2">
+                                <div class="flex items-center text-yellow-400">
+                                    <i *ngFor="let i of [1,2,3,4,5]"
+                                       [class]="i <= product.rating ? 'fas' : 'far'"
+                                       class="fa-star text-sm"></i>
+                                </div>
+                                <span class="ml-2 text-sm text-slate-600 dark:text-slate-400">
+                                    {{ product.rating }}
+                                </span>
+                            </div>
+
+                            <!-- Price -->
+                            <div class="flex items-center justify-between mt-4">
+                                <div>
+                                    <span class="text-xl font-bold text-slate-900 dark:text-white">
+                                        {{ formatPrice(product.price) }}
+                                    </span>
+                                    <span *ngIf="product.originalPrice" 
+                                    class="ml-2 text-sm text-slate-500 dark:text-slate-400 line-through">
+                                  {{ formatPrice(product.originalPrice) }}
+                              </span>
+                          </div>
+                          <div class="flex space-x-2">
+                              <button (click)="addToWishlist(product)"
+                                      class="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:text-rose-600 dark:hover:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-900/20">
+                                  <i class="fas fa-heart"></i>
+                              </button>
+                              <button (click)="addToCart(product)"
+                                      class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg flex items-center space-x-2 transition-colors">
+                                  <i class="fas fa-shopping-cart"></i>
+                                  <span>Add to Cart</span>
+                              </button>
+                          </div>
+                      </div>
+
+                      <!-- Specifications -->
+                      <div *ngIf="product.specifications" class="mt-4 pt-4 border-t border-slate-200 dark:border-slate-700">
+                          <ul class="text-sm text-slate-600 dark:text-slate-400 space-y-1">
+                              <li *ngFor="let spec of product.specifications.slice(0, 3)" class="flex items-center">
+                                  <i class="fas fa-check text-green-500 mr-2 text-xs"></i>
+                                  {{ spec }}
+                              </li>
+                          </ul>
+                      </div>
+
+                      <!-- Tags -->
+                      <div *ngIf="product.tags" class="mt-4 flex flex-wrap gap-2">
+                          <span *ngFor="let tag of product.tags"
+                                class="px-2 py-1 text-xs bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 rounded-full">
+                              {{ tag }}
+                          </span>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Empty State -->
+          <div *ngIf="products.length === 0" 
+               class="text-center py-12 bg-white dark:bg-slate-800 rounded-lg shadow-sm">
+              <div class="text-slate-400 dark:text-slate-500 mb-4">
+                  <i class="fas fa-box-open text-4xl"></i>
+              </div>
+              <h3 class="text-lg font-medium text-slate-900 dark:text-white mb-2">
+                  No Products Found
+              </h3>
+              <p class="text-slate-600 dark:text-slate-400">
+                  Try adjusting your filters or search criteria
+              </p>
+          </div>
+
+          <!-- Load More -->
+          <div *ngIf="products.length > 0" class="mt-8 text-center">
+              <button class="px-6 py-3 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700">
+                  Load More Products
+              </button>
+          </div>
+      </div>
+  </div>
+
+  <!-- Mobile Filter Button -->
+  <button class="lg:hidden fixed bottom-6 right-6 bg-indigo-600 text-white p-4 rounded-full shadow-lg hover:bg-indigo-700 transition-colors">
+      <i class="fas fa-filter"></i>
+  </button>
+</div>
+
+<!-- Mobile Filters Dialog -->
+<div class="lg:hidden">
+  <!-- Implement mobile filters dialog here -->
+</div>
+</div>

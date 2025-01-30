@@ -39,55 +39,50 @@ export class HeaderComponent  implements OnInit {
   categories: Category[] = [
     { 
       name: 'Home',
-      slug: 'laptops-computers',
+      slug: '',
       icon: 'fas fa-laptop',
       description: 'MacBooks, Gaming Laptops, Desktop PCs'
     },
     { 
       name: 'Shop',
-      slug: 'smartphones',
+      slug: 'shop',
       icon: 'fas fa-mobile-alt',
       description: 'iPhones, Samsung, Google Pixel'
     },
     { 
       name: 'Products',
-      slug: 'gaming',
+      slug: 'products',
       icon: 'fas fa-gamepad',
       description: 'Consoles, Games, Accessories'
     },
     { 
       name: 'Categories',
-      slug: 'tv-home-theater',
+      slug: 'categories',
       icon: 'fas fa-tv',
       description: 'Smart TVs, Projectors, Soundbars'
     },
     { 
       name: 'About Us',
-      slug: 'audio',
+      slug: 'about-us',
       icon: 'fas fa-headphones',
       description: 'Headphones, Speakers, Microphones'
     },
     { 
       name: 'Blogs',
-      slug: 'smart-home',
+      slug: 'blogs',
       icon: 'fas fa-home',
       description: 'Security, Lighting, Smart Assistants'
     },
-    { 
-      name: 'Contact',
-      slug: 'cameras',
-      icon: 'fas fa-camera',
-      description: 'DSLR, Mirrorless, Action Cameras'
-    },
+    
     { 
       name: 'Contact Us',
-      slug: 'accessories',
+      slug: 'contact-us',
       icon: 'fas fa-plug',
       description: 'Chargers, Cases, Cables'
     },
     { 
       name: 'Admin',
-      slug: 'deals',
+      slug: 'admin',
       icon: 'fas fa-tag',
       description: 'Special Offers & Clearance'
     }

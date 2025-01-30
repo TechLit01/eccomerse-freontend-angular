@@ -1,0 +1,279 @@
+<!-- about-us.component.html -->
+<div class="min-h-screen bg-slate-50 dark:bg-slate-900 pt-24 pb-12">
+    <!-- Hero Section -->
+    <div class="relative overflow-hidden bg-indigo-600 py-24 mb-12">
+        <div class="absolute inset-0">
+            <div class="absolute inset-0 bg-gradient-to-br from-indigo-600/90 to-indigo-900/90"></div>
+            <img src="https://res.cloudinary.com/dfsd8beyu/image/upload/v1732995563/Apple_MacBook-Pro_14-16-inch_10182021_big.jpg.large_pdjiwf.jpg" 
+                 alt="About QLA" 
+                 class="h-full w-full object-cover">
+        </div>
+        <div class="relative container mx-auto px-4">
+            <div class="max-w-3xl">
+                <h1 class="text-4xl font-bold tracking-tight text-white sm:text-5xl mb-6">
+                    About QLA
+                </h1>
+                <p class="text-xl text-indigo-100 mb-8">
+                    Leading the way in consumer electronics since 2008. We're passionate about bringing the latest technology to our customers with exceptional service and expertise.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#team" 
+                       class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-indigo-600 bg-white hover:bg-indigo-50 transition-colors">
+                        Meet Our Team
+                    </a>
+                    <a href="#contact" 
+                       class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-indigo-500 hover:bg-indigo-400 transition-colors">
+                        Contact Us
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mx-auto px-4">
+        <!-- Stats Section -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-24">
+            <div *ngFor="let stat of companyStats" 
+                 class="bg-white dark:bg-slate-800 rounded-lg p-6 text-center">
+                <div class="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-indigo-100 dark:bg-indigo-900 text-indigo-600 dark:text-indigo-400 mb-4">
+                    <i [class]="stat.icon + ' text-xl'"></i>
+                </div>
+                <h3 class="text-3xl font-bold text-slate-900 dark:text-white mb-2">
+                    {{ stat.value }}
+                </h3>
+                <p class="text-slate-600 dark:text-slate-400 text-sm">
+                    {{ stat.description }}
+                </p>
+            </div>
+        </div>
+
+        <!-- Company Values -->
+        <div class="mb-24">
+            <h2 class="text-3xl font-bold text-slate-900 dark:text-white text-center mb-12">
+                Our Values
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div *ngFor="let value of companyValues"
+                     class="bg-white dark:bg-slate-800 rounded-lg p-6">
+                    <div class="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-indigo-100 dark:bg-indigo-900 text-indigo-600 dark:text-indigo-400 mb-4">
+                        <i [class]="value.icon + ' text-xl'"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">
+                        {{ value.title }}
+                    </h3>
+                    <p class="text-slate-600 dark:text-slate-400">
+                        {{ value.description }}
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Timeline Section -->
+        <div class="mb-24">
+            <h2 class="text-3xl font-bold text-slate-900 dark:text-white text-center mb-12">
+                Our Journey
+            </h2>
+            <div class="max-w-3xl mx-auto">
+                <div class="relative">
+                    <!-- Timeline Line -->
+                    <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-indigo-200 dark:bg-indigo-900"></div>
+                    
+                    <!-- Timeline Items -->
+                    <div *ngFor="let milestone of milestones; let i = index" 
+                         class="relative mb-8">
+                        <div [class.ml-auto]="i % 2 === 0" 
+                             class="w-1/2 pr-8"
+                             [class.pl-8]="i % 2 !== 0">
+                            <div class="bg-white dark:bg-slate-800 rounded-lg p-6 shadow-sm">
+                                <div class="absolute top-6" 
+                                     [class.right-0]="i % 2 === 0"
+                                     [class.left-0]="i % 2 !== 0"
+                                     >
+                                    <div class="w-4 h-4 rounded-full bg-indigo-600 border-4 border-white dark:border-slate-900"></div>
+                                </div>
+                                <span class="text-sm font-semibold text-indigo-600 dark:text-indigo-400">
+                                    {{ milestone.year }}
+                                </span>
+                                <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-1 mb-2">
+                                    {{ milestone.title }}
+                                </h3>
+                                <p class="text-slate-600 dark:text-slate-400">
+                                    {{ milestone.description }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Team Section -->
+        <div id="team" class="mb-24">
+            <h2 class="text-3xl font-bold text-slate-900 dark:text-white text-center mb-12">
+                Meet Our Team
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div *ngFor="let member of teamMembers" 
+                     class="bg-white dark:bg-slate-800 rounded-lg overflow-hidden shadow-sm">
+                    <img [src]="member.image" 
+                         [alt]="member.name"
+                         class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-1">
+                            {{ member.name }}
+                        </h3>
+                        <p class="text-indigo-600 dark:text-indigo-400 font-medium mb-4">
+                            {{ member.role }}
+                        </p>
+                        <p class="text-slate-600 dark:text-slate-400 mb-4">
+                            {{ member.bio }}
+                        </p>
+                        <div class="flex space-x-4">
+                            <a *ngIf="member.socialLinks.linkedin" 
+                               [href]="member.socialLinks.linkedin"
+                               target="_blank"
+                               class="text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400">
+                                <i class="fab fa-linkedin text-xl"></i>
+                            </a>
+                            <a *ngIf="member.socialLinks.twitter" 
+                               [href]="member.socialLinks.twitter"
+                               target="_blank"
+                               class="text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400">
+                                <i class="fab fa-twitter text-xl"></i>
+                            </a>
+                            <a *ngIf="member.socialLinks.github" 
+                               [href]="member.socialLinks.github"
+                               target="_blank"
+                               class="text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400">
+                                <i class="fab fa-github text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div id="contact" class="max-w-2xl mx-auto">
+            <div class="bg-white dark:bg-slate-800 rounded-lg p-8">
+                <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+                    Get in Touch
+                </h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
+                    <div>
+                        <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">
+                            Visit Us
+                        </h3>
+                        <address class="text-slate-600 dark:text-slate-400 not-italic">
+                            123 Tech Street<br>
+                            Innovation District<br>
+                            Silicon Valley, CA 94025<br>
+                            United States
+                        </address>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">
+                            Contact Info
+                        </h3>
+                        <div class="space-y-2 text-slate-600 dark:text-slate-400">
+                            <p class="flex items-center">
+                                <i class="fas fa-phone-alt mr-2"></i>
+                                +1 (800) QLA-TECH
+                            </p>
+                            <p class="flex items-center">
+                                <i class="fas fa-envelope mr-2"></i>
+                                contactqla.com
+                            </p>
+                            <p class="flex items-center">
+                                <i class="fas fa-clock mr-2"></i>
+                                Mon - Fri: 9AM - 6PM
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <form class="space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                                Full Name
+                            </label>
+                            <input type="text" 
+                                   id="name"
+                                   name="name"
+                                   class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 
+                                          bg-white dark:bg-slate-700 text-slate-900 dark:text-white 
+                                          focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                                Email Address
+                            </label>
+                            <input type="email" 
+                                   id="email"
+                                   name="email"
+                                   class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 
+                                          bg-white dark:bg-slate-700 text-slate-900 dark:text-white 
+                                          focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="subject" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                            Subject
+                        </label>
+                        <input type="text" 
+                               id="subject"
+                               name="subject"
+                               class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 
+                                      bg-white dark:bg-slate-700 text-slate-900 dark:text-white 
+                                      focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400">
+                    </div>
+
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                            Message
+                        </label>
+                        <textarea id="message"
+                                  name="message"
+                                  rows="4"
+                                  class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 
+                                         bg-white dark:bg-slate-700 text-slate-900 dark:text-white 
+                                         focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400"></textarea>
+                    </div>
+
+                    <div class="flex justify-end">
+                        <button type="submit"
+                                class="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg 
+                                       shadow-sm transition-colors focus:outline-none focus:ring-2 
+                                       focus:ring-offset-2 focus:ring-indigo-500">
+                            Send Message
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Social Links -->
+        <div class="mt-12 text-center">
+            <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-4">
+                Follow Us
+            </h3>
+            <div class="flex justify-center space-x-6">
+                <a href="#" class="text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400">
+                    <i class="fab fa-facebook text-2xl"></i>
+                </a>
+                <a href="#" class="text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400">
+                    <i class="fab fa-twitter text-2xl"></i>
+                </a>
+                <a href="#" class="text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400">
+                    <i class="fab fa-instagram text-2xl"></i>
+                </a>
+                <a href="#" class="text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400">
+                    <i class="fab fa-linkedin text-2xl"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    

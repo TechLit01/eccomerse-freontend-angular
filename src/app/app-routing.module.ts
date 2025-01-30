@@ -9,6 +9,11 @@ import { SubscritionsComponent } from './features/organizations/components/subsc
 import { MainDashbordComponent } from './features/dashboard/components/main-dashbord/main-dashbord.component';
 import { PaymentsListComponent } from './features/payments/components/payments-list/payments-list.component';
 import { HomeComponent } from './features/home/components/home/home.component';
+import { ProductsComponent } from './features/products/components/products/products.component';
+import { CategoriesComponent } from './features/categories/components/categories/categories.component';
+import { BlogsComponent } from './features/blogs/components/blogs/blogs.component';
+import { ContactComponent } from './features/contact/components/contact/contact.component';
+import { AboutUsComponent } from './features/about-us/components/about-us/about-us.component';
 
 // app-routing.module.ts
 const routes: Routes = [
@@ -25,21 +30,25 @@ const routes: Routes = [
         component: LoginComponent,
       },
       {
-        path: 'organizations',
-        component: OrganizationListComponent,
+        path: 'products',
+        component: ProductsComponent,
       },
       {
-        path: 'subscriptions',
-        component: SubscritionsComponent,
+        path: 'categories',
+        component: CategoriesComponent,
       },
       {
-        path: 'organizations/:id/edit',
-        component: OrganizationFormComponent,
+        path: 'blogs',
+        component: BlogsComponent,
       }
       ,
       {
-        path: 'add-organizations',
-        component: OrganizationFormComponent,
+        path: 'contact-us',
+        component: ContactComponent,
+      },
+      {
+        path: 'about-us',
+        component: AboutUsComponent,
       }
       ,
       {

@@ -1,0 +1,160 @@
+<!-- payment-form.component.html -->
+<div class="max-w-3xl mx-auto p-8">
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
+      <!-- Header -->
+      <div class="p-6 border-b border-gray-200 dark:border-gray-700">
+        <h2 class="text-2xl font-semibold text-gray-900 dark:text-white">
+          {{ isUpdateMode ? 'Update Payment' : 'Add New Payment' }}
+        </h2>
+      </div>
+  
+      <!-- Form -->
+      <div class="p-6">
+        <form [formGroup]="paymentForm" (ngSubmit)="onSubmit()" class="space-y-6">
+          <!-- Grid layout for form fields -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Transaction Type -->
+            <div class="space-y-2">
+              <label class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                Transaction Type
+              </label>
+              <select
+                formControlName="transactionType"
+                class="w-full rounded-lg border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 
+                       text-gray-900 dark:text-white shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              >
+                <option *ngFor="let type of transactionTypes" [value]="type">
+                  {{type}}
+                </option>
+              </select>
+            </div>
+  
+            <!-- Amount -->
+            <div class="space-y-2">
+              <label class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                Amount
+              </label>
+              <input
+                type="number"
+                formControlName="amount"
+                class="w-full rounded-lg border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 
+                       text-gray-900 dark:text-white shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              />
+            </div>
+  
+            <!-- Payment Method -->
+            <div class="space-y-2">
+              <label class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                Payment Method
+              </label>
+              <select
+                formControlName="method"
+                class="w-full rounded-lg border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 
+                       text-gray-900 dark:text-white shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              >
+                <option *ngFor="let method of paymentMethods" [value]="method">
+                  {{method}}
+                </option>
+              </select>
+            </div>
+  
+            <!-- Transaction Code -->
+            <div class="space-y-2">
+              <label class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                Transaction Code
+              </label>
+              <input
+                type="text"
+                formControlName="transactionCode"
+                class="w-full rounded-lg border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 
+                       text-gray-900 dark:text-white shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              />
+            </div>
+  
+            <!-- Paid By -->
+            <div class="space-y-2">
+              <label class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                Paid By
+              </label>
+              <input
+                type="text"
+                formControlName="paidBy"
+                class="w-full rounded-lg border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 
+                       text-gray-900 dark:text-white shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              />
+            </div>
+  
+            <!-- Paid To -->
+            <div class="space-y-2">
+              <label class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                Paid To
+              </label>
+              <input
+                type="text"
+                formControlName="paidTo"
+                class="w-full rounded-lg border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 
+                       text-gray-900 dark:text-white shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              />
+            </div>
+          </div>
+  
+          <!-- Full width fields -->
+          <div class="space-y-6">
+            <!-- Description -->
+            <div class="space-y-2">
+              <label class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                Description
+              </label>
+              <textarea
+                formControlName="description"
+                rows="3"
+                class="w-full rounded-lg border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 
+                       text-gray-900 dark:text-white shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              ></textarea>
+            </div>
+  
+            <!-- Remarks -->
+            <div class="space-y-2">
+              <label class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                Remarks
+              </label>
+              <textarea
+                formControlName="remarks"
+                rows="2"
+                class="w-full rounded-lg border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 
+                       text-gray-900 dark:text-white shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              ></textarea>
+            </div>
+          </div>
+  
+          <!-- Action Buttons -->
+          <div class="flex justify-end space-x-4 pt-6">
+            <button
+              type="button"
+              (click)="close()"
+              class="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 
+                     border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-600 
+                     focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              [disabled]="isLoading || paymentForm.invalid"
+              class="px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg
+                     hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500
+                     disabled:opacity-50 disabled:cursor-not-allowed inline-flex items-center space-x-2"
+            >
+              <span *ngIf="isLoading" class="w-4 h-4">
+                <svg class="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+              </span>
+              <span>{{ isUpdateMode ? 'Update Payment' : 'Add Payment' }}</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

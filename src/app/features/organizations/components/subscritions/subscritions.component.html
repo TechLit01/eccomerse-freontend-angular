@@ -1,0 +1,173 @@
+<div class="min-h-screen bg-gray-50 dark:bg-gray-900 p-6">
+  <div class="max-w-7xl mx-auto">
+    <!-- Header -->
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 mb-6">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+        <div>
+          <h1 class="text-3xl font-bold text-gray-900 dark:text-white">
+            Subscription Management
+          </h1>
+          <p class="mt-2 text-gray-600 dark:text-gray-400">
+            Manage and monitor organization subscriptions
+          </p>
+        </div>
+        <div class="mt-4 md:mt-0">
+          <span class="text-sm font-medium text-gray-500 dark:text-gray-400">
+            Total Subscriptions: {{(subscriptions$ | async)?.length || 0}}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filters and Search -->
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 mb-6">
+      <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
+        <!-- Search -->
+        <div class="w-full md:w-1/2">
+          <div class="relative">
+            <input
+  type="text"
+  [(ngModel)]="searchQuery"
+  (input)="onSearch()"
+  placeholder="Search by organization name or license key..."
+  class="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+/>
+            <span class="absolute left-3 top-2.5 text-gray-400">
+              <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+              </svg>
+            </span>
+          </div>
+        </div>
+
+        <!-- Status Filter -->
+        <div class="w-full md:w-auto">
+          <select
+  [(ngModel)]="selectedStatus"
+  (change)="onStatusChange()"
+  class="w-full md:w-48 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg px-4 py-2 text-gray-700 dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+>
+  <option *ngFor="let status of statusOptions" [value]="status">
+    {{status}}
+  </option>
+</select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Loading State -->
+    <div *ngIf="loading" class="flex justify-center items-center py-12">
+      <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
+    </div>
+
+    <!-- Error State -->
+    <div *ngIf="error" class="bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-100 p-4 rounded-lg mb-6">
+      {{ error }}
+    </div>
+
+    <!-- Subscriptions Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" *ngIf="!loading && (subscriptions$ | async) as subscriptions">
+      <div *ngFor="let sub of subscriptions" 
+           class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-shadow duration-300">
+        <!-- Card Header with Gradient -->
+        <div class="bg-gradient-to-r from-blue-500 to-purple-600 p-1">
+          <div class="bg-white dark:bg-gray-800 p-5">
+            <div class="flex justify-between items-start">
+              <div>
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                  {{sub.organization.name}}
+                </h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400">
+                  License: {{sub.licenseKey}}
+                </p>
+              </div>
+              <span [class]="'px-3 py-1 rounded-full text-sm font-medium ' + getStatusColor(sub.status)">
+                {{sub.status}}
+              </span>
+            </div>
+          </div>
+        </div>
+  
+          <!-- Card Body -->
+          <div class="p-6 space-y-4">
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <p class="text-sm text-gray-600 dark:text-gray-400">Plan</p>
+                <p class="font-medium text-gray-900 dark:text-white">{{sub.plan}}</p>
+              </div>
+              <div>
+                <p class="text-sm text-gray-600 dark:text-gray-400">Price</p>
+                <p class="font-medium text-gray-900 dark:text-white">${{sub.price}}</p>
+              </div>
+              <div>
+                <p class="text-sm text-gray-600 dark:text-gray-400">Days Remaining</p>
+                <p class="font-medium text-gray-900 dark:text-white">{{sub.daysRemaining}}</p>
+              </div>
+              <div>
+                <p class="text-sm text-gray-600 dark:text-gray-400">Active Devices</p>
+                <p class="font-medium text-gray-900 dark:text-white">
+                  {{sub.activeDevices}}/{{sub.maxDevices}}
+                </p>
+              </div>
+            </div>
+  
+            <!-- Usage Stats -->
+            <div class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+              <h4 class="text-sm font-medium text-gray-900 dark:text-white mb-2">Usage</h4>
+              <div class="space-y-2">
+                <div class="flex justify-between items-center">
+                  <span class="text-sm text-gray-600 dark:text-gray-400">Users</span>
+                  <span class="text-sm font-medium text-gray-900 dark:text-white">
+                    {{sub.organization._count.users}}/{{sub.maxUsers}}
+                  </span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-sm text-gray-600 dark:text-gray-400">Locations</span>
+                  <span class="text-sm font-medium text-gray-900 dark:text-white">
+                    {{sub.organization._count.locations}}/{{sub.maxLocations}}
+                  </span>
+                </div>
+              </div>
+            </div>
+  
+            <div class="px-6 py-4 bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
+              <div class="flex gap-2 justify-end">
+                <button
+                  *ngIf="sub.status !== 'ACTIVE'"
+                  (click)="updateStatus(sub, 'ACTIVE')"
+                  class="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg text-sm font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors duration-200"
+                >
+                  Activate
+                </button>
+                <button
+                  *ngIf="sub.status !== 'SUSPENDED'"
+                  (click)="updateStatus(sub, 'SUSPENDED')"
+                  class="px-4 py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-lg text-sm font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition-colors duration-200"
+                >
+                  Suspend
+                </button>
+                <button
+                *ngIf="sub.status !== 'ACTIVE'"
+
+                  (click)="openDialogAddModal(sub.organization.id)"
+                  class="px-4 py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-lg text-sm font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition-colors duration-200"
+                >
+                  Make Payment
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+        <!-- Empty State -->
+        <div *ngIf="!loading && (subscriptions$ | async)?.length === 0" 
+             class="text-center py-12 bg-white dark:bg-gray-800 rounded-lg shadow-sm">
+          <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+          <h3 class="mt-2 text-sm font-medium text-gray-900 dark:text-white">No subscriptions found</h3>
+          <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
+            Try adjusting your search or filter criteria
+          </p>
+        </div>
+      </div>

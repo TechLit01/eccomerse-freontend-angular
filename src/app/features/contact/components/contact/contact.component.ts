@@ -37,15 +37,15 @@ export class ContactComponent implements OnInit {
       icon: 'fas fa-phone-alt',
       title: 'Call Us',
       description: 'Talk to our friendly team',
-      value: '+1 (800) QLA-TECH',
+      value: '+254 704 288 136',
       link: 'tel:+18007582324'
     },
     {
       icon: 'fas fa-envelope',
       title: 'Email Us',
       description: 'We\'ll respond within 24 hours',
-      value: 'support@qla.com',
-      link: 'mailto:support@qla.com'
+      value: 'sales@ql-a.com',
+      link: 'mailto:sales@ql-a.com'
     },
     {
       icon: 'fas fa-comments',
@@ -63,21 +63,12 @@ export class ContactComponent implements OnInit {
 
   officeLocations: OfficeLocation[] = [
     {
-      city: 'San Francisco',
-      country: 'United States',
-      address: '123 Tech Street, Innovation District, CA 94025',
-      phone: '+1 (800) 758-2324',
-      email: 'sf@qla.com',
+      city: 'Nairobi',
+      country: 'Kenya',
+      address: 'Unga House Muthithi Rd No 1870 / IX / 581st floor,Westland Nairobi, Kenya',
+      phone: '+254 704 288 136',
+      email: 'sales@ql-a.com',
       hours: 'Mon-Fri: 9:00 AM - 6:00 PM PST',
-      image: 'https://res.cloudinary.com/dfsd8beyu/image/upload/v1732995563/Apple_MacBook-Pro_14-16-inch_10182021_big.jpg.large_pdjiwf.jpg'
-    },
-    {
-      city: 'New York',
-      country: 'United States',
-      address: '456 Tech Avenue, Digital District, NY 10013',
-      phone: '+1 (800) 758-2325',
-      email: 'ny@qla.com',
-      hours: 'Mon-Fri: 9:00 AM - 6:00 PM EST',
       image: 'https://res.cloudinary.com/dfsd8beyu/image/upload/v1732995563/Apple_MacBook-Pro_14-16-inch_10182021_big.jpg.large_pdjiwf.jpg'
     }
   ];

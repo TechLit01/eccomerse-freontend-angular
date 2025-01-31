@@ -27,18 +27,18 @@ export class BlogsComponent implements OnInit {
   featuredPosts: BlogPost[] = [
     {
       id: '1',
-      title: 'The Future of AI in Consumer Electronics',
-      excerpt: 'Exploring how artificial intelligence is revolutionizing everyday devices and what to expect in the coming years.',
+      title: 'Why LED?',
+      excerpt: 'Understanding LED Performance',
       content: '...',
       image: 'https://res.cloudinary.com/dfsd8beyu/image/upload/v1732995563/Apple_MacBook-Pro_14-16-inch_10182021_big.jpg.large_pdjiwf.jpg',
-      category: 'Technology Trends',
-      tags: ['AI', 'Smart Devices', 'Innovation'],
+      category: 'Energy Efficiency and Cost Savings',
+      tags: ['IOT Devices', 'Strip Lights', 'Backlit Panels'],
       author: {
-        name: 'Sarah Johnson',
+        name: 'QLA',
         avatar: 'https://res.cloudinary.com/dfsd8beyu/image/upload/v1732995563/Apple_MacBook-Pro_14-16-inch_10182021_big.jpg.large_pdjiwf.jpg',
         role: 'Tech Analyst'
       },
-      publishDate: new Date('2024-01-15'),
+      publishDate: new Date('2025-01-15'),
       readTime: 8,
       featured: true
     }
@@ -47,34 +47,34 @@ export class BlogsComponent implements OnInit {
   blogPosts: BlogPost[] = [
     {
       id: '2',
-      title: 'Top Gaming Laptops of 2024',
-      excerpt: 'A comprehensive review of the best gaming laptops available in the market right now.',
+      title: 'Energy efficiency',
+      excerpt: ' LED lights consume significantly less energy than traditional incandescent bulbs, resulting in lower electricity bills and reduced carbon emissions. They can be up to 80% more efficient than traditional lighting.',
       content: '...',
       image: 'https://res.cloudinary.com/dfsd8beyu/image/upload/v1732995563/Apple_MacBook-Pro_14-16-inch_10182021_big.jpg.large_pdjiwf.jpg',
       category: 'Product Reviews',
-      tags: ['Gaming', 'Laptops', 'Reviews'],
+      tags: ['LEDs', 'RGBW', 'Backlit'],
       author: {
-        name: 'Michael Chen',
+        name: 'QLA',
         avatar: 'https://res.cloudinary.com/dfsd8beyu/image/upload/v1732995563/Apple_MacBook-Pro_14-16-inch_10182021_big.jpg.large_pdjiwf.jpg',
         role: 'Product Reviewer'
       },
-      publishDate: new Date('2024-01-10'),
+      publishDate: new Date('2025-01-10'),
       readTime: 12
     },
     {
       id: '3',
-      title: 'Understanding 5G Technology',
-      excerpt: 'Everything you need to know about 5G and its impact on mobile connectivity.',
+      title: 'Longevity',
+      excerpt: 'LED lights have a much longer lifespan than traditional bulbs, which means they need to be replaced less frequently. This makes them a cost-effective option in the long term.',
       content: '...',
       image: 'https://res.cloudinary.com/dfsd8beyu/image/upload/v1732995563/Apple_MacBook-Pro_14-16-inch_10182021_big.jpg.large_pdjiwf.jpg',
-      category: 'Tech Guides',
-      tags: ['5G', 'Mobile', 'Network'],
+      category: 'QLA',
+      tags: ['Downlighters', 'RGB', 'Neon'],
       author: {
-        name: 'John Smith',
+        name: 'QLA',
         avatar: 'https://res.cloudinary.com/dfsd8beyu/image/upload/v1732995563/Apple_MacBook-Pro_14-16-inch_10182021_big.jpg.large_pdjiwf.jpg',
-        role: 'Tech Writer'
+        role: 'Engineer'
       },
-      publishDate: new Date('2024-01-05'),
+      publishDate: new Date('2025-01-05'),
       readTime: 10
     }
   ];
@@ -89,8 +89,8 @@ export class BlogsComponent implements OnInit {
   ];
 
   popularTags = [
-    'AI', '5G', 'Smart Home', 'Gaming', 'Mobile',
-    'Laptops', 'Gadgets', 'Reviews', 'Innovation'
+    'IOT Devices', 'Backlit Panels', 'Smart Home', 'LED', 'RGBW',
+    'Neon', 'Aluminium Profiles', 'Strip Lights', 'Downlighters'
   ];
 
   selectedCategory = 'all';

@@ -14,6 +14,8 @@ import { CategoriesComponent } from './features/categories/components/categories
 import { BlogsComponent } from './features/blogs/components/blogs/blogs.component';
 import { ContactComponent } from './features/contact/components/contact/contact.component';
 import { AboutUsComponent } from './features/about-us/components/about-us/about-us.component';
+import { RegisterComponent } from './features/auth/componets/register/register.component';
+import { ProfileComponent } from './features/auth/componets/profile/profile.component';
 
 // app-routing.module.ts
 const routes: Routes = [
@@ -28,6 +30,14 @@ const routes: Routes = [
       {
         path: 'login',
         component: LoginComponent,
+      },
+      {
+        path: 'register',
+        component: RegisterComponent,
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent,
       },
       {
         path: 'products',

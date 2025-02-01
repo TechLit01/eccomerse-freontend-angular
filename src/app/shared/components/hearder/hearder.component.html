@@ -196,7 +196,7 @@ class="fixed inset-0 z-50 lg:hidden"
        <div class="text-sm font-medium text-slate-500 dark:text-slate-400 px-4 mb-2">Categories</div>
        <nav class="space-y-1">
            <a *ngFor="let category of categories" 
-              [routerLink]="['/category', category.slug]"
+              [routerLink]="['/', category.slug]"
               (click)="isMobileMenuOpen = false"
               class="flex items-center px-4 py-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg">
                <span>{{ category.name }}</span>

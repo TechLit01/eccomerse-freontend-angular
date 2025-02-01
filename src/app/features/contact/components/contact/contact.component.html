@@ -1,12 +1,11 @@
-<!-- contact.component.html -->
-<div class="min-h-screen bg-slate-50 dark:bg-slate-900 pt-24 pb-12">
+<div class="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 pt-24 pb-12">
     <!-- Hero Section -->
     <div class="container mx-auto px-4 mb-12">
         <div class="text-center max-w-3xl mx-auto">
-            <h1 class="text-4xl font-bold text-slate-900 dark:text-white mb-4">
-                Get in Touch
+            <h1 class="text-5xl font-bold text-blue-900 dark:text-white mb-4 animate-fade-in">
+                Get in Touch with Us
             </h1>
-            <p class="text-lg text-slate-600 dark:text-slate-400">
+            <p class="text-xl text-black dark:text-white animate-fade-in delay-100">
                 Have questions? We're here to help. Choose your preferred way to reach us.
             </p>
         </div>
@@ -16,66 +15,69 @@
     <div class="container mx-auto px-4 mb-16">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <div *ngFor="let method of contactMethods"
-                 class="bg-white dark:bg-slate-800 rounded-lg p-6 text-center hover:shadow-lg transition-shadow">
-                <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-indigo-100 dark:bg-indigo-900 text-indigo-600 dark:text-indigo-400 mb-4">
-                    <i [class]="method.icon + ' text-xl'"></i>
+                 class="bg-white dark:bg-slate-800 rounded-xl p-6 text-center hover:shadow-2xl transition-all transform hover:-translate-y-2 hover:scale-105">
+                <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400 mb-4">
+                    <i [class]="method.icon + ' text-2xl'"></i>
                 </div>
-                <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">
+                <h3 class="text-xl font-semibold text-blue-900 dark:text-white mb-2">
                     {{ method.title }}
                 </h3>
-                <p class="text-slate-600 dark:text-slate-400 mb-4">
+                <p class="text-black dark:text-white mb-4">
                     {{ method.description }}
                 </p>
                 <a *ngIf="method.link" 
                    [href]="method.link"
-                   class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 font-medium">
+                   class="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium">
                     {{ method.value }}
                 </a>
                 <span *ngIf="!method.link" 
-                      class="text-indigo-600 dark:text-indigo-400 font-medium">
+                      class="text-blue-600 dark:text-blue-400 font-medium">
                     {{ method.value }}
                 </span>
             </div>
         </div>
     </div>
 
+    <!-- Contact Form & Office Locations -->
     <div class="container mx-auto px-4">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <!-- Contact Form -->
-            <div class="bg-white dark:bg-slate-800 rounded-lg p-8">
-                <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+            <div class="bg-white dark:bg-slate-800 rounded-xl p-8 shadow-lg">
+                <h2 class="text-3xl font-bold text-blue-900 dark:text-white mb-6">
                     Send Us a Message
                 </h2>
                 <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="space-y-6">
                     <!-- Name & Email -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <div>
-                            <label for="name" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                            <label for="name" class="block text-sm font-medium text-black dark:text-white mb-2">
                                 Full Name *
                             </label>
                             <input type="text"
                                    id="name"
                                    formControlName="name"
                                    [class.border-red-500]="contactForm.get('name')?.touched && contactForm.get('name')?.invalid"
-                                   class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 
-                                          bg-white dark:bg-slate-700 text-slate-900 dark:text-white 
-                                          focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400">
+                                   class="w-full px-4 py-3 rounded-lg border border-blue-300 dark:border-blue-600 
+                                          bg-white dark:bg-slate-700 text-black dark:text-white 
+                                          focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 
+                                          transition-all">
                             <p *ngIf="contactForm.get('name')?.touched && contactForm.get('name')?.invalid"
                                class="mt-1 text-sm text-red-600">
                                 {{ getErrorMessage('name') }}
                             </p>
                         </div>
                         <div>
-                            <label for="email" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                            <label for="email" class="block text-sm font-medium text-black dark:text-white mb-2">
                                 Email Address *
                             </label>
                             <input type="email"
                                    id="email"
                                    formControlName="email"
                                    [class.border-red-500]="contactForm.get('email')?.touched && contactForm.get('email')?.invalid"
-                                   class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 
-                                          bg-white dark:bg-slate-700 text-slate-900 dark:text-white 
-                                          focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400">
+                                   class="w-full px-4 py-3 rounded-lg border border-blue-300 dark:border-blue-600 
+                                          bg-white dark:bg-slate-700 text-black dark:text-white 
+                                          focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 
+                                          transition-all">
                             <p *ngIf="contactForm.get('email')?.touched && contactForm.get('email')?.invalid"
                                class="mt-1 text-sm text-red-600">
                                 {{ getErrorMessage('email') }}
@@ -86,30 +88,32 @@
                     <!-- Phone & Category -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <div>
-                            <label for="phone" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                            <label for="phone" class="block text-sm font-medium text-black dark:text-white mb-2">
                                 Phone Number (Optional)
                             </label>
                             <input type="tel"
                                    id="phone"
                                    formControlName="phone"
                                    [class.border-red-500]="contactForm.get('phone')?.touched && contactForm.get('phone')?.invalid"
-                                   class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 
-                                          bg-white dark:bg-slate-700 text-slate-900 dark:text-white 
-                                          focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400">
+                                   class="w-full px-4 py-3 rounded-lg border border-blue-300 dark:border-blue-600 
+                                          bg-white dark:bg-slate-700 text-black dark:text-white 
+                                          focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 
+                                          transition-all">
                             <p *ngIf="contactForm.get('phone')?.touched && contactForm.get('phone')?.invalid"
                                class="mt-1 text-sm text-red-600">
                                 {{ getErrorMessage('phone') }}
                             </p>
                         </div>
                         <div>
-                            <label for="category" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                            <label for="category" class="block text-sm font-medium text-black dark:text-white mb-2">
                                 Inquiry Category
                             </label>
                             <select id="category"
                                     formControlName="category"
-                                    class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 
-                                           bg-white dark:bg-slate-700 text-slate-900 dark:text-white 
-                                           focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400">
+                                    class="w-full px-4 py-3 rounded-lg border border-blue-300 dark:border-blue-600 
+                                           bg-white dark:bg-slate-700 text-black dark:text-white 
+                                           focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 
+                                           transition-all">
                                 <option *ngFor="let category of faqCategories" [value]="category">
                                     {{ category }}
                                 </option>
@@ -119,16 +123,17 @@
 
                     <!-- Subject -->
                     <div>
-                        <label for="subject" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                        <label for="subject" class="block text-sm font-medium text-black dark:text-white mb-2">
                             Subject *
                         </label>
                         <input type="text"
                                id="subject"
                                formControlName="subject"
                                [class.border-red-500]="contactForm.get('subject')?.touched && contactForm.get('subject')?.invalid"
-                               class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 
-                                      bg-white dark:bg-slate-700 text-slate-900 dark:text-white 
-                                      focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400">
+                               class="w-full px-4 py-3 rounded-lg border border-blue-300 dark:border-blue-600 
+                                      bg-white dark:bg-slate-700 text-black dark:text-white 
+                                      focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 
+                                      transition-all">
                         <p *ngIf="contactForm.get('subject')?.touched && contactForm.get('subject')?.invalid"
                            class="mt-1 text-sm text-red-600">
                             {{ getErrorMessage('subject') }}
@@ -137,131 +142,150 @@
 
                     <!-- Message -->
                     <div>
-                        <label for="message" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                        <label for="message" class="block text-sm font-medium text-black dark:text-white mb-2">
                             Message *
                         </label>
                         <textarea id="message"
                                   formControlName="message"
-                                  rows="4"
+                                  rows="5"
                                   [class.border-red-500]="contactForm.get('message')?.touched && contactForm.get('message')?.invalid"
-                                  class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 
-                                         bg-white dark:bg-slate-700 text-slate-900 dark:text-white 
-                                         focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400"></textarea>
+                                  class="w-full px-4 py-3 rounded-lg border border-blue-300 dark:border-blue-600 
+                                         bg-white dark:bg-slate-700 text-black dark:text-white 
+                                         focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 
+                                         transition-all"></textarea>
                         <p *ngIf="contactForm.get('message')?.touched && contactForm.get('message')?.invalid"
                            class="mt-1 text-sm text-red-600">
                             {{ getErrorMessage('message') }}
                         </p>
                     </div>
 
-<!-- Privacy Policy -->
-<div class="flex items-start">
-    <div class="flex items-center h-5">
-        <input type="checkbox"
-               id="agreeToPolicies"
-               formControlName="agreeToPolicies"
-               class="h-4 w-4 rounded border-slate-300 dark:border-slate-600 
-                      text-indigo-600 focus:ring-indigo-500">
+                    <!-- Privacy Policy -->
+                    <div class="flex items-start">
+                        <div class="flex items-center h-5">
+                            <input type="checkbox"
+                                   id="agreeToPolicies"
+                                   formControlName="agreeToPolicies"
+                                   class="h-4 w-4 rounded border-blue-300 dark:border-blue-600 
+                                          text-blue-600 focus:ring-blue-500">
+                        </div>
+                        <label for="agreeToPolicies" class="ml-3 text-sm text-black dark:text-white">
+                            I agree to the 
+                            <a href="/privacy-policy" class="text-blue-600 dark:text-blue-400 hover:underline">Privacy Policy</a>
+                            and
+                            <a href="/terms" class="text-blue-600 dark:text-blue-400 hover:underline">Terms of Service</a>
+                        </label>
+                    </div>
+
+                    <!-- Form Messages -->
+                    <div *ngIf="submitSuccess" 
+                         class="p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 rounded-lg">
+                        <p class="text-green-800 dark:text-green-200">
+                            Thank you! Your message has been sent successfully.
+                        </p>
+                    </div>
+
+                    <div *ngIf="submitError"
+                         class="p-4 bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-lg">
+                        <p class="text-red-800 dark:text-red-200">
+                            Sorry, there was an error sending your message. Please try again.
+                        </p>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="flex justify-end">
+                        <button type="submit"
+                                [disabled]="isSubmitting || !contactForm.valid"
+                                class="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg 
+                                       shadow-lg hover:shadow-xl transition-all focus:outline-none focus:ring-2 
+                                       focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 
+                                       disabled:cursor-not-allowed flex items-center">
+                            <i *ngIf="isSubmitting" class="fas fa-spinner fa-spin mr-2"></i>
+                            {{ isSubmitting ? 'Sending...' : 'Send Message' }}
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Office Locations -->
+            <div class="space-y-8">
+                <div *ngFor="let office of officeLocations"
+                     class="bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all">
+                    <img [src]="office.image" 
+                         [alt]="office.city + ' Office'"
+                         class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-blue-900 dark:text-white mb-4">
+                            {{ office.city }}, {{ office.country }}
+                        </h3>
+                        <div class="space-y-4 text-black dark:text-white">
+                            <p class="flex items-start">
+                                <i class="fas fa-map-marker-alt mt-1 mr-3"></i>
+                                <span>{{ office.address }}</span>
+                            </p>
+                            <p class="flex items-center">
+                                <i class="fas fa-phone-alt mr-3"></i>
+                                <span>{{ office.phone }}</span>
+                            </p>
+                            <p class="flex items-center">
+                                <i class="fas fa-envelope mr-3"></i>
+                                <span>{{ office.email }}</span>
+                            </p>
+                            <p class="flex items-center">
+                                <i class="fas fa-clock mr-3"></i>
+                                <span>{{ office.hours }}</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <label for="agreeToPolicies" class="ml-3 text-sm text-slate-600 dark:text-slate-400">
-        I agree to the 
-        <a href="/privacy-policy" class="text-indigo-600 dark:text-indigo-400 hover:underline">Privacy Policy</a>
-        and
-        <a href="/terms" class="text-indigo-600 dark:text-indigo-400 hover:underline">Terms of Service</a>
-    </label>
-</div>
 
-<!-- Form Messages -->
-<div *ngIf="submitSuccess" 
-     class="p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 rounded-lg">
-    <p class="text-green-800 dark:text-green-200">
-        Thank you! Your message has been sent successfully.
-    </p>
-</div>
-
-<div *ngIf="submitError"
-     class="p-4 bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-lg">
-    <p class="text-red-800 dark:text-red-200">
-        Sorry, there was an error sending your message. Please try again.
-    </p>
-</div>
-
-<!-- Submit Button -->
-<div class="flex justify-end">
-    <button type="submit"
-            [disabled]="isSubmitting || !contactForm.valid"
-            class="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg 
-                   shadow-sm transition-colors focus:outline-none focus:ring-2 
-                   focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 
-                   disabled:cursor-not-allowed flex items-center">
-        <i *ngIf="isSubmitting" class="fas fa-spinner fa-spin mr-2"></i>
-        {{ isSubmitting ? 'Sending...' : 'Send Message' }}
-    </button>
-</div>
-</form>
-</div>
-
-<!-- Office Locations -->
-<div class="space-y-8">
-<div *ngFor="let office of officeLocations"
- class="bg-white dark:bg-slate-800 rounded-lg overflow-hidden">
-<img [src]="office.image" 
-     [alt]="office.city + ' Office'"
-     class="w-full h-48 object-cover">
-<div class="p-6">
-    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">
-        {{ office.city }}, {{ office.country }}
-    </h3>
-    <div class="space-y-4 text-slate-600 dark:text-slate-400">
-        <p class="flex items-start">
-            <i class="fas fa-map-marker-alt mt-1 mr-3"></i>
-            <span>{{ office.address }}</span>
-        </p>
-        <p class="flex items-center">
-            <i class="fas fa-phone-alt mr-3"></i>
-            <span>{{ office.phone }}</span>
-        </p>
-        <p class="flex items-center">
-            <i class="fas fa-envelope mr-3"></i>
-            <span>{{ office.email }}</span>
-        </p>
-        <p class="flex items-center">
-            <i class="fas fa-clock mr-3"></i>
-            <span>{{ office.hours }}</span>
-        </p>
+    <!-- Google Map -->
+    <div class="container mx-auto px-4 mt-16">
+        <h2 class="text-3xl font-bold text-blue-900 dark:text-white mb-6 text-center">
+            Our Location
+        </h2>
+        <div class="rounded-xl overflow-hidden shadow-lg">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.819476438449!2d36.82115931533029!3d-1.282359535979253!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f10d7b2d5b3b5%3A0x1f3b3b3b3b3b3b3b!2sNairobi%2C%20Kenya!5e0!3m2!1sen!2ske!4v1633033226787!5m2!1sen!2ske"
+                width="100%"
+                height="450"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy"
+                class="w-full h-96"
+            ></iframe>
+        </div>
     </div>
-</div>
-</div>
-</div>
-</div>
 
-<!-- FAQ Section -->
-<div class="mt-16">
-<div class="text-center mb-8">
-<h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">
-Frequently Asked Questions
-</h2>
-<p class="text-slate-600 dark:text-slate-400">
-Find quick answers to common questions
-</p>
-</div>
+    <!-- FAQ Section -->
+    <div class="container mx-auto px-4 mt-16">
+        <div class="text-center mb-8">
+            <h2 class="text-4xl font-bold text-blue-900 dark:text-white mb-4">
+                Frequently Asked Questions
+            </h2>
+            <p class="text-xl text-black dark:text-white">
+                Find quick answers to common questions
+            </p>
+        </div>
 
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-<a *ngFor="let category of faqCategories"
-[routerLink]="['/faq']"
-[queryParams]="{category: category.toLowerCase()}"
-class="bg-white dark:bg-slate-800 rounded-lg p-6 hover:shadow-lg transition-shadow">
-<h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">
-    {{ category }}
-</h3>
-<p class="text-slate-600 dark:text-slate-400">
-    Find answers about {{ category.toLowerCase() }}
-</p>
-<div class="mt-4 text-indigo-600 dark:text-indigo-400">
-    Learn more
-    <i class="fas fa-arrow-right ml-2"></i>
-</div>
-</a>
-</div>
-</div>
-</div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <a *ngFor="let category of faqCategories"
+               [routerLink]="['/faq']"
+               [queryParams]="{category: category.toLowerCase()}"
+               class="bg-white dark:bg-slate-800 rounded-xl p-6 hover:shadow-2xl transition-all transform hover:-translate-y-2">
+                <h3 class="text-xl font-semibold text-blue-900 dark:text-white mb-2">
+                    {{ category }}
+                </h3>
+                <p class="text-black dark:text-white">
+                    Find answers about {{ category.toLowerCase() }}
+                </p>
+                <div class="mt-4 text-blue-600 dark:text-blue-400">
+                    Learn more
+                    <i class="fas fa-arrow-right ml-2"></i>
+                </div>
+            </a>
+        </div>
+    </div>
 </div>

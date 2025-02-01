@@ -1,14 +1,16 @@
-<div class="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-md w-full space-y-8">
+<div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-700 py-12 px-4 sm:px-6 lg:px-8">
+  <!-- Floating Container -->
+  <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gray-100 dark:border-gray-700 transform transition-all duration-300 hover:shadow-3xl hover:-translate-y-2">
+    <div class="max-w-md w-full space-y-6 p-8"> <!-- Adjusted padding -->
       <!-- Header Section -->
-      <div>
+      <div class="text-center">
         <img 
-          class="mx-auto h-12 w-auto" 
+          class="mx-auto h-16 w-auto transform transition-transform duration-500 hover:scale-110" 
           src="assets/logo.png" 
           alt="Admin Logo"
-          onerror="this.src='https://via.placeholder.com/48x48'"
+          onerror="this.src='https://via.placeholder.com/64x64'"
         >
-        <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900 dark:text-white">
+        <h2 class="mt-6 text-center text-4xl font-extrabold text-gray-900 dark:text-white bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
           Admin Portal Sign In
         </h2>
         <p class="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">
@@ -19,9 +21,12 @@
       <!-- Login Form -->
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="mt-8 space-y-6">
         <!-- Error Message -->
-        <div *ngIf="error" class="rounded-md bg-red-50 dark:bg-red-900/50 p-4">
-          <div class="flex">
-            <div class="text-sm text-red-700 dark:text-red-200">
+        <div *ngIf="error" class="rounded-md bg-red-50 dark:bg-red-900/20 p-4">
+          <div class="flex items-center">
+            <svg class="h-5 w-5 text-red-400 dark:text-red-300" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+            </svg>
+            <div class="ml-3 text-sm text-red-700 dark:text-red-200">
               {{ error }}
             </div>
           </div>
@@ -39,7 +44,7 @@
               type="email" 
               autocomplete="email" 
               required
-              class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white rounded-t-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+              class="appearance-none rounded-none relative block w-full px-4 py-3 border border-gray-300 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white rounded-t-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm transition-all duration-200"
               [ngClass]="{'border-red-500': loginForm.get('email')?.touched && loginForm.get('email')?.invalid}"
               placeholder="Email address"
             >
@@ -62,7 +67,7 @@
               type="password" 
               autocomplete="current-password" 
               required
-              class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+              class="appearance-none rounded-none relative block w-full px-4 py-3 border border-gray-300 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white rounded-b-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm transition-all duration-200"
               [ngClass]="{'border-red-500': loginForm.get('password')?.touched && loginForm.get('password')?.invalid}"
               placeholder="Password"
             >
@@ -73,41 +78,17 @@
           </div>
         </div>
 
-        <!-- Remember Me and Forgot Password -->
-        <div class="flex items-center justify-between">
-          <div class="flex items-center">
-            <input 
-              id="remember-me" 
-              formControlName="rememberMe"
-              type="checkbox"
-              class="h-4 w-4 text-blue-600 dark:text-blue-400 focus:ring-blue-500 border-gray-300 dark:border-gray-600 rounded"
-            >
-            <label for="remember-me" class="ml-2 block text-sm text-gray-900 dark:text-gray-300">
-              Remember me
-            </label>
-          </div>
-
-          <div class="text-sm">
-            <a 
-              routerLink="/auth/forgot-password" 
-              class="font-medium text-blue-600 dark:text-blue-400 hover:underline"
-            >
-              Forgot your password?
-            </a>
-          </div>
-        </div>
-
         <!-- Submit Button -->
         <div>
           <button 
             type="submit"
             [disabled]="loginForm.invalid || isLoading"
-            class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
+            class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
           >
             <span class="absolute left-0 inset-y-0 flex items-center pl-3">
               <svg 
                 *ngIf="!isLoading"
-                class="h-5 w-5 text-blue-500 group-hover:text-blue-400" 
+                class="h-5 w-5 text-blue-200 group-hover:text-blue-100 transition-colors duration-200" 
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20" 
                 fill="currentColor" 
@@ -118,27 +99,6 @@
                   clip-rule="evenodd" 
                 />
               </svg>
-              <svg 
-                *ngIf="isLoading"
-                class="animate-spin h-5 w-5 text-white" 
-                xmlns="http://www.w3.org/2000/svg" 
-                fill="none" 
-                viewBox="0 0 24 24"
-              >
-                <circle 
-                  class="opacity-25" 
-                  cx="12" 
-                  cy="12" 
-                  r="10" 
-                  stroke="currentColor" 
-                  stroke-width="4"
-                ></circle>
-                <path 
-                  class="opacity-75" 
-                  fill="currentColor" 
-                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
-                ></path>
-              </svg>
             </span>
             {{ isLoading ? 'Signing in...' : 'Sign in' }}
           </button>
@@ -146,3 +106,4 @@
       </form>
     </div>
   </div>
+</div>

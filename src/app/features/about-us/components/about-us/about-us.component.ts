@@ -36,7 +36,7 @@ export class AboutUsComponent {
   teamMembers: TeamMember[] = [
     {
       id: '1',
-      name: 'John Smith',
+      name: 'Charles Van',
       role: 'CEO & Founder',
       image: 'https://res.cloudinary.com/dfsd8beyu/image/upload/v1732995563/Apple_MacBook-Pro_14-16-inch_10182021_big.jpg.large_pdjiwf.jpg',
       bio: 'Tech enthusiast with 15+ years of experience in consumer electronics retail.',
@@ -121,27 +121,23 @@ export class AboutUsComponent {
 
   milestones = [
     {
-      year: 2008,
+      year: 2006,
       title: 'Company Founded',
-      description: 'QLA was founded with a vision to revolutionize electronics retail.'
+      description: 'The company was founded with a vision to revolutionize LED Lighting,custom-made projects, good quality and excellent service'
+    },
+  
+    {
+      year: 2006,
+      title: 'What we deal in',
+      description: 'Wholesale Large (full range) stock Flexibel, Custom-made Installation & Support Consultancy,'
     },
     {
-      year: 2012,
-      title: 'National Expansion',
-      description: 'Expanded operations nationwide with 50+ retail locations.'
+      year: 2007,
+      title: 'Support',
+      description: 'Light Calculations, Own development (OEM) Fast delivery, Innovation Software support'
     },
     {
-      year: 2015,
-      title: 'E-commerce Launch',
-      description: 'Launched our online store to reach customers everywhere.'
-    },
-    {
-      year: 2018,
-      title: 'Innovation Award',
-      description: 'Recognized as the most innovative electronics retailer.'
-    },
-    {
-      year: 2020,
+      year: 2007,
       title: 'Sustainability Initiative',
       description: 'Launched our eco-friendly packaging and recycling program.'
     },

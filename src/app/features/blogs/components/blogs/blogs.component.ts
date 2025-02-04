@@ -30,7 +30,7 @@ export class BlogsComponent implements OnInit {
       title: 'Why LED?',
       excerpt: 'Understanding LED Performance',
       content: '...',
-      image: 'https://res.cloudinary.com/dfsd8beyu/image/upload/v1732995563/Apple_MacBook-Pro_14-16-inch_10182021_big.jpg.large_pdjiwf.jpg',
+      image: 'https://res.cloudinary.com/da5npawma/image/upload/v1738564444/612T_V6m3NL._AC_UF1000_1000_QL80__olhooj.jpg',
       category: 'Energy Efficiency and Cost Savings',
       tags: ['IOT Devices', 'Strip Lights', 'Backlit Panels'],
       author: {
@@ -50,12 +50,12 @@ export class BlogsComponent implements OnInit {
       title: 'Energy efficiency',
       excerpt: ' LED lights consume significantly less energy than traditional incandescent bulbs, resulting in lower electricity bills and reduced carbon emissions. They can be up to 80% more efficient than traditional lighting.',
       content: '...',
-      image: 'https://res.cloudinary.com/dfsd8beyu/image/upload/v1732995563/Apple_MacBook-Pro_14-16-inch_10182021_big.jpg.large_pdjiwf.jpg',
+      image: 'https://res.cloudinary.com/da5npawma/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1738564646/blog-img1_uzteej.jpg',
       category: 'Product Reviews',
       tags: ['LEDs', 'RGBW', 'Backlit'],
       author: {
         name: 'QLA',
-        avatar: 'https://res.cloudinary.com/dfsd8beyu/image/upload/v1732995563/Apple_MacBook-Pro_14-16-inch_10182021_big.jpg.large_pdjiwf.jpg',
+        avatar: 'https://res.cloudinary.com/da5npawma/image/upload/v1738503901/j17r7gsjnkn7sbqk0iym.jpg',
         role: 'Product Reviewer'
       },
       publishDate: new Date('2025-01-10'),
@@ -66,12 +66,12 @@ export class BlogsComponent implements OnInit {
       title: 'Longevity',
       excerpt: 'LED lights have a much longer lifespan than traditional bulbs, which means they need to be replaced less frequently. This makes them a cost-effective option in the long term.',
       content: '...',
-      image: 'https://res.cloudinary.com/dfsd8beyu/image/upload/v1732995563/Apple_MacBook-Pro_14-16-inch_10182021_big.jpg.large_pdjiwf.jpg',
+      image: 'https://res.cloudinary.com/da5npawma/image/upload/v1738583554/blog-img5_uajwd8.jpg',
       category: 'QLA',
       tags: ['Downlighters', 'RGB', 'Neon'],
       author: {
         name: 'QLA',
-        avatar: 'https://res.cloudinary.com/dfsd8beyu/image/upload/v1732995563/Apple_MacBook-Pro_14-16-inch_10182021_big.jpg.large_pdjiwf.jpg',
+        avatar: 'https://res.cloudinary.com/da5npawma/image/upload/v1738503901/j17r7gsjnkn7sbqk0iym.jpg',
         role: 'Engineer'
       },
       publishDate: new Date('2025-01-05'),

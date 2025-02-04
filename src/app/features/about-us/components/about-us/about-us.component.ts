@@ -34,39 +34,7 @@ interface CompanyValue {
 })
 export class AboutUsComponent {
   teamMembers: TeamMember[] = [
-    {
-      id: '1',
-      name: 'Charles Van',
-      role: 'CEO & Founder',
-      image: 'https://res.cloudinary.com/dfsd8beyu/image/upload/v1732995563/Apple_MacBook-Pro_14-16-inch_10182021_big.jpg.large_pdjiwf.jpg',
-      bio: 'Tech enthusiast with 15+ years of experience in consumer electronics retail.',
-      socialLinks: {
-        linkedin: 'https://linkedin.com',
-        twitter: 'https://twitter.com'
-      }
-    },
-    {
-      id: '2',
-      name: 'Sarah Johnson',
-      role: 'CTO',
-      image: 'https://res.cloudinary.com/dfsd8beyu/image/upload/v1732995563/Apple_MacBook-Pro_14-16-inch_10182021_big.jpg.large_pdjiwf.jpg',
-      bio: 'Former Silicon Valley engineer passionate about making technology accessible.',
-      socialLinks: {
-        linkedin: 'https://linkedin.com',
-        github: 'https://github.com'
-      }
-    },
-    {
-      id: '3',
-      name: 'Michael Chen',
-      role: 'Head of Product',
-      image: 'https://res.cloudinary.com/dfsd8beyu/image/upload/v1732995563/Apple_MacBook-Pro_14-16-inch_10182021_big.jpg.large_pdjiwf.jpg',
-      bio: 'Product strategist focusing on customer-centric innovation.',
-      socialLinks: {
-        linkedin: 'https://linkedin.com',
-        twitter: 'https://twitter.com'
-      }
-    }
+    
   ];
 
   companyStats: CompanyStat[] = [

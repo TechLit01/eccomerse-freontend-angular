@@ -54,11 +54,13 @@ export class ContactComponent implements OnInit {
       value: 'Start a conversation'
     },
     {
-      icon: 'fas fa-ticket-alt',
-      title: 'Support Ticket',
-      description: 'Create a ticket for complex issues',
-      value: 'Open ticket system'
+      icon: 'fab fa-whatsapp',
+      title: 'WhatsApp Support',
+      description: 'Chat with us on WhatsApp for quick assistance',
+      value: 'Contact via WhatsApp',
+      link: 'https://wa.me/+254 704 288 136' 
     }
+    
   ];
 
   officeLocations: OfficeLocation[] = [

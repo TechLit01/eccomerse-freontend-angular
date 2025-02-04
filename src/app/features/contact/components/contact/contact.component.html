@@ -6,37 +6,13 @@
                 Get in Touch with Us
             </h1>
             <p class="text-xl text-black dark:text-white animate-fade-in delay-100">
-                Have questions? We're here to help. Choose your preferred way to reach us.
+                Have questions? We're here to help. Hit us up Today.
             </p>
         </div>
     </div>
 
     <!-- Contact Methods -->
-    <div class="container mx-auto px-4 mb-16">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div *ngFor="let method of contactMethods"
-                 class="bg-white dark:bg-slate-800 rounded-xl p-6 text-center hover:shadow-2xl transition-all transform hover:-translate-y-2 hover:scale-105">
-                <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400 mb-4">
-                    <i [class]="method.icon + ' text-2xl'"></i>
-                </div>
-                <h3 class="text-xl font-semibold text-blue-900 dark:text-white mb-2">
-                    {{ method.title }}
-                </h3>
-                <p class="text-black dark:text-white mb-4">
-                    {{ method.description }}
-                </p>
-                <a *ngIf="method.link" 
-                   [href]="method.link"
-                   class="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium">
-                    {{ method.value }}
-                </a>
-                <span *ngIf="!method.link" 
-                      class="text-blue-600 dark:text-blue-400 font-medium">
-                    {{ method.value }}
-                </span>
-            </div>
-        </div>
-    </div>
+    
 
     <!-- Contact Form & Office Locations -->
     <div class="container mx-auto px-4">

@@ -72,7 +72,7 @@ export class ProductsComponent implements OnInit {
     // Add more dummy products...
   ];
 
-  sortOptions = [
+   sortOptions = [
     { value: 'featured', label: 'Featured' },
     { value: 'newest', label: 'Newest' },
     { value: 'price-asc', label: 'Price: Low to High' },
@@ -115,6 +115,15 @@ export class ProductsComponent implements OnInit {
       quantity: 1,
       image: product.image
     });
+    
+    // Optional: You can add a notification toast here to inform the user
+    this.showAddToCartNotification(product.name);
+  }
+
+  showAddToCartNotification(productName: string) {
+    // This is a placeholder for a notification system
+    // You might want to implement a toast notification service
+    console.log(`${productName} added to cart`);
   }
 
   addToWishlist(product: Product) {

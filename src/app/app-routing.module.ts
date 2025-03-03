@@ -16,6 +16,8 @@ import { ContactComponent } from './features/contact/components/contact/contact.
 import { AboutUsComponent } from './features/about-us/components/about-us/about-us.component';
 import { RegisterComponent } from './features/auth/componets/register/register.component';
 import { ProfileComponent } from './features/auth/componets/profile/profile.component';
+import { CartComponent } from './features/orders/cart/cart/cart.component';
+import { CheckoutComponent } from './features/orders/cart/checkout/checkout/checkout.component';
 
 // app-routing.module.ts
 const routes: Routes = [
@@ -59,6 +61,21 @@ const routes: Routes = [
       {
         path: 'about-us',
         component: AboutUsComponent,
+      }
+      ,
+      {
+        path: 'payments',
+        component: PaymentsListComponent,
+      }
+      ,
+      {
+        path: 'cart',
+        component: CartComponent,
+      }
+      ,
+      {
+        path: 'checkout',
+        component: CheckoutComponent,
       }
       ,
       {

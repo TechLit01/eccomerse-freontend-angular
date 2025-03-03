@@ -1,0 +1,90 @@
+// Custom form element styling
+input:focus, select:focus {
+    @apply outline-none ring-2 ring-indigo-500 dark:ring-indigo-400;
+  }
+  
+  // Style radio buttons and checkboxes
+  input[type="radio"], input[type="checkbox"] {
+    &:checked {
+      @apply bg-indigo-600 border-indigo-600 dark:bg-indigo-500 dark:border-indigo-500;
+    }
+  }
+  
+  // Smooth transitions
+  .transition-colors {
+    transition: all 0.2s ease;
+  }
+  
+  // Make the summary card stick properly on scroll
+  .sticky {
+    position: sticky;
+    top: 100px; // Adjust based on your header height
+    max-height: calc(100vh - 150px);
+    overflow-y: auto;
+  }
+  
+  // Custom scrollbar for order summary items
+  .overflow-y-auto {
+    &::-webkit-scrollbar {
+      width: 4px;
+    }
+    
+    &::-webkit-scrollbar-track {
+      @apply bg-slate-100 dark:bg-slate-700 rounded;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+      @apply bg-slate-300 dark:bg-slate-600 rounded;
+    }
+    
+    &::-webkit-scrollbar-thumb:hover {
+      @apply bg-slate-400 dark:bg-slate-500;
+    }
+  }
+  
+  // Step indicator transitions
+  .rounded-full, .h-1 {
+    transition: background-color 0.3s ease;
+  }
+  
+  // Payment method card hover effect
+  .border.rounded-lg {
+    transition: all 0.2s ease;
+    &:hover {
+      @apply border-indigo-500 dark:border-indigo-400;
+    }
+  }
+  
+  // Form validation styling
+  .ng-invalid.ng-touched {
+    @apply border-rose-500 dark:border-rose-500;
+  }
+  
+  // Disable button opacity
+  button:disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
+  
+  // Animation for step transitions
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  [class*="currentStep"] {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  // Enhanced mobile experience
+  @media (max-width: 768px) {
+    .sticky {
+      position: relative;
+      top: 0;
+      max-height: none;
+      margin-bottom: 2rem;
+    }
+    
+    .step-indicators {
+      @apply flex-wrap justify-center;
+    }
+  }

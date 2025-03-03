@@ -1,0 +1,532 @@
+<div class="min-h-screen bg-slate-50 dark:bg-slate-900 pt-24 pb-12">
+    <div class="container mx-auto px-4">
+      <!-- Page Header -->
+      <div class="mb-8">
+        <h1 class="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-2">Checkout</h1>
+        <p class="text-slate-600 dark:text-slate-400">Complete your purchase</p>
+      </div>
+  
+      <!-- Loading State -->
+      <div *ngIf="isLoading" class="flex justify-center items-center py-12">
+        <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-600 dark:border-indigo-400"></div>
+      </div>
+  
+      <!-- Checkout Process -->
+      <div *ngIf="!isLoading && cartItems.length > 0">
+        <!-- Checkout Steps -->
+        <div class="mb-8">
+          <div class="flex flex-wrap items-center justify-between max-w-3xl mx-auto">
+            <!-- Step 1: Shipping -->
+            <div class="flex flex-col items-center mb-4 md:mb-0">
+              <div [ngClass]="{'bg-indigo-600 dark:bg-indigo-500': currentStep >= 1, 'bg-slate-300 dark:bg-slate-600': currentStep < 1}"
+                   class="w-10 h-10 rounded-full flex items-center justify-center text-white mb-2">
+                <span *ngIf="currentStep > 1">✓</span>
+                <span *ngIf="currentStep <= 1">1</span>
+              </div>
+              <span class="text-sm font-medium" 
+                    [ngClass]="{'text-indigo-600 dark:text-indigo-400': currentStep >= 1, 'text-slate-500 dark:text-slate-400': currentStep < 1}">
+                Shipping
+              </span>
+            </div>
+            
+            <!-- Step Connector -->
+            <div class="hidden md:block w-20 h-1 bg-slate-200 dark:bg-slate-700"
+                 [ngClass]="{'bg-indigo-600 dark:bg-indigo-500': currentStep > 1}"></div>
+            
+            <!-- Step 2: Delivery -->
+            <div class="flex flex-col items-center mb-4 md:mb-0">
+              <div [ngClass]="{'bg-indigo-600 dark:bg-indigo-500': currentStep >= 2, 'bg-slate-300 dark:bg-slate-600': currentStep < 2}"
+                   class="w-10 h-10 rounded-full flex items-center justify-center text-white mb-2">
+                <span *ngIf="currentStep > 2">✓</span>
+                <span *ngIf="currentStep <= 2">2</span>
+              </div>
+              <span class="text-sm font-medium" 
+                    [ngClass]="{'text-indigo-600 dark:text-indigo-400': currentStep >= 2, 'text-slate-500 dark:text-slate-400': currentStep < 2}">
+                Delivery
+              </span>
+            </div>
+            
+            <!-- Step Connector -->
+            <div class="hidden md:block w-20 h-1 bg-slate-200 dark:bg-slate-700"
+                 [ngClass]="{'bg-indigo-600 dark:bg-indigo-500': currentStep > 2}"></div>
+            
+            <!-- Step 3: Payment -->
+            <div class="flex flex-col items-center mb-4 md:mb-0">
+              <div [ngClass]="{'bg-indigo-600 dark:bg-indigo-500': currentStep >= 3, 'bg-slate-300 dark:bg-slate-600': currentStep < 3}"
+                   class="w-10 h-10 rounded-full flex items-center justify-center text-white mb-2">
+                <span *ngIf="currentStep > 3">✓</span>
+                <span *ngIf="currentStep <= 3">3</span>
+              </div>
+              <span class="text-sm font-medium" 
+                    [ngClass]="{'text-indigo-600 dark:text-indigo-400': currentStep >= 3, 'text-slate-500 dark:text-slate-400': currentStep < 3}">
+                Payment
+              </span>
+            </div>
+            
+            <!-- Step Connector -->
+            <div class="hidden md:block w-20 h-1 bg-slate-200 dark:bg-slate-700"
+                 [ngClass]="{'bg-indigo-600 dark:bg-indigo-500': currentStep > 3}"></div>
+            
+            <!-- Step 4: Confirmation -->
+            <div class="flex flex-col items-center">
+              <div [ngClass]="{'bg-indigo-600 dark:bg-indigo-500': currentStep >= 4, 'bg-slate-300 dark:bg-slate-600': currentStep < 4}"
+                   class="w-10 h-10 rounded-full flex items-center justify-center text-white mb-2">
+                <span *ngIf="currentStep > 4">✓</span>
+                <span *ngIf="currentStep <= 4">4</span>
+              </div>
+              <span class="text-sm font-medium" 
+                    [ngClass]="{'text-indigo-600 dark:text-indigo-400': currentStep >= 4, 'text-slate-500 dark:text-slate-400': currentStep < 4}">
+                Confirm
+              </span>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Main Checkout Content -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <!-- Left Column: Form Steps -->
+          <div class="lg:col-span-2">
+            <div class="bg-white dark:bg-slate-800 rounded-lg shadow-sm p-6">
+              <!-- Step 1: Shipping Information -->
+              <div *ngIf="currentStep === 1">
+                <h2 class="text-xl font-semibold text-slate-900 dark:text-white mb-6">Shipping Information</h2>
+                
+                <form [formGroup]="shippingForm" class="space-y-6">
+                  <!-- Personal Information -->
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label for="firstName" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">First Name</label>
+                      <input type="text" id="firstName" formControlName="firstName"
+                             class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                      <div *ngIf="shippingForm.get('firstName')?.invalid && shippingForm.get('firstName')?.touched" 
+                           class="text-rose-500 text-sm mt-1">
+                        First name is required
+                      </div>
+                    </div>
+                    
+                    <div>
+                      <label for="lastName" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Last Name</label>
+                      <input type="text" id="lastName" formControlName="lastName"
+                             class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                      <div *ngIf="shippingForm.get('lastName')?.invalid && shippingForm.get('lastName')?.touched" 
+                           class="text-rose-500 text-sm mt-1">
+                        Last name is required
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label for="email" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Email Address</label>
+                      <input type="email" id="email" formControlName="email"
+                             class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                      <div *ngIf="shippingForm.get('email')?.invalid && shippingForm.get('email')?.touched" 
+                           class="text-rose-500 text-sm mt-1">
+                        Valid email is required
+                      </div>
+                    </div>
+                    
+                    <div>
+                      <label for="phone" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Phone Number</label>
+                      <input type="tel" id="phone" formControlName="phone"
+                             class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                      <div *ngIf="shippingForm.get('phone')?.invalid && shippingForm.get('phone')?.touched" 
+                           class="text-rose-500 text-sm mt-1">
+                        Phone number is required
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- Address Information -->
+                  <div>
+                    <label for="address" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Street Address</label>
+                    <input type="text" id="address" formControlName="address"
+                           class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <div *ngIf="shippingForm.get('address')?.invalid && shippingForm.get('address')?.touched" 
+                         class="text-rose-500 text-sm mt-1">
+                      Address is required
+                    </div>
+                  </div>
+                  
+                  <div class="grid grid-cols-2 gap-6">
+                    <div>
+                      <label for="city" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">City</label>
+                      <input type="text" id="city" formControlName="city"
+                             class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                      <div *ngIf="shippingForm.get('city')?.invalid && shippingForm.get('city')?.touched" 
+                           class="text-rose-500 text-sm mt-1">
+                        City is required
+                      </div>
+                    </div>
+                    
+                    <div>
+                      <label for="state" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">State/Province</label>
+                      <input type="text" id="state" formControlName="state"
+                             class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                      <div *ngIf="shippingForm.get('state')?.invalid && shippingForm.get('state')?.touched" 
+                           class="text-rose-500 text-sm mt-1">
+                        State/Province is required
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="grid grid-cols-2 gap-6">
+                    <div>
+                      <label for="zipCode" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">ZIP/Postal Code</label>
+                      <input type="text" id="zipCode" formControlName="zipCode"
+                             class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                      <div *ngIf="shippingForm.get('zipCode')?.invalid && shippingForm.get('zipCode')?.touched" 
+                           class="text-rose-500 text-sm mt-1">
+                        ZIP/Postal code is required
+                      </div>
+                    </div>
+                    
+                    <div>
+                      <label for="country" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Country</label>
+                      <select id="country" formControlName="country"
+                              class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        <option value="Kenya">Kenya</option>
+                        <option value="Uganda">Uganda</option>
+                        <option value="Tanzania">Tanzania</option>
+                        <option value="Rwanda">Rwanda</option>
+                        <option value="Ethiopia">Ethiopia</option>
+                      </select>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              
+              <!-- Step 2: Delivery Options -->
+              <div *ngIf="currentStep === 2">
+                <h2 class="text-xl font-semibold text-slate-900 dark:text-white mb-6">Delivery Options</h2>
+                
+                <!-- Shipping Methods -->
+                <div class="space-y-4 mb-8">
+                  <h3 class="text-lg font-medium text-slate-800 dark:text-slate-200">Shipping Method</h3>
+                  
+                  <div *ngFor="let method of shippingMethods" 
+                       [ngClass]="{'border-indigo-500 dark:border-indigo-400 bg-indigo-50 dark:bg-indigo-900/20': selectedShippingMethod === method.id}"
+                       class="border rounded-lg p-4 cursor-pointer hover:border-indigo-500 dark:hover:border-indigo-400 transition-colors"
+                       (click)="selectShippingMethod(method.id)">
+                    <div class="flex items-start">
+                      <div class="flex-shrink-0 mt-1">
+                        <div class="w-5 h-5 rounded-full border-2 border-slate-400 dark:border-slate-500 flex items-center justify-center"
+                             [ngClass]="{'border-indigo-500 dark:border-indigo-400': selectedShippingMethod === method.id}">
+                          <div *ngIf="selectedShippingMethod === method.id" class="w-3 h-3 rounded-full bg-indigo-500 dark:bg-indigo-400"></div>
+                        </div>
+                      </div>
+                      
+                      <div class="ml-3 flex-1">
+                        <div class="flex justify-between">
+                          <span class="font-medium text-slate-900 dark:text-white">{{ method.name }}</span>
+                          <span class="font-semibold text-slate-900 dark:text-white">{{ formatPrice(method.price) }}</span>
+                        </div>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">{{ method.description }}</p>
+                        <p class="text-xs text-slate-500 dark:text-slate-500 mt-2">Estimated delivery: {{ method.estimatedDelivery }}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Billing Address -->
+                <div class="space-y-4">
+                  <h3 class="text-lg font-medium text-slate-800 dark:text-slate-200">Billing Address</h3>
+                  
+                  <div class="flex items-center mb-4">
+                    <input type="checkbox" id="same-address" [checked]="sameBillingAddress" (change)="toggleBillingAddress()"
+                           class="rounded border-slate-300 dark:border-slate-600 text-indigo-600 focus:ring-indigo-500">
+                    <label for="same-address" class="ml-2 text-sm text-slate-700 dark:text-slate-300">
+                      My billing address is the same as my shipping address
+                    </label>
+                  </div>
+                  
+                  <!-- Billing Form - only show if different address -->
+                  <form *ngIf="!sameBillingAddress" [formGroup]="billingForm" class="space-y-6 mt-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div>
+                        <label for="billingFirstName" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">First Name</label>
+                        <input type="text" id="billingFirstName" formControlName="firstName"
+                               class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                      </div>
+                      
+                      <div>
+                        <label for="billingLastName" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Last Name</label>
+                        <input type="text" id="billingLastName" formControlName="lastName"
+                               class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                      </div>
+                    </div>
+                    
+                    <div>
+                      <label for="billingAddress" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Street Address</label>
+                      <input type="text" id="billingAddress" formControlName="address"
+                             class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-6">
+                      <div>
+                        <label for="billingCity" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">City</label>
+                        <input type="text" id="billingCity" formControlName="city"
+                               class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                      </div>
+                      
+                      <div>
+                        <label for="billingState" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">State/Province</label>
+                        <input type="text" id="billingState" formControlName="state"
+                               class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                      </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-6">
+                      <div>
+                        <label for="billingZipCode" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">ZIP/Postal Code</label>
+                        <input type="text" id="billingZipCode" formControlName="zipCode"
+                               class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                      </div>
+                      
+                      <div>
+                        <label for="billingCountry" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Country</label>
+                        <select id="billingCountry" formControlName="country"
+                                class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                          <option value="Kenya">Kenya</option>
+                          <option value="Uganda">Uganda</option>
+                          <option value="Tanzania">Tanzania</option>
+                          <option value="Rwanda">Rwanda</option>
+                          <option value="Ethiopia">Ethiopia</option>
+                        </select>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              
+              <!-- Step 3: Payment Information -->
+              <div *ngIf="currentStep === 3">
+                <h2 class="text-xl font-semibold text-slate-900 dark:text-white mb-6">Payment Information</h2>
+                
+                <!-- Payment Methods -->
+                <div class="space-y-4 mb-8">
+                  <h3 class="text-lg font-medium text-slate-800 dark:text-slate-200">Payment Method</h3>
+                  
+                  <div *ngFor="let method of paymentMethods" 
+                       [ngClass]="{'border-indigo-500 dark:border-indigo-400 bg-indigo-50 dark:bg-indigo-900/20': selectedPaymentMethod === method.id}"
+                       class="border rounded-lg p-4 cursor-pointer hover:border-indigo-500 dark:hover:border-indigo-400 transition-colors"
+                       (click)="selectPaymentMethod(method.id)">
+                    <div class="flex items-center">
+                      <div class="w-5 h-5 rounded-full border-2 border-slate-400 dark:border-slate-500 flex items-center justify-center"
+                           [ngClass]="{'border-indigo-500 dark:border-indigo-400': selectedPaymentMethod === method.id}">
+                        <div *ngIf="selectedPaymentMethod === method.id" class="w-3 h-3 rounded-full bg-indigo-500 dark:bg-indigo-400"></div>
+                      </div>
+                      
+                      <div class="ml-3 flex-1">
+                        <div class="flex items-center">
+                          <i [class]="method.icon + ' mr-2 text-slate-600 dark:text-slate-400'"></i>
+                          <span class="font-medium text-slate-900 dark:text-white">{{ method.name }}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Credit Card Form (conditional based on payment method) -->
+                <div *ngIf="selectedPaymentMethod === 'credit-card'" class="space-y-6 bg-slate-50 dark:bg-slate-900/50 p-4 rounded-lg">
+                  <div>
+                    <label for="cardName" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Name on Card</label>
+                    <input type="text" id="cardName" placeholder="John Smith"
+                           class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                  </div>
+                  
+                  <div>
+                    <label for="cardNumber" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Card Number</label>
+                    <input type="text" id="cardNumber" placeholder="XXXX XXXX XXXX XXXX"
+                           class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                  </div>
+                  
+                  <div class="grid grid-cols-2 gap-6">
+                    <div>
+                      <label for="expirationDate" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Expiration Date</label>
+                      <input type="text" id="expirationDate" placeholder="MM/YY"
+                             class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    </div>
+                    
+                    <div>
+                      <label for="cvv" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">CVV</label>
+                      <input type="text" id="cvv" placeholder="XXX"
+                             class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- M-Pesa Instructions (conditional) -->
+                <div *ngIf="selectedPaymentMethod === 'mpesa'" class="space-y-4 bg-slate-50 dark:bg-slate-900/50 p-4 rounded-lg">
+                  <p class="text-slate-700 dark:text-slate-300">You will receive an M-Pesa prompt on your phone after placing your order.</p>
+                  
+                  <div>
+                    <label for="mpesaNumber" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">M-Pesa Phone Number</label>
+                    <input type="tel" id="mpesaNumber" placeholder="254XXXXXXXXX"
+                           class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                  </div>
+                </div>
+                
+                <!-- PayPal Instructions (conditional) -->
+                <div *ngIf="selectedPaymentMethod === 'paypal'" class="space-y-4 bg-slate-50 dark:bg-slate-900/50 p-4 rounded-lg">
+                  <p class="text-slate-700 dark:text-slate-300">You will be redirected to PayPal after placing your order to complete the payment.</p>
+                </div>
+              </div>
+              
+              <!-- Step 4: Order Confirmation -->
+              <div *ngIf="currentStep === 4" class="text-center py-6">
+                <div class="mb-6">
+                  <div class="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-8 h-8 text-green-500 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                  </div>
+                  <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-2">Order Confirmed!</h2>
+                  <p class="text-slate-600 dark:text-slate-400 mb-4">Thank you for your purchase.</p>
+                  <p class="text-slate-700 dark:text-slate-300">Order #: <span class="font-semibold">{{ getOrderId() }}</span></p>
+                </div>
+                
+                <!-- Order Summary -->
+                <div class="max-w-md mx-auto bg-slate-50 dark:bg-slate-900/50 rounded-lg p-4 mb-6 text-left">
+                  <h3 class="font-semibold text-slate-900 dark:text-white mb-2">Order Summary</h3>
+                  <div class="space-y-2 text-sm">
+                    <div class="flex justify-between">
+                      <span class="text-slate-600 dark:text-slate-400">Subtotal</span>
+                      <span class="text-slate-900 dark:text-white">{{ formatPrice(getSubtotal()) }}</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-slate-600 dark:text-slate-400">Shipping</span>
+                        <span class="text-slate-900 dark:text-white">{{ formatPrice(getShippingCost()) }}</span>
+                      </div>
+                      <div class="flex justify-between">
+                        <span class="text-slate-600 dark:text-slate-400">Tax</span>
+                        <span class="text-slate-900 dark:text-white">{{ formatPrice(tax) }}</span>
+                      </div>
+                      <div class="border-t border-slate-200 dark:border-slate-700 pt-2 mt-2">
+                        <div class="flex justify-between font-semibold">
+                          <span class="text-slate-900 dark:text-white">Total</span>
+                          <span class="text-slate-900 dark:text-white">{{ formatPrice(getTotal()) }}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="space-y-4">
+                    <p class="text-slate-600 dark:text-slate-400">
+                      A confirmation email has been sent to <span class="font-medium text-slate-900 dark:text-white">{{ shippingForm.get('email')?.value }}</span>
+                    </p>
+                    
+                    <button (click)="returnToStore()" 
+                            class="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition-colors">
+                      Continue Shopping
+                    </button>
+                  </div>
+                </div>
+                
+                <!-- Navigation Buttons -->
+                <div *ngIf="currentStep < 4" class="mt-8 flex flex-wrap justify-between">
+                  <button *ngIf="currentStep > 1" 
+                          (click)="prevStep()" 
+                          class="px-6 py-3 border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 rounded-lg transition-colors">
+                    <div class="flex items-center">
+                      <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                      </svg>
+                      Back
+                    </div>
+                  </button>
+                  
+                  <button (click)="nextStep()" 
+                          [disabled]="(currentStep === 1 && !shippingForm.valid) || (currentStep === 3 && !shouldAllowPayment())"
+                          [ngClass]="{'opacity-50 cursor-not-allowed': (currentStep === 1 && !shippingForm.valid) || (currentStep === 3 && !shouldAllowPayment())}"
+                          class="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition-colors">
+                    <div class="flex items-center">
+                      <span>{{ currentStep === 3 ? 'Place Order' : 'Continue' }}</span>
+                      <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                      </svg>
+                    </div>
+                  </button>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Right Column: Order Summary -->
+            <div class="lg:col-span-1">
+              <div class="bg-white dark:bg-slate-800 rounded-lg shadow-sm p-6 sticky top-24">
+                <h2 class="text-lg font-semibold text-slate-900 dark:text-white mb-4">Order Summary</h2>
+                
+                <!-- Cart Items -->
+                <div class="space-y-4 mb-6 max-h-64 overflow-y-auto">
+                  <div *ngFor="let item of cartItems" class="flex gap-3 py-3 border-b border-slate-200 dark:border-slate-700 last:border-0">
+                    <div class="flex-shrink-0 w-16 h-16 bg-slate-100 dark:bg-slate-700 rounded-md overflow-hidden">
+                      <img [src]="item.image" [alt]="item.name" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex-1 min-w-0">
+                      <h4 class="text-sm font-medium text-slate-900 dark:text-white truncate">{{ item.name }}</h4>
+                      <p class="text-sm text-slate-500 dark:text-slate-400">Qty: {{ item.quantity }}</p>
+                      <p class="text-sm font-medium text-slate-900 dark:text-white">{{ formatPrice(item.price * item.quantity) }}</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Summary Items -->
+                <div class="space-y-3 mb-6">
+                  <div class="flex justify-between text-sm">
+                    <span class="text-slate-600 dark:text-slate-400">Subtotal ({{ cartItems.length }} {{ cartItems.length === 1 ? 'item' : 'items' }})</span>
+                    <span class="text-slate-900 dark:text-white font-medium">{{ formatPrice(getSubtotal()) }}</span>
+                  </div>
+                  
+                  <div class="flex justify-between text-sm">
+                    <span class="text-slate-600 dark:text-slate-400">Shipping</span>
+                    <span *ngIf="currentStep < 2" class="text-slate-900 dark:text-white font-medium">—</span>
+                    <span *ngIf="currentStep >= 2" class="text-slate-900 dark:text-white font-medium">{{ formatPrice(getShippingCost()) }}</span>
+                  </div>
+                  
+                  <div class="flex justify-between text-sm">
+                    <span class="text-slate-600 dark:text-slate-400">Tax (16%)</span>
+                    <span class="text-slate-900 dark:text-white font-medium">{{ formatPrice(tax) }}</span>
+                  </div>
+                  
+                  <div class="h-px bg-slate-200 dark:bg-slate-700 my-4"></div>
+                  
+                  <div class="flex justify-between">
+                    <span class="text-slate-900 dark:text-white font-semibold">Total</span>
+                    <span class="text-slate-900 dark:text-white font-bold">{{ formatPrice(getTotal()) }}</span>
+                  </div>
+                </div>
+                
+                <!-- Promotion Code -->
+                <div class="mt-6">
+                  <div class="flex gap-2">
+                    <input type="text" placeholder="Promo code"
+                           class="flex-1 px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <button class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition-colors">
+                      Apply
+                    </button>
+                  </div>
+                </div>
+                
+                <!-- Trust Badges -->
+                <div class="mt-6 border-t border-slate-200 dark:border-slate-700 pt-6">
+                  <div class="flex flex-wrap gap-3 justify-center">
+                    <div class="flex items-center text-xs text-slate-500 dark:text-slate-400">
+                      <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                      </svg>
+                      <span>Secure Checkout</span>
+                    </div>
+                    <div class="flex items-center text-xs text-slate-500 dark:text-slate-400">
+                      <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                      </svg>
+                      <span>Money-back Guarantee</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

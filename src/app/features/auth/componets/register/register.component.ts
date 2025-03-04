@@ -104,7 +104,7 @@ export class RegisterComponent implements OnInit {
     };
 
     // Call the service to register the user
-    this.usersService.simulateRegister(user)
+    this.usersService.register(user)
       .pipe(
         finalize(() => {
           this.isSubmitting = false;

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environment';
 
 export interface User {
   id?: string;
@@ -34,7 +35,7 @@ export interface User {
   providedIn: 'root'
 })
 export class UsersService {
-  private apiUrl = 'https://your-api-endpoint.com/api/users'; // Replace with your actual API endpoint
+  private apiUrl = `${environment.apiUrl}`;
   private currentUserSubject = new BehaviorSubject<User | null>(null);
   public currentUser$ = this.currentUserSubject.asObservable();
   
@@ -62,7 +63,7 @@ export class UsersService {
   // Register a new user
   register(user: User): Observable<User> {
     // In a real application, this would make an HTTP POST request to your backend
-    return this.http.post<User>(`${this.apiUrl}/register`, user).pipe(
+    return this.http.post<User>(`${this.apiUrl}/auth/signup`, user).pipe(
       tap(response => {
         // Don't automatically log them in after registration
         // They need to verify email or log in manually
@@ -163,6 +164,11 @@ export class UsersService {
   // Get the current user value
   getCurrentUser(): User | null {
     return this.currentUserSubject.value;
+  }
+
+  getCurrentUserr(): Observable <User|null > {
+    return this.currentUserSubject.asObservable();
+
   }
 
   // Check if the user is logged in

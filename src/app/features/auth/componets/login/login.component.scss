@@ -1,0 +1,81 @@
+// Animation for form elements
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  // Apply animations to different elements with staggered timing
+  form {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  .text-center {
+    animation: fadeIn 0.5s ease-in-out 0.1s both;
+  }
+  
+  // Custom input focus styles
+  input:focus {
+    @apply outline-none ring-2 ring-indigo-500 dark:ring-indigo-400;
+  }
+  
+  // Style checkboxes
+  input[type="checkbox"] {
+    &:checked {
+      @apply bg-indigo-600 border-indigo-600 dark:bg-indigo-500 dark:border-indigo-500;
+    }
+  }
+  
+  // Password visibility toggle button
+  .relative button {
+    transition: all 0.15s ease;
+    
+    &:focus {
+      @apply outline-none;
+    }
+    
+    &:hover svg {
+      @apply text-slate-700 dark:text-slate-300;
+    }
+  }
+  
+  // Form error animations
+  .text-rose-500 {
+    animation: shake 0.4s ease-in-out;
+  }
+  
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+  }
+  
+  // Button state transitions
+  button {
+    transition: all 0.2s ease;
+    
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+  
+  // Error message animation
+  .bg-rose-50 {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  // Invalid form field styling
+  input.ng-invalid.ng-touched {
+    @apply border-rose-500 dark:border-rose-500;
+  }
+  
+  // Hover effects for social login buttons
+  button.border {
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+    
+    &:active {
+      transform: translateY(0);
+    }
+  }

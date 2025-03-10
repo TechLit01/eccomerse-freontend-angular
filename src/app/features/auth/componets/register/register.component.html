@@ -1,83 +1,400 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register Form</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* Custom styles for smooth transitions */
-        .transition-all {
-            transition: all 0.3s ease-in-out;
-        }
-    </style>
-</head>
-<body class="bg-gradient-to-r dark:from-gray-900 dark: transition-all flex items-center justify-center min-h-screen">
-    <!-- Dark Mode Toggle Button -->
-    <div class="absolute top-4 right-4">
-        <button id="theme-toggle" class="p-2 bg-gray-200 dark:bg-gray-200 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 transition-all shadow-lg">
-            <span id="theme-icon" class="text-gray-800 dark:text-gray-200">🌙</span>
-        </button>
-    </div>
-
-    <!-- Register Form -->
-    <div class="w-full max-w-md p-8 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl transition-all backdrop-blur-lg bg-opacity-90 dark:bg-opacity-80">
-        <h2 class="text-3xl font-bold text-center text-gray-700 dark:text-gray-200">Register</h2>
+<div class="min-h-screen bg-slate-50 dark:bg-slate-900 pt-24 pb-12">
+    <div class="container mx-auto px-4">
+      <!-- Page Header -->
+      <div class="mb-8 text-center">
+        <h1 class="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-2">Create Your Account</h1>
+        <p class="text-slate-600 dark:text-slate-400">Join Quality Led Africa for exclusive offers and a streamlined shopping experience</p>
+      </div>
+  
+      <!-- Registration Card -->
+      <div class="max-w-2xl mx-auto">
+        <div class="bg-white dark:bg-slate-800 rounded-lg shadow-sm overflow-hidden">
+          <!-- Step Indicator -->
+          <div class="bg-slate-100 dark:bg-slate-700 p-4">
+            <div class="flex items-center justify-between max-w-md mx-auto">
+              <div class="flex flex-col items-center">
+                <div [ngClass]="{'bg-indigo-600 dark:bg-indigo-500': currentStep >= 1, 'bg-slate-300 dark:bg-slate-600': currentStep < 1}"
+                     class="w-8 h-8 rounded-full flex items-center justify-center text-white mb-1">
+                  <span *ngIf="currentStep > 1">✓</span>
+                  <span *ngIf="currentStep <= 1">1</span>
+                </div>
+                <span class="text-xs font-medium" 
+                      [ngClass]="{'text-indigo-600 dark:text-indigo-400': currentStep >= 1, 'text-slate-500 dark:text-slate-400': currentStep < 1}">
+                  Your Details
+                </span>
+              </div>
+              
+              <!-- Step Connector -->
+              <div class="w-20 h-1 bg-slate-200 dark:bg-slate-600"
+                   [ngClass]="{'bg-indigo-600 dark:bg-indigo-500': currentStep > 1}"></div>
+              
+              <div class="flex flex-col items-center">
+                <div [ngClass]="{'bg-indigo-600 dark:bg-indigo-500': currentStep >= 2, 'bg-slate-300 dark:bg-slate-600': currentStep < 2}"
+                     class="w-8 h-8 rounded-full flex items-center justify-center text-white mb-1">
+                  <span *ngIf="currentStep > 2">✓</span>
+                  <span *ngIf="currentStep <= 2">2</span>
+                </div>
+                <span class="text-xs font-medium" 
+                      [ngClass]="{'text-indigo-600 dark:text-indigo-400': currentStep >= 2, 'text-slate-500 dark:text-slate-400': currentStep < 2}">
+                  Security
+                </span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Form Content -->
+          <div class="p-6">
+            <!-- Success Message -->
+            <div *ngIf="registrationSuccess" class="text-center py-8">
+              <div class="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8 text-green-500 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <h2 class="text-xl font-semibold text-slate-900 dark:text-white mb-2">Registration Successful!</h2>
+              <p class="text-slate-600 dark:text-slate-400">
+                Your account has been created. You will be redirected to the login page shortly.
+              </p>
+            </div>
+  
+            <!-- Registration Form -->
+            <form *ngIf="!registrationSuccess" [formGroup]="registrationForm" (ngSubmit)="onSubmit()" class="space-y-6">
+              <!-- Error Message -->
+              <div *ngIf="registrationError" class="bg-rose-50 dark:bg-rose-900/20 text-rose-600 dark:text-rose-400 p-4 rounded-lg text-sm mb-6">
+                {{ registrationError }}
+              </div>
+              
+              <!-- Step 1: Personal Information -->
+              <div *ngIf="currentStep === 1">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label for="firstName" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">First Name*</label>
+                    <input type="text" id="firstName" formControlName="firstName"
+                           class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <div *ngIf="registrationForm.get('firstName')?.invalid && registrationForm.get('firstName')?.touched" 
+                         class="text-rose-500 text-sm mt-1">
+                      <span *ngIf="registrationForm.get('firstName')?.errors?.['required']">First name is required</span>
+                      <span *ngIf="registrationForm.get('firstName')?.errors?.['minlength']">First name must be at least 2 characters</span>
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <label for="lastName" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Last Name*</label>
+                    <input type="text" id="lastName" formControlName="lastName"
+                           class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <div *ngIf="registrationForm.get('lastName')?.invalid && registrationForm.get('lastName')?.touched" 
+                         class="text-rose-500 text-sm mt-1">
+                      <span *ngIf="registrationForm.get('lastName')?.errors?.['required']">Last name is required</span>
+                      <span *ngIf="registrationForm.get('lastName')?.errors?.['minlength']">Last name must be at least 2 characters</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="mt-6">
+                  <label for="email" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Email Address*</label>
+                  <input type="email" id="email" formControlName="email"
+                         class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                  <div *ngIf="registrationForm.get('email')?.invalid && registrationForm.get('email')?.touched" 
+                       class="text-rose-500 text-sm mt-1">
+                    <span *ngIf="registrationForm.get('email')?.errors?.['required']">Email is required</span>
+                    <span *ngIf="registrationForm.get('email')?.errors?.['email']">Please enter a valid email address</span>
+                  </div>
+                </div>
+                
+                <div class="mt-6">
+                  <label for="phone" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Phone Number (optional)</label>
+                  <input type="tel" id="phone" formControlName="phone"
+                         class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                  <div *ngIf="registrationForm.get('phone')?.invalid && registrationForm.get('phone')?.touched" 
+                       class="text-rose-500 text-sm mt-1">
+                    <span *ngIf="registrationForm.get('phone')?.errors?.['pattern']">Please enter a valid phone number</span>
+                  </div>
+                  <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">We'll send order confirmations to this number</p>
+                </div>
+              </div>
+              
+              <!-- Step 2: Security -->
+              <div *ngIf="currentStep === 2">
+                <div>
+                  <label for="password" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Password*</label>
+                  <div class="relative">
+                    <input [type]="showPassword ? 'text' : 'password'" id="password" formControlName="password"
+                           class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <button type="button" 
+                            (click)="togglePasswordVisibility()"
+                            class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300">
+                      <svg *ngIf="!showPassword" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                      </svg>
+                      <svg *ngIf="showPassword" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+                      </svg>
+                    </button>
+                  </div>
+                  <div *ngIf="registrationForm.get('password')?.invalid && registrationForm.get('password')?.touched" 
+                       class="text-rose-500 text-sm mt-1">
+                    <span *ngIf="registrationForm.get('password')?.errors?.['required']">Password is required</span>
+                    <span *ngIf="registrationForm.get('password')?.errors?.['minlength']">Password must be at least 8 characters</span>
+                    <span *ngIf="registrationForm.get('password')?.errors?.['pattern']">Password must include uppercase, lowercase, number, and special character</span>
+                  </div>
+                  
+                  <!-- Password strength meter -->
+                  <div class="mt-3">
+                    <div class="flex justify-between items-center mb-1">
+                      <div class="text-xs text-slate-500 dark:text-slate-400">Password strength</div>
+                      <div class="text-xs font-medium" 
+                           [ngClass]="{
+                             'text-rose-500': getPasswordStrength().strength === 1,
+                             'text-yellow-500': getPasswordStrength().strength === 2,
+                             'text-green-500': getPasswordStrength().strength === 3
+                           }">
+                        {{ getPasswordStrength().label }}
+                      </div>
+                    </div>
+                    <div class="h-1.5 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
+                      <div [class]="getPasswordStrength().color" 
+                           [style.width.%]="getPasswordStrength().strength * 33.33"
+                           class="h-full rounded-full transition-all duration-300"></div>
+                    </div>
+                  </div>
+                  
+                  <ul class="text-xs text-slate-500 dark:text-slate-400 space-y-1 mt-3">
+                    <li class="flex items-center">
+                      <svg [ngClass]="{'text-green-500': hasMinLength(registrationForm.get('password')?.value), 'text-slate-400': !hasMinLength(registrationForm.get('password')?.value)}" 
+                           class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path *ngIf="hasMinLength(registrationForm.get('password')?.value)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        <path *ngIf="!hasMinLength(registrationForm.get('password')?.value)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                      </svg>
+                      At least 8 characters
+                    </li>
+                    <li class="flex items-center">
+                      <svg [ngClass]="{'text-green-500': hasUpperCase(registrationForm.get('password')?.value), 'text-slate-400': !hasUpperCase(registrationForm.get('password')?.value)}" 
+                           class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path *ngIf="hasUpperCase(registrationForm.get('password')?.value)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        <path *ngIf="!hasUpperCase(registrationForm.get('password')?.value)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                      </svg>
+                      At least one uppercase letter
+                    </li>
+                    <li class="flex items-center">
+                      <svg [ngClass]="{'text-green-500': hasNumber(registrationForm.get('password')?.value), 'text-slate-400': !hasNumber(registrationForm.get('password')?.value)}" 
+                           class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path *ngIf="hasNumber(registrationForm.get('password')?.value)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        <path *ngIf="!hasNumber(registrationForm.get('password')?.value)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                      </svg>
+                      At least one number
+                    </li>
+                    <li class="flex items-center">
+                      <svg [ngClass]="{'text-green-500': hasSpecialChar(registrationForm.get('password')?.value), 'text-slate-400': !hasSpecialChar(registrationForm.get('password')?.value)}" 
+                           class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path *ngIf="hasSpecialChar(registrationForm.get('password')?.value)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        <path *ngIf="!hasSpecialChar(registrationForm.get('password')?.value)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                      </svg>
+                      At least one special character
+                    </li>
+                  </ul>
+                </div>
+                
+                <div class="mt-6">
+                  <label for="confirmPassword" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Confirm Password*</label>
+                  <div class="relative">
+                    <input [type]="showConfirmPassword ? 'text' : 'password'" id="confirmPassword" formControlName="confirmPassword"
+                           class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <button type="button" 
+                            (click)="toggleConfirmPasswordVisibility()"
+                            class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300">
+                      <svg *ngIf="!showConfirmPassword" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                      </svg>
+                      <svg *ngIf="showConfirmPassword" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+                      </svg>
+                    </button>
+                  </div>
+                  <div *ngIf="registrationForm.get('confirmPassword')?.invalid && registrationForm.get('confirmPassword')?.touched" 
+                       class="text-rose-500 text-sm mt-1">
+                    <span *ngIf="registrationForm.get('confirmPassword')?.errors?.['required']">Please confirm your password</span>
+                  </div>
+                  <div *ngIf="registrationForm.errors?.['passwordMismatch'] && registrationForm.get('confirmPassword')?.touched" 
+                       class="text-rose-500 text-sm mt-1">
+                    Passwords do not match
+                  </div>
+                </div>
+                
+                <!-- Terms and Marketing Preferences -->
+                <div class="mt-8">
+                  <div class="flex items-center">
+                    <input type="checkbox" id="agreeToTerms" formControlName="agreeToTerms"
+                         class="h-4 w-4 rounded border-slate-300 dark:border-slate-600 text-indigo-600 focus:ring-indigo-500">
+                  <label for="agreeToTerms" class="ml-2 text-sm text-slate-700 dark:text-slate-300">
+                    I agree to the <a href="#" class="text-indigo-600 dark:text-indigo-400 hover:underline">Terms of Service</a> and <a href="#" class="text-indigo-600 dark:text-indigo-400 hover:underline">Privacy Policy</a>
+                  </label>
+                </div>
+                <div *ngIf="registrationForm.get('agreeToTerms')?.invalid && registrationForm.get('agreeToTerms')?.touched" 
+                     class="text-rose-500 text-sm mt-1">
+                  You must agree to the terms to continue
+                </div>
+              </div>
+              
+              <div class="mt-6 border-t border-slate-200 dark:border-slate-700 pt-6">
+                <h3 class="text-sm font-medium text-slate-700 dark:text-slate-300 mb-3">Communication Preferences</h3>
+                
+                <div formGroupName="marketingPreferences" class="space-y-3">
+                  <div class="flex items-center">
+                    <input type="checkbox" id="emailOffers" formControlName="emailOffers"
+                           class="h-4 w-4 rounded border-slate-300 dark:border-slate-600 text-indigo-600 focus:ring-indigo-500">
+                    <label for="emailOffers" class="ml-2 text-sm text-slate-700 dark:text-slate-300">
+                      Email me about special offers and promotions
+                    </label>
+                  </div>
+                  
+                  <div class="flex items-center">
+                    <input type="checkbox" id="smsOffers" formControlName="smsOffers"
+                           class="h-4 w-4 rounded border-slate-300 dark:border-slate-600 text-indigo-600 focus:ring-indigo-500">
+                    <label for="smsOffers" class="ml-2 text-sm text-slate-700 dark:text-slate-300">
+                      Send me SMS notifications about my orders
+                    </label>
+                  </div>
+                  
+                  <div class="flex items-center">
+                    <input type="checkbox" id="personalizedAds" formControlName="personalizedAds"
+                           class="h-4 w-4 rounded border-slate-300 dark:border-slate-600 text-indigo-600 focus:ring-indigo-500">
+                    <label for="personalizedAds" class="ml-2 text-sm text-slate-700 dark:text-slate-300">
+                      Personalize my shopping experience based on my preferences
+                    </label>
+                  </div>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-3">You can change these preferences anytime in your account settings.</p>
+              </div>
+            </div>
+            
+            <!-- Navigation Buttons -->
+            <div class="flex justify-between mt-8">
+              <button *ngIf="currentStep > 1" 
+                      type="button"
+                      (click)="goToPreviousStep()" 
+                      class="px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700">
+                <div class="flex items-center">
+                  <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                  </svg>
+                  Back
+                </div>
+              </button>
+              
+              <button type="submit" 
+                      [disabled]="isSubmitting"
+                      class="px-6 py-2 bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-400 text-white rounded-lg transition-colors">
+                <div class="flex items-center">
+                  <span *ngIf="isSubmitting">
+                    <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
+                      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                  </span>
+                  <span>{{ currentStep < totalSteps ? 'Continue' : 'Create Account' }}</span>
+                  <svg *ngIf="currentStep < totalSteps" class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                  </svg>
+                </div>
+              </button>
+            </div>
+          </form>
+          
+          <!-- Social Login Options -->
+          <div *ngIf="!registrationSuccess && currentStep === 1" class="mt-8 pt-6 border-t border-slate-200 dark:border-slate-700">
+            <div class="text-center">
+              <p class="text-sm text-slate-600 dark:text-slate-400 mb-4">Or sign up with</p>
+              <div class="flex flex-wrap justify-center gap-4">
+                <button type="button" (click)="loginWithGoogle()" 
+                        class="flex items-center px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700">
+                  <svg class="h-5 w-5 mr-2" viewBox="0 0 24 24">
+                    <path fill="#EA4335" d="M5.266 9.765A7.077 7.077 0 0 1 12 4.909c1.69 0 3.218.6 4.418 1.582L19.91 3C17.782 1.145 15.055 0 12 0 7.27 0 3.198 2.698 1.24 6.65l4.026 3.115Z"/>
+                    <path fill="#34A853" d="M16.04 18.013c-1.09.703-2.474 1.078-4.04 1.078a7.077 7.077 0 0 1-6.723-4.823l-4.04 3.067A11.965 11.965 0 0 0 12 24c2.933 0 5.735-1.043 7.834-3l-3.793-2.987Z"/>
+                    <path fill="#4A90E2" d="M19.834 21c2.195-2.048 3.62-5.096 3.62-9 0-.71-.109-1.473-.272-2.182H12v4.637h6.436c-.317 1.559-1.17 2.766-2.395 3.558L19.834 21Z"/>
+                    <path fill="#FBBC05" d="M5.277 14.268A7.12 7.12 0 0 1 4.909 12c0-.782.125-1.533.357-2.235L1.24 6.65A11.934 11.934 0 0 0 0 12c0 1.92.445 3.73 1.24 5.35l4.037-3.082Z"/>
+                  </svg>
+                  Google
+                </button>
+                
+                <button type="button" (click)="loginWithFacebook()" 
+                        class="flex items-center px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700">
+                  <svg class="h-5 w-5 mr-2" viewBox="0 0 24 24">
+                    <path fill="#1877F2" d="M24 12.073c0-5.8-4.702-10.5-10.5-10.5s-10.5 4.7-10.5 10.5c0 5.237 3.831 9.58 8.896 10.37v-7.337H8.444v-3.032h3.452V9.592c0-3.41 2.031-5.295 5.143-5.295 1.49 0 3.047.266 3.047.266v3.35h-1.717c-1.69 0-2.217 1.05-2.217 2.13v2.558h3.774l-.604 3.032h-3.17v7.337c5.065-.791 8.896-5.133 8.896-10.37z"/>
+                  </svg>
+                  Facebook
+                </button>
+                
+                <button type="button" (click)="loginWithApple()" 
+                        class="flex items-center px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700">
+                  <svg class="h-5 w-5 mr-2" viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M17.05 20.28c-.98.95-2.05.86-3.08.38-1.09-.5-2.08-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.68 1.36-1.53 2.7-2.53 4.08ZM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.26 2.01-1.76 4.07-3.74 4.25Z"/>
+                  </svg>
+                  Apple
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Already have an account -->
+          <div *ngIf="!registrationSuccess" class="mt-6 text-center">
+            <p class="text-sm text-slate-600 dark:text-slate-400">
+              Already have an account?
+              <a routerLink="/login" class="text-indigo-600 dark:text-indigo-400 hover:underline">Sign in</a>
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Additional Information -->
+      <div class="mt-8 p-6 bg-white dark:bg-slate-800 rounded-lg shadow-sm">
+        <h2 class="text-lg font-semibold text-slate-900 dark:text-white mb-4">Why Create an Account?</h2>
         
-        <form class="space-y-6 mt-4">
-            <div>
-                <label class="block text-sm font-medium text-gray-600 dark:text-gray-300">Full Name</label>
-                <input type="text" class="w-full px-4 py-3 mt-1 bg-white dark:bg-gray-700 text-black dark:text-white border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring focus:ring-blue-300 transition-all shadow-sm">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="flex items-start">
+            <div class="flex-shrink-0">
+              <div class="flex items-center justify-center w-10 h-10 rounded-lg bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
+                </svg>
+              </div>
             </div>
-    
-            <div>
-                <label class="block text-sm font-medium text-gray-600 dark:text-gray-300">Email</label>
-                <input type="email" class="w-full px-4 py-3 mt-1 bg-white dark:bg-gray-700 text-black dark:text-white border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring focus:ring-blue-300 transition-all shadow-sm">
+            <div class="ml-4">
+              <h3 class="text-base font-medium text-slate-900 dark:text-white">Track Your Orders</h3>
+              <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Easily track and manage all your orders in one place.</p>
             </div>
-    
-            <div>
-                <label class="block text-sm font-medium text-gray-600 dark:text-gray-300">Password</label>
-                <input type="password" class="w-full px-4 py-3 mt-1 bg-white dark:bg-gray-700 text-black dark:text-white border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring focus:ring-blue-300 transition-all shadow-sm">
+          </div>
+          
+          <div class="flex items-start">
+            <div class="flex-shrink-0">
+              <div class="flex items-center justify-center w-10 h-10 rounded-lg bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                </svg>
+              </div>
             </div>
-    
-            <div>
-                <label class="block text-sm font-medium text-gray-600 dark:text-gray-300">Confirm Password</label>
-                <input type="password" class="w-full px-4 py-3 mt-1 bg-white dark:bg-gray-700 text-black dark:text-white border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring focus:ring-blue-300 transition-all shadow-sm">
+            <div class="ml-4">
+              <h3 class="text-base font-medium text-slate-900 dark:text-white">Faster Checkout</h3>
+              <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Save your delivery and payment details for quicker shopping.</p>
             </div>
-    
-            <button type="submit" class="w-full px-4 py-3 text-white bg-gradient-to-r from-blue-500 to-green-500 rounded-lg hover:opacity-90 transition-all shadow-lg">
-                Register
-            </button>
-        </form>
-        
-        <p class="mt-6 text-sm text-center text-gray-600 dark:text-gray-400">
-            Already have an account? 
-            <a href="/login" class="text-blue-500 hover:underline">Login</a>
-        </p>
+          </div>
+          
+          <div class="flex items-start">
+            <div class="flex-shrink-0">
+              <div class="flex items-center justify-center w-10 h-10 rounded-lg bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"></path>
+                </svg>
+              </div>
+            </div>
+            <div class="ml-4">
+              <h3 class="text-base font-medium text-slate-900 dark:text-white">Exclusive Offers</h3>
+              <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Get access to member-only discounts and early sale access.</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <!-- Dark Mode Toggle Script -->
-    <script>
-        const themeToggle = document.getElementById('theme-toggle');
-        const themeIcon = document.getElementById('theme-icon');
-        const body = document.body;
-
-        themeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark');
-            const isDarkMode = body.classList.contains('dark');
-            themeIcon.textContent = isDarkMode ? '☀️' : '🌙';
-            localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
-        });
-
-        // Check for saved theme in localStorage
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'dark') {
-            body.classList.add('dark');
-            themeIcon.textContent = '☀️';
-        } else {
-            body.classList.remove('dark');
-            themeIcon.textContent = '🌙';
-        }
-    </script>
-</body>
-</html>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+// Custom input number styling
+input[type="number"] {
+    -moz-appearance: textfield; // Firefox
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+  
+  // Subtle hover effect for cart items
+  .divide-y > div {
+    transition: background-color 0.2s ease;
+    &:hover {
+      @apply bg-slate-50 dark:bg-slate-800/60;
+    }
+  }
+  
+  // Animation for quantity changes
+  .border {
+    transition: border-color 0.2s ease;
+  }
+  
+  input:focus + .border {
+    @apply border-indigo-500 dark:border-indigo-400;
+  }
+  
+  // Smooth transitions for all interactive elements
+  button {
+    transition: all 0.2s ease;
+  }
+  
+  // Enhance mobile experience
+  @media (max-width: 768px) {
+    .quantity-controls {
+      @apply flex justify-center;
+    }
+  }
+  
+  // Make the summary card stick properly on scroll
+  .sticky {
+    position: sticky;
+    top: 100px; // Adjust based on your header height
+    max-height: calc(100vh - 150px);
+    overflow-y: auto;
+  }

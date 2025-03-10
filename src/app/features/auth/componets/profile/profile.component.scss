@@ -1,0 +1,154 @@
+// Animation for tab transitions
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  // Apply animations
+  [class*="activeTab"] {
+    animation: fadeIn 0.3s ease-out;
+  }
+  
+  // Smooth transitions
+  .transition-colors,
+  button,
+  .border,
+  input[type="checkbox"],
+  input[type="radio"] {
+    transition: all 0.2s ease;
+  }
+  
+  // Input focus states
+  input:focus,
+  select:focus,
+  textarea:focus {
+    @apply outline-none ring-2 ring-indigo-500 dark:ring-indigo-400;
+  }
+  
+  // Custom checkbox and radio styling
+  input[type="checkbox"],
+  input[type="radio"] {
+    &:checked {
+      @apply bg-indigo-600 border-indigo-600 dark:bg-indigo-500 dark:border-indigo-500;
+    }
+  }
+  
+  // Fix for Firefox browsers
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  
+  // Profile image styles
+  .rounded-full {
+    object-fit: cover;
+    
+    // Image upload hover effect
+    label {
+      transition: all 0.2s ease;
+      
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+  }
+  
+  // Navigation menu item hover effect
+  nav button {
+    position: relative;
+    overflow: hidden;
+    
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 2px;
+      background-color: theme('colors.indigo.500');
+      transition: width 0.2s ease;
+    }
+    
+    &:hover:after {
+      width: 80%;
+    }
+  }
+  
+  // Tab content min height to prevent layout shifts
+  [class*="activeTab"] > div {
+    min-height: 400px;
+  }
+  
+  // Form error animations
+  .text-rose-500 {
+    animation: shake 0.4s ease-in-out;
+  }
+  
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+  }
+  
+  // Success/error alert animations
+  .bg-green-50, .bg-rose-50 {
+    animation: slideDown 0.3s ease-out;
+  }
+  
+  @keyframes slideDown {
+    from { transform: translateY(-10px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  
+  // Order card hover effects
+  .border {
+    &:hover {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+  }
+  
+  // Address card styles
+  [class*="isDefault"] {
+    position: relative;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border: 2px solid theme('colors.indigo.500');
+      border-radius: theme('borderRadius.lg');
+      pointer-events: none;
+    }
+  }
+  
+  // Responsive adjustments for mobile
+  @media (max-width: 768px) {
+    .container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    
+    // Stack items on mobile
+    .flex-col {
+      gap: 1rem;
+    }
+    
+    // Ensure proper spacing for form elements
+    .space-y-6 > * + * {
+      margin-top: 1.5rem;
+    }
+  }

@@ -1,109 +1,136 @@
-<div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-700 py-12 px-4 sm:px-6 lg:px-8">
-  <!-- Floating Container -->
-  <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gray-100 dark:border-gray-700 transform transition-all duration-300 hover:shadow-3xl hover:-translate-y-2">
-    <div class="max-w-md w-full space-y-6 p-8"> <!-- Adjusted padding -->
-      <!-- Header Section -->
-      <div class="text-center">
-        <img 
-          class="mx-auto h-16 w-auto transform transition-transform duration-500 hover:scale-110" 
-          src="assets/logo.png" 
-          alt="Admin Logo"
-          onerror="this.src='https://via.placeholder.com/64x64'"
-        >
-        <h2 class="mt-6 text-center text-4xl font-extrabold text-gray-900 dark:text-white bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-          Admin Portal Sign In
-        </h2>
-        <p class="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">
-          POS Administration Dashboard
-        </p>
+<div class="min-h-screen bg-slate-50 dark:bg-slate-900 pt-24 pb-12 flex items-center">
+  <div class="container mx-auto px-4">
+    <div class="max-w-md mx-auto">
+      <!-- Logo/Header -->
+      <div class="text-center mb-8">
+        <img src="https://res.cloudinary.com/dpls4kcqa/image/upload/v1738523502/logo-Mainlogo-removebg-preview_ub0pho.png" 
+             alt="Quality Led Africa Logo" class="h-12 mx-auto mb-4 dark:hidden">
+        <img src="https://res.cloudinary.com/dpls4kcqa/image/upload/v1738522868/Logo_QLA_Website_nl_en_e4vf8x.png" 
+             alt="Quality Led Africa Logo" class="h-12 mx-auto mb-4 hidden dark:block">
+        <h1 class="text-2xl font-bold text-slate-900 dark:text-white">Sign in to your account</h1>
+        <p class="text-slate-600 dark:text-slate-400 mt-2">Welcome back to Quality Led Africa</p>
       </div>
 
-      <!-- Login Form -->
-      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="mt-8 space-y-6">
-        <!-- Error Message -->
-        <div *ngIf="error" class="rounded-md bg-red-50 dark:bg-red-900/20 p-4">
-          <div class="flex items-center">
-            <svg class="h-5 w-5 text-red-400 dark:text-red-300" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
-            </svg>
-            <div class="ml-3 text-sm text-red-700 dark:text-red-200">
-              {{ error }}
-            </div>
-          </div>
+      <!-- Login Card -->
+      <div class="bg-white dark:bg-slate-800 rounded-lg shadow-sm p-6 md:p-8">
+        <!-- Error Alert -->
+        <div *ngIf="error" class="mb-6 p-4 bg-rose-50 dark:bg-rose-900/20 text-rose-600 dark:text-rose-400 rounded-lg text-sm">
+          {{ error }}
         </div>
 
-        <input type="hidden" name="remember" value="true">
-        
-        <div class="rounded-md shadow-sm -space-y-px">
+        <!-- Login Form -->
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="space-y-6">
           <!-- Email Field -->
           <div>
-            <label for="email-address" class="sr-only">Email address</label>
-            <input 
-              id="email-address" 
-              formControlName="email"
-              type="email" 
-              autocomplete="email" 
-              required
-              class="appearance-none rounded-none relative block w-full px-4 py-3 border border-gray-300 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white rounded-t-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm transition-all duration-200"
-              [ngClass]="{'border-red-500': loginForm.get('email')?.touched && loginForm.get('email')?.invalid}"
-              placeholder="Email address"
-            >
-            <div *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.errors?.['required']" 
-                 class="text-red-500 text-xs mt-1">
-              Email is required
-            </div>
-            <div *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.errors?.['email']" 
-                 class="text-red-500 text-xs mt-1">
-              Please enter a valid email
+            <label for="email" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Email Address</label>
+            <input type="email" id="email" formControlName="email"
+                   class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" 
+                 class="text-rose-500 text-sm mt-1">
+              <span *ngIf="loginForm.get('email')?.errors?.['required']">Email is required</span>
+              <span *ngIf="loginForm.get('email')?.errors?.['email']">Please enter a valid email address</span>
             </div>
           </div>
 
           <!-- Password Field -->
           <div>
-            <label for="password" class="sr-only">Password</label>
-            <input 
-              id="password" 
-              formControlName="password"
-              type="password" 
-              autocomplete="current-password" 
-              required
-              class="appearance-none rounded-none relative block w-full px-4 py-3 border border-gray-300 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white rounded-b-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm transition-all duration-200"
-              [ngClass]="{'border-red-500': loginForm.get('password')?.touched && loginForm.get('password')?.invalid}"
-              placeholder="Password"
-            >
-            <div *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.errors?.['required']" 
-                 class="text-red-500 text-xs mt-1">
-              Password is required
+            <div class="flex justify-between items-center mb-1">
+              <label for="password" class="block text-sm font-medium text-slate-700 dark:text-slate-300">Password</label>
+              <a routerLink="/auth/forgot-password" class="text-xs text-indigo-600 dark:text-indigo-400 hover:underline">
+                Forgot Password?
+              </a>
+            </div>
+            <div class="relative">
+              <input [type]="showPassword ? 'text' : 'password'" id="password" formControlName="password"
+                     class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+              <button type="button" 
+                      (click)="togglePasswordVisibility()"
+                      class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300">
+                <svg *ngIf="!showPassword" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                </svg>
+                <svg *ngIf="showPassword" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+                </svg>
+              </button>
+            </div>
+            <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" 
+                 class="text-rose-500 text-sm mt-1">
+              <span *ngIf="loginForm.get('password')?.errors?.['required']">Password is required</span>
+              <span *ngIf="loginForm.get('password')?.errors?.['minlength']">Password must be at least 6 characters</span>
+            </div>
+          </div>
+
+          <!-- Remember Me Checkbox -->
+          <div class="flex items-center">
+            <input type="checkbox" id="rememberMe" formControlName="rememberMe"
+                   class="h-4 w-4 rounded border-slate-300 dark:border-slate-600 text-indigo-600 focus:ring-indigo-500">
+            <label for="rememberMe" class="ml-2 text-sm text-slate-700 dark:text-slate-300">
+              Remember me
+            </label>
+          </div>
+
+          <!-- Login Button -->
+          <button type="submit" 
+                  [disabled]="isLoading || loginForm.invalid"
+                  class="w-full py-2 px-4 bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-400 text-white rounded-lg transition-colors">
+            <div class="flex items-center justify-center">
+              <!-- Loading Spinner -->
+              <svg *ngIf="isLoading" class="animate-spin -ml-1 mr-2 h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              <span>{{ isLoading ? 'Signing in...' : 'Sign in' }}</span>
+            </div>
+          </button>
+        </form>
+
+        <!-- Social Login Options -->
+        <div class="mt-8 pt-6 border-t border-slate-200 dark:border-slate-700">
+          <div class="text-center">
+            <p class="text-sm text-slate-600 dark:text-slate-400 mb-4">Or sign in with</p>
+            <div class="flex flex-wrap justify-center gap-4">
+              <button type="button" (click)="loginWithGoogle()" 
+                      class="flex items-center px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700">
+                <svg class="h-5 w-5 mr-2" viewBox="0 0 24 24">
+                  <path fill="#EA4335" d="M5.266 9.765A7.077 7.077 0 0 1 12 4.909c1.69 0 3.218.6 4.418 1.582L19.91 3C17.782 1.145 15.055 0 12 0 7.27 0 3.198 2.698 1.24 6.65l4.026 3.115Z"/>
+                  <path fill="#34A853" d="M16.04 18.013c-1.09.703-2.474 1.078-4.04 1.078a7.077 7.077 0 0 1-6.723-4.823l-4.04 3.067A11.965 11.965 0 0 0 12 24c2.933 0 5.735-1.043 7.834-3l-3.793-2.987Z"/>
+                  <path fill="#4A90E2" d="M19.834 21c2.195-2.048 3.62-5.096 3.62-9 0-.71-.109-1.473-.272-2.182H12v4.637h6.436c-.317 1.559-1.17 2.766-2.395 3.558L19.834 21Z"/>
+                  <path fill="#FBBC05" d="M5.277 14.268A7.12 7.12 0 0 1 4.909 12c0-.782.125-1.533.357-2.235L1.24 6.65A11.934 11.934 0 0 0 0 12c0 1.92.445 3.73 1.24 5.35l4.037-3.082Z"/>
+                </svg>
+                Google
+              </button>
+              
+              <button type="button" (click)="loginWithFacebook()" 
+                      class="flex items-center px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700">
+                <svg class="h-5 w-5 mr-2" viewBox="0 0 24 24">
+                  <path fill="#1877F2" d="M24 12.073c0-5.8-4.702-10.5-10.5-10.5s-10.5 4.7-10.5 10.5c0 5.237 3.831 9.58 8.896 10.37v-7.337H8.444v-3.032h3.452V9.592c0-3.41 2.031-5.295 5.143-5.295 1.49 0 3.047.266 3.047.266v3.35h-1.717c-1.69 0-2.217 1.05-2.217 2.13v2.558h3.774l-.604 3.032h-3.17v7.337c5.065-.791 8.896-5.133 8.896-10.37z"/>
+                </svg>
+                Facebook
+              </button>
             </div>
           </div>
         </div>
+      </div>
 
-        <!-- Submit Button -->
-        <div>
-          <button 
-            type="submit"
-            [disabled]="loginForm.invalid || isLoading"
-            class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
-          >
-            <span class="absolute left-0 inset-y-0 flex items-center pl-3">
-              <svg 
-                *ngIf="!isLoading"
-                class="h-5 w-5 text-blue-200 group-hover:text-blue-100 transition-colors duration-200" 
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20" 
-                fill="currentColor" 
-                aria-hidden="true"
-              >
-                <path fill-rule="evenodd"
-                  d="M10 3a1 1 0 011 1v2a1 1 0 102 0V4a3 3 0 00-6 0v2a1 1 0 102 0V4a1 1 0 011-1zm-3 9a1 1 0 001 1h4a1 1 0 110 2H8a1 1 0 110-2h4a1 1 0 001-1V7H7v5z"
-                  clip-rule="evenodd" 
-                />
-              </svg>
-            </span>
-            {{ isLoading ? 'Signing in...' : 'Sign in' }}
-          </button>
+      <!-- Registration Link -->
+      <div class="mt-6 text-center">
+        <p class="text-sm text-slate-600 dark:text-slate-400">
+          Don't have an account?
+          <a routerLink="/auth/register" class="text-indigo-600 dark:text-indigo-400 hover:underline font-medium">Create an account</a>
+        </p>
+      </div>
+      
+      <!-- Security Notice -->
+      <div class="mt-8 text-center">
+        <div class="flex items-center justify-center text-xs text-slate-500 dark:text-slate-400">
+          <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+          </svg>
+          <span>Secure login • SSL encrypted</span>
         </div>
-      </form>
+      </div>
     </div>
   </div>
 </div>

@@ -17,11 +17,10 @@ interface Category {
 @Component({
   selector: 'app-hearder',
   standalone: false,
-  
   templateUrl: './hearder.component.html',
   styleUrl: './hearder.component.scss'
 })
-export class HeaderComponent  implements OnInit {
+export class HeaderComponent implements OnInit {
   @ViewChild('profileDropdown') profileDropdown!: ElementRef;
   @ViewChild('searchInput') searchInput!: ElementRef;
   
@@ -112,10 +111,10 @@ export class HeaderComponent  implements OnInit {
       isDark => this.isDark = isDark
     );
 
-    // Subscribe to cart updates
-    this.cartService.cartItems$.subscribe(
-      items => this.cartItemsCount = items.length
-    );
+    // Subscribe to cart updates - now using getCartItemsCount() for total items
+    this.cartService.cartItems$.subscribe(() => {
+      this.cartItemsCount = this.cartService.getCartItemsCount();
+    });
 
     // Subscribe to wishlist updates
     this.wishlistService.wishlistItems$.subscribe(
@@ -180,7 +179,6 @@ export class HeaderComponent  implements OnInit {
     }
   }
   
-
   onSearchInput(event: Event) {
     const searchTerm = (event.target as HTMLInputElement).value;
     this.searchSubject.next(searchTerm);

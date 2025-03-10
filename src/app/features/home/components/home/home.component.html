@@ -190,7 +190,7 @@
             <div class="flex items-center justify-between">
               <span
                 class="text-xl font-bold text-indigo-600 dark:text-indigo-400"
-                >{{ product.price | currency }}</span
+                >{{ product.price | currency : "KES" : "symbol-narrow" }}</span
               >
               <button
                 (click)="addToCart(product)"

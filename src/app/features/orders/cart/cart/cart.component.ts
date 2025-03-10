@@ -7,22 +7,19 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './cart.component.html',
-  styleUrl: './cart.component.scss'
+  styleUrl: './cart.component.scss',
 })
 export class CartComponent implements OnInit {
   cartItems: CartItem[] = [];
   isLoading = true;
-  
-  constructor(
-    private cartService: CartService,
-    private router: Router
-  ) {}
+
+  constructor(private cartService: CartService, private router: Router) {}
 
   ngOnInit(): void {
     // Subscribe to cart changes
-    this.cartService.cartItems$.subscribe(items => {
+    this.cartService.cartItems$.subscribe((items) => {
       this.cartItems = items;
       this.isLoading = false;
     });
@@ -71,14 +68,17 @@ export class CartComponent implements OnInit {
 
   // Calculate cart subtotal
   getSubtotal(): number {
-    return this.cartItems.reduce((sum, item) => sum + this.getItemSubtotal(item), 0);
+    return this.cartItems.reduce(
+      (sum, item) => sum + this.getItemSubtotal(item),
+      0
+    );
   }
 
   // Format price as currency
   formatPrice(price: number): string {
-    return new Intl.NumberFormat('en-US', {
+    return new Intl.NumberFormat('en-KE', {
       style: 'currency',
-      currency: 'USD'
+      currency: 'KES',
     }).format(price);
   }
 }

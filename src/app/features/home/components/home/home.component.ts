@@ -28,33 +28,33 @@ export class HomeComponent implements OnInit, OnDestroy {
   // Original data
   categories: Category[] = [
     {
-      name: 'Laptops',
-      slug: 'laptops',
+      name: 'Backlit Panels',
+      slug: 'backlit-panels',
       icon: 'fas fa-laptop',
     },
     {
-      name: 'Smartphones',
-      slug: 'smartphones',
+      name: 'Downlights',
+      slug: 'downlights',
       icon: 'fas fa-mobile-alt',
     },
     {
-      name: 'Tablets',
-      slug: 'tablets',
+      name: 'Switches',
+      slug: 'switches',
       icon: 'fas fa-tablet-alt',
     },
     {
-      name: 'Cameras',
-      slug: 'cameras',
+      name: 'RGB Strips',
+      slug: 'rgb-strips',
       icon: 'fas fa-camera',
     },
     {
-      name: 'Audio',
-      slug: 'audio',
+      name: 'Strip Lights',
+      slug: 'strip-lights',
       icon: 'fas fa-headphones',
     },
     {
-      name: 'Accessories',
-      slug: 'accessories',
+      name: 'Digital RGB Strips',
+      slug: 'digital-rgb-strips',
       icon: 'fas fa-plug',
     },
   ];
@@ -62,39 +62,39 @@ export class HomeComponent implements OnInit, OnDestroy {
   featuredProducts: Product[] = [
     {
       id: '1',
-      name: 'MacBook Pro 16"',
-      description: 'Latest M2 Pro chip, 16GB RAM, 512GB SSD',
-      price: 2499.99,
+      name: ' Backlit Panel"',
+      description: '40w,100lm/watt',
+      price: 2499,
       image:
-        'https://res.cloudinary.com/dfsd8beyu/image/upload/v1732995563/Apple_MacBook-Pro_14-16-inch_10182021_big.jpg.large_pdjiwf.jpg',
-      category: 'laptops',
+        'https://res.cloudinary.com/da5npawma/image/upload/v1741637120/led-panel-lights-600x600-1_zjzxdq.webp',
+      category: 'backlit-panels',
     },
     {
       id: '2',
-      name: 'iPhone 15 Pro',
-      description: 'A17 Pro chip, 256GB, Titanium finish',
-      price: 1199.99,
+      name: 'Strip Lights',
+      description: '24V 3000K COB Striplight',
+      price: 1800,
       image:
-        'https://res.cloudinary.com/dfsd8beyu/image/upload/v1732995563/Apple_MacBook-Pro_14-16-inch_10182021_big.jpg.large_pdjiwf.jpg',
-      category: 'smartphones',
+        'https://res.cloudinary.com/da5npawma/image/upload/v1741637455/cob-led-strip-480-ledm-12v-ip20-118wm_omdvhy.jpg',
+      category: 'strip-lights',
     },
     {
       id: '3',
-      name: 'iPad Pro 12.9"',
-      description: 'M2 chip, 128GB, Space Gray',
-      price: 1099.99,
+      name: 'Downlighters',
+      description: '12W Downlight',
+      price: 495,
       image:
-        'https://res.cloudinary.com/dfsd8beyu/image/upload/v1732995563/Apple_MacBook-Pro_14-16-inch_10182021_big.jpg.large_pdjiwf.jpg',
-      category: 'tablets',
+        'https://res.cloudinary.com/da5npawma/image/upload/v1741637794/surya-4w-aura-prime-led-downlighter-recessed-led-d-o-1apZf515_z2of7i.jpg',
+      category: 'downlighters',
     },
     {
       id: '4',
-      name: 'Sony WH-1000XM5',
-      description: 'Wireless Noise Cancelling Headphones',
-      price: 399.99,
+      name: 'Aluminium Profiles',
+      description: '10*10mm Aluminium Profile',
+      price: 400,
       image:
-        'https://res.cloudinary.com/dfsd8beyu/image/upload/v1732995563/Apple_MacBook-Pro_14-16-inch_10182021_big.jpg.large_pdjiwf.jpg',
-      category: 'audio',
+        'https://res.cloudinary.com/da5npawma/image/upload/v1741637249/alu17_aluminium_led_profile_with_warm_white_led_strip_dyt7r3.webp',
+      category: 'aluminium-profiles',
     },
   ];
 

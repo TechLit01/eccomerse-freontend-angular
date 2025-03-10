@@ -29,45 +29,46 @@ export class ProductsComponent implements OnInit {
   products: Product[] = [
     {
       id: '1',
-      name: 'MacBook Pro 16"',
-      description: 'Latest M2 Pro chip, 16GB RAM, 512GB SSD',
+      name: 'Backlit Panel"',
+      description: '40 watts, 100lm/w ',
       price: 2499.99,
       originalPrice: 2699.99,
-      image: 'https://res.cloudinary.com/dfsd8beyu/image/upload/v1732995563/Apple_MacBook-Pro_14-16-inch_10182021_big.jpg.large_pdjiwf.jpg',
-      category: 'Laptops',
-      brand: 'Apple',
+      image: 'https://res.cloudinary.com/da5npawma/image/upload/v1741637120/led-panel-lights-600x600-1_zjzxdq.webp',
+      category: 'Backlit Panels',
+      brand: ' QLA',
       rating: 4.8,
       inStock: true,
       isNew: true,
-      specifications: ['M2 Pro chip', '16GB RAM', '512GB SSD', '16" Liquid Retina Display'],
-      tags: ['laptop', 'apple', 'macbook']
+      specifications: ['3000K', '4000K', '6000K', 'CCT'],
+      tags: ['downlighters', 'alu profiles', 'striplights']
     },
     {
       id: '2',
-      name: 'Dell XPS 15',
-      description: 'Intel i9, 32GB RAM, 1TB SSD, RTX 4070',
-      price: 1999.99,
-      image: 'https://res.cloudinary.com/dfsd8beyu/image/upload/v1732995563/Apple_MacBook-Pro_14-16-inch_10182021_big.jpg.large_pdjiwf.jpg',
-      category: 'Laptops',
-      brand: 'Dell',
+      name: 'Aluminium Profile',
+      description: '10*10 Aluminium Profile',
+      price: 400,
+      image: 'https://res.cloudinary.com/da5npawma/image/upload/v1741637249/alu17_aluminium_led_profile_with_warm_white_led_strip_dyt7r3.webp',
+      category: 'Aluminium Profiles',
+      brand: 'QLA',
       rating: 4.6,
       inStock: true,
-      specifications: ['Intel i9', '32GB RAM', '1TB SSD', 'RTX 4070'],
-      tags: ['laptop', 'dell', 'xps']
+      specifications: ['10*10', 'recessed', '2meters', 'aluminium'],
+      tags: ['Alu profiles', 'Baclit Panels', 'Striplights']
     },
     {
       id: '3',
-      name: 'Sony WH-1000XM5',
-      description: 'Wireless Noise Cancelling Headphones',
-      price: 399.99,
-      originalPrice: 449.99,
-      image: 'https://res.cloudinary.com/dfsd8beyu/image/upload/v1732995563/Apple_MacBook-Pro_14-16-inch_10182021_big.jpg.large_pdjiwf.jpg',
-      category: 'Audio',
-      brand: 'Sony',
+      name: 'Downlighters',
+      description: '9W Downlight',
+      price: 399,
+      originalPrice: 449,
+      image: 'https://res.cloudinary.com/da5npawma/image/upload/v1741637794/surya-4w-aura-prime-led-downlighter-recessed-led-d-o-1apZf515_z2of7i.jpg',
+      category: 'Downlighters',
+      brand: 'QLA',
       rating: 4.9,
       inStock: true,
+      specifications: ['square', 'round', 'daylight', 'warmwhite'],
       isFeatured: true,
-      tags: ['headphones', 'wireless', 'audio']
+      tags: ['Downlighters', 'Alu Profiles', 'Backlit Panels']
     },
     // Add more dummy products...
   ];
@@ -81,8 +82,8 @@ export class ProductsComponent implements OnInit {
   ];
 
   filters = {
-    categories: ['Laptops', 'Smartphones', 'Audio', 'Gaming', 'Accessories'],
-    brands: ['Apple', 'Samsung', 'Sony', 'Dell', 'Bose'],
+    categories: ['Backlit Panels', 'Aluminium Profiles', 'Downlighters', 'Panel Lights', 'Switches'],
+    brands: ['QLA', 'Philips', 'Osram', 'Ledvance', ],
     priceRanges: [
       { label: 'Under $100', min: 0, max: 100 },
       { label: '$100 - $500', min: 100, max: 500 },

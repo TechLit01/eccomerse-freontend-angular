@@ -29,85 +29,85 @@ export class CategoriesComponent {
   categories: Category[] = [
     {
       id: '1',
-      name: 'Laptops & Computers',
-      slug: 'laptops-computers',
-      description: 'Find the perfect computer for work, gaming, or everyday use',
+      name: 'Backlit Panels',
+      slug: 'backlit-panels',
+      description: 'Best Panels for your office layout',
       icon: 'fas fa-laptop',
-      image: 'https://res.cloudinary.com/dfsd8beyu/image/upload/v1732995563/Apple_MacBook-Pro_14-16-inch_10182021_big.jpg.large_pdjiwf.jpg',
-      featuredBrands: ['Apple', 'Dell', 'HP', 'Lenovo'],
+      image: 'https://res.cloudinary.com/da5npawma/image/upload/v1741637120/led-panel-lights-600x600-1_zjzxdq.webp',
+      featuredBrands: ['QLA',],
       subcategories: [
-        { name: 'Gaming Laptops', slug: 'gaming-laptops', count: 45 },
-        { name: 'Business Laptops', slug: 'business-laptops', count: 38 },
-        { name: 'Desktop PCs', slug: 'desktop-pcs', count: 29 },
-        { name: 'PC Components', slug: 'pc-components', count: 156 }
+        { name: 'RGB Strips', slug: 'RGB-Strips', count: 45 },
+        { name: 'Backlit Panels', slug: 'backlit-panels', count: 38 },
+        { name: 'Downlighters', slug: 'Downlighters', count: 29 },
+        { name: 'Aluminium Profiles', slug: 'Aluminium-profiles', count: 156 }
       ],
       productCount: 268,
       isPopular: true
     },
     {
       id: '2',
-      name: 'Smartphones & Tablets',
-      slug: 'smartphones-tablets',
-      description: 'Latest mobile devices from top brands',
+      name: 'Strip Lights',
+      slug: 'RGBW Strips',
+      description: 'Digital RGB Strips',
       icon: 'fas fa-mobile-alt',
-      image: 'https://res.cloudinary.com/dfsd8beyu/image/upload/v1732995563/Apple_MacBook-Pro_14-16-inch_10182021_big.jpg.large_pdjiwf.jpg',
-      featuredBrands: ['Apple', 'Samsung', 'Google', 'OnePlus'],
+      image: 'https://res.cloudinary.com/da5npawma/image/upload/v1741637455/cob-led-strip-480-ledm-12v-ip20-118wm_omdvhy.jpg',
+      featuredBrands: ['RGB', 'RGBW', 'Digital', '5050'],
       subcategories: [
-        { name: 'iPhones', slug: 'iphones', count: 12 },
-        { name: 'Android Phones', slug: 'android-phones', count: 47 },
-        { name: 'Tablets', slug: 'tablets', count: 24 },
-        { name: 'E-readers', slug: 'e-readers', count: 8 }
+        { name: 'Backlit Panels', slug: 'Backlit-panels', count: 12 },
+        { name: 'RGBW Strips', slug: 'RGBW-Strips', count: 47 },
+        { name: 'Aluminium Profiles', slug: 'Aluminium-profiles', count: 24 },
+        { name: 'Downlighters', slug: 'downlighters', count: 8 }
       ],
       productCount: 91,
       isPopular: true
     },
     {
       id: '3',
-      name: 'Audio & Headphones',
-      slug: 'audio-headphones',
-      description: 'Premium audio equipment for the best listening experience',
+      name: 'Downlighters',
+      slug: 'downlighters',
+      description: 'Premium quality downlights',
       icon: 'fas fa-headphones',
-      image: 'https://res.cloudinary.com/dfsd8beyu/image/upload/v1732995563/Apple_MacBook-Pro_14-16-inch_10182021_big.jpg.large_pdjiwf.jpg',
-      featuredBrands: ['Sony', 'Bose', 'Sennheiser', 'JBL'],
+      image: 'https://res.cloudinary.com/da5npawma/image/upload/v1741637794/surya-4w-aura-prime-led-downlighter-recessed-led-d-o-1apZf515_z2of7i.jpg',
+      featuredBrands: ['CCT', '3000K', '4000K', '6000K'],
       subcategories: [
-        { name: 'Wireless Headphones', slug: 'wireless-headphones', count: 34 },
-        { name: 'Earbuds', slug: 'earbuds', count: 28 },
-        { name: 'Speakers', slug: 'speakers', count: 45 },
-        { name: 'Home Audio', slug: 'home-audio', count: 19 }
+        { name: 'Backlit Panels', slug: 'Baclit-panels', count: 12 },
+        { name: 'RGBW Strips', slug: 'RGBW-Strips', count: 47 },
+        { name: 'Aluminium Profiles', slug: 'Aluminium-profiles', count: 24 },
+        { name: 'Downlighters', slug: 'downlighters', count: 8 }
       ],
       productCount: 126,
       isPopular: true
     },
     {
       id: '4',
-      name: 'Gaming & Consoles',
-      slug: 'gaming-consoles',
-      description: 'Everything for the ultimate gaming setup',
+      name: 'Aluminium Profiles',
+      slug: 'Aluminium-profiles',
+      description: 'Quality Aluminium Profiles',
       icon: 'fas fa-gamepad',
-      image: 'https://res.cloudinary.com/dfsd8beyu/image/upload/v1732995563/Apple_MacBook-Pro_14-16-inch_10182021_big.jpg.large_pdjiwf.jpg',
-      featuredBrands: ['PlayStation', 'Xbox', 'Nintendo', 'Razer'],
+      image: 'https://res.cloudinary.com/da5npawma/image/upload/v1741637249/alu17_aluminium_led_profile_with_warm_white_led_strip_dyt7r3.webp',
+      featuredBrands: ['Recessed', 'Surface', 'Conner Profile', 'Flexible'],
       subcategories: [
-        { name: 'Gaming Consoles', slug: 'consoles', count: 15 },
-        { name: 'Video Games', slug: 'video-games', count: 324 },
-        { name: 'Gaming Accessories', slug: 'gaming-accessories', count: 89 },
-        { name: 'VR Gaming', slug: 'vr-gaming', count: 23 }
+        { name: 'Backlit Panels', slug: 'Baclit-panels', count: 12 },
+        { name: 'RGBW Strips', slug: 'RGBW-Strips', count: 47 },
+        { name: 'Aluminium Profiles', slug: 'Aluminium-profiles', count: 24 },
+        { name: 'Downlighters', slug: 'downlighters', count: 8 }
       ],
       productCount: 451,
       isPopular: true
     },
     {
       id: '5',
-      name: 'Cameras & Photography',
-      slug: 'cameras-photography',
-      description: 'Capture life\'s moments with professional gear',
+      name: 'Downlighters',
+      slug: 'downlighters',
+      description: 'Quality Downlighters',
       icon: 'fas fa-camera',
-      image: 'https://res.cloudinary.com/dfsd8beyu/image/upload/v1732995563/Apple_MacBook-Pro_14-16-inch_10182021_big.jpg.large_pdjiwf.jpg',
-      featuredBrands: ['Canon', 'Sony', 'Nikon', 'Fujifilm'],
+      image: 'https://res.cloudinary.com/da5npawma/image/upload/v1741637794/surya-4w-aura-prime-led-downlighter-recessed-led-d-o-1apZf515_z2of7i.jpg',
+      featuredBrands: ['3W', '5W', '7W', '9W', '12W'],
       subcategories: [
-        { name: 'DSLR Cameras', slug: 'dslr-cameras', count: 28 },
-        { name: 'Mirrorless Cameras', slug: 'mirrorless-cameras', count: 34 },
-        { name: 'Lenses', slug: 'camera-lenses', count: 156 },
-        { name: 'Camera Accessories', slug: 'camera-accessories', count: 98 }
+        { name: 'Backlit Panels', slug: 'Baclit-panels', count: 12 },
+        { name: 'RGBW Strips', slug: 'RGBW-Strips', count: 47 },
+        { name: 'Aluminium Profiles', slug: 'Aluminium-profiles', count: 24 },
+        { name: 'Downlighters', slug: 'downlighters', count: 8 }
       ],
       productCount: 316
     }

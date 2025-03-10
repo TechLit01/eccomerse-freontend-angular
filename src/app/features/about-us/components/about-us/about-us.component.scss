@@ -1,0 +1,242 @@
+// Scroll Animations
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+
+  &.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Gradient Text Effect
+.gradient-text {
+  background: linear-gradient(90deg, #4f46e5, #a5b4fc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline;
+}
+
+// Custom Scrollbar for Dark Mode
+:host-context(.dark) {
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #1e293b; // slate-800
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #475569; // slate-600
+    border-radius: 4px;
+
+    &:hover {
+      background: #64748b; // slate-500
+    }
+  }
+}
+
+// Responsive Adjustments
+@media (max-width: 768px) {
+  .timeline {
+    &::before {
+      left: 30px;
+    }
+
+    .timeline-item {
+      padding-left: 60px;
+      width: 100%;
+      text-align: left;
+
+      &::before {
+        left: 22px;
+      }
+    }
+  }
+
+  .hero-content {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+// Smooth Scroll Behavior
+html {
+  scroll-behavior: smooth;
+}
+
+// Contact Form Floating Labels
+.form-floating {
+  position: relative;
+
+  label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 1rem;
+    pointer-events: none;
+    transition: 0.2s ease all;
+  }
+
+  input:focus ~ label,
+  input:not(:placeholder-shown) ~ label,
+  textarea:focus ~ label,
+  textarea:not(:placeholder-shown) ~ label {
+    transform: translateY(-50%) scale(0.85);
+    background-color: white;
+    padding: 0 0.5rem;
+    top: 0;
+  }
+} // about-us.component.scss
+
+// Parallax Effect
+.parallax-bg {
+  will-change: transform;
+  background-attachment: fixed;
+
+  @media (max-width: 768px) {
+    background-attachment: scroll;
+  }
+}
+
+// Timeline Animations
+@keyframes timeline-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Apply animations to timeline items
+.timeline-item {
+  opacity: 0;
+  animation: timeline-fade-in 0.6s ease forwards;
+
+  @for $i from 1 through 10 {
+    &:nth-child(#{$i}) {
+      animation-delay: #{$i * 0.2}s;
+    }
+  }
+}
+
+// Stats Counter Animation
+@keyframes count-up {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.counter-value {
+  animation: count-up 1s ease-out forwards;
+}
+
+// Team Card Hover Effects
+.team-card {
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+      0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+
+  .team-image {
+    overflow: hidden;
+
+    img {
+      transition: transform 0.7s ease;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  .social-links {
+    transition: all 0.3s ease;
+    transform: translateY(20px);
+    opacity: 0;
+  }
+
+  &:hover .social-links {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+// Value Cards Effects
+.value-card {
+  transition: all 0.3s ease;
+  overflow: hidden;
+
+  &:hover {
+    transform: translateY(-5px);
+
+    .value-number {
+      color: rgba(165, 180, 252, 0.3); // Indigo-300 with opacity
+    }
+
+    .value-icon {
+      background-color: #4f46e5; // Indigo-600
+      color: white;
+    }
+
+    .value-title {
+      color: #4f46e5; // Indigo-600
+    }
+  }
+}
+
+// Custom Form Styling
+input,
+textarea {
+  transition: all 0.3s ease;
+
+  &:focus {
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.3); // Indigo-600 with opacity
+    outline: none;
+    border-color: #4f46e5; // Indigo-600
+  }
+}
+
+// Animated Buttons
+.animated-button {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: inherit;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    transition: transform 0.5s ease, opacity 0.3s ease;
+  }
+
+  &:hover::after {
+    transform: translate(-50%, -50%) scale(1.5);
+    opacity: 1;
+  }
+}

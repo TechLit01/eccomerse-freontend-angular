@@ -1,281 +1,549 @@
 <!-- about-us.component.html -->
-<div class="min-h-screen bg-slate-50 dark:bg-slate-900 pt-24 pb-12">
-    <!-- Hero Section -->
-    <div class="relative overflow-hidden bg-indigo-600 py-24 mb-12">
-        <div class="absolute inset-0">
-            <div class="absolute inset-0 bg-gradient-to-br from-indigo-600/90 to-indigo-900/90"></div>
-            <img src="https://res.cloudinary.com/dfsd8beyu/image/upload/v1732995563/Apple_MacBook-Pro_14-16-inch_10182021_big.jpg.large_pdjiwf.jpg" 
-                 alt="About QLA" 
-                 class="h-full w-full object-cover">
-        </div>
-        <div class="relative container mx-auto px-4">
-            <div class="max-w-3xl">
-                <h1 class="text-4xl font-bold tracking-tight text-white sm:text-5xl mb-6">
-                    About QLA
-                </h1>
-                <p class="text-xl text-indigo-100 mb-8">
-                    Quality LED Africa is a leading provider of top-quality LED lighting solutions for businesses, governments, and households across the African continent. With a commitment to delivering energy-efficient, reliable, and affordable LED lighting products, Quality LED Africa is dedicated to improving the lives of people in Africa by transforming the way they light their homes and workplaces. With years of experience and a team of highly skilled professionals, Quality LED Africa is poised to help clients achieve their lighting goals while reducing their energy costs and carbon footprint. Whether you're looking for indoor or outdoor lighting, commercial or residential solutions, Quality LED Africa has the expertise and products you need to take your lighting to the next level.
-                </p>
-                <div class="flex flex-wrap gap-4">
-                    <a href="#team" 
-                       class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-indigo-600 bg-white hover:bg-indigo-50 transition-colors">
-                        Meet Our Team
-                    </a>
-                    <a href="/contact-us" 
-                       class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-indigo-500 hover:bg-indigo-400 transition-colors">
-                        Contact Us
-                    </a>
-                </div>
-            </div>
-        </div>
+<div
+  class="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800"
+>
+  <!-- Hero Section with Parallax Effect -->
+  <div class="relative overflow-hidden">
+    <!-- Parallax Background -->
+    <div class="absolute inset-0 transform -translate-y-12 parallax-bg">
+      <div
+        class="absolute inset-0 bg-gradient-to-br from-indigo-800/90 to-slate-900/90 mix-blend-multiply"
+      ></div>
+      <img
+        src="https://res.cloudinary.com/dfsd8beyu/image/upload/v1732995563/Apple_MacBook-Pro_14-16-inch_10182021_big.jpg.large_pdjiwf.jpg"
+        alt="About QLA"
+        class="h-full w-full object-cover"
+      />
     </div>
 
-    <div class="container mx-auto px-4">
-        <!-- Stats Section -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-24">
-            <div *ngFor="let stat of companyStats" 
-                 class="bg-white dark:bg-slate-800 rounded-lg p-6 text-center">
-                <div class="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-indigo-100 dark:bg-indigo-900 text-indigo-600 dark:text-indigo-400 mb-4">
-                    <i [class]="stat.icon + ' text-xl'"></i>
-                </div>
-                <h3 class="text-3xl font-bold text-slate-900 dark:text-white mb-2">
-                    {{ stat.value }}
-                </h3>
-                <p class="text-slate-600 dark:text-slate-400 text-sm">
-                    {{ stat.description }}
-                </p>
-            </div>
+    <!-- Hero Content -->
+    <div class="relative container mx-auto px-4 py-32 md:py-40">
+      <div class="max-w-3xl">
+        <div
+          class="inline-block mb-6 px-3 py-1 rounded-full bg-indigo-500/30 backdrop-blur-sm text-white text-sm font-medium"
+        >
+          Since 2006
+        </div>
+        <h1
+          class="text-5xl md:text-6xl font-bold tracking-tight text-white mb-6 leading-tight"
+        >
+          Lighting Up <span class="text-indigo-300">Africa's</span> Future
+        </h1>
+        <p
+          class="text-xl text-indigo-100 mb-8 font-light max-w-2xl leading-relaxed"
+        >
+          Quality LED Africa is on a mission to transform the continent with
+          energy-efficient, reliable, and affordable LED lighting solutions.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a
+            href="#team"
+            class="group inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-indigo-600 bg-white hover:bg-indigo-50 transition-colors shadow-lg hover:shadow-xl"
+          >
+            <span>Meet Our Team</span>
+            <i
+              class="fas fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"
+            ></i>
+          </a>
+          <a
+            href="/contact-us"
+            class="group inline-flex items-center px-6 py-3 border border-indigo-400 text-base font-medium rounded-lg text-white hover:text-white bg-transparent hover:bg-indigo-600/50 backdrop-blur-sm transition-colors"
+          >
+            <i class="fas fa-envelope mr-2"></i>
+            <span>Contact Us</span>
+          </a>
         </div>
 
-        <!-- Company Values -->
-        <div class="mb-24">
-            <h2 class="text-3xl font-bold text-slate-900 dark:text-white text-center mb-12">
-                Our Values
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div *ngFor="let value of companyValues"
-                     class="bg-white dark:bg-slate-800 rounded-lg p-6">
-                    <div class="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-indigo-100 dark:bg-indigo-900 text-indigo-600 dark:text-indigo-400 mb-4">
-                        <i [class]="value.icon + ' text-xl'"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">
-                        {{ value.title }}
-                    </h3>
-                    <p class="text-slate-600 dark:text-slate-400">
-                        {{ value.description }}
-                    </p>
-                </div>
+        <!-- Scroll Down Indicator -->
+        <div
+          class="absolute bottom-8 left-1/2 transform -translate-x-1/2 hidden md:block"
+        >
+          <a
+            href="#stats"
+            class="text-white/70 hover:text-white transition-colors"
+          >
+            <div class="flex flex-col items-center">
+              <span class="text-sm mb-2">Scroll</span>
+              <i class="fas fa-chevron-down animate-bounce"></i>
             </div>
+          </a>
         </div>
+      </div>
+    </div>
+  </div>
 
-        <!-- Timeline Section -->
-        <div class="mb-24">
-            <h2 class="text-3xl font-bold text-slate-900 dark:text-white text-center mb-12">
-                Our Journey
-            </h2>
-            <div class="max-w-3xl mx-auto">
-                <div class="relative">
-                    <!-- Timeline Line -->
-                    <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-indigo-200 dark:bg-indigo-900"></div>
-                    
-                    <!-- Timeline Items -->
-                    <div *ngFor="let milestone of milestones; let i = index" 
-                         class="relative mb-8">
-                        <div [class.ml-auto]="i % 2 === 0" 
-                             class="w-1/2 pr-8"
-                             [class.pl-8]="i % 2 !== 0">
-                            <div class="bg-white dark:bg-slate-800 rounded-lg p-6 shadow-sm">
-                                <div class="absolute top-6" 
-                                     [class.right-0]="i % 2 === 0"
-                                     [class.left-0]="i % 2 !== 0"
-                                     >
-                                    <div class="w-4 h-4 rounded-full bg-indigo-600 border-4 border-white dark:border-slate-900"></div>
-                                </div>
-                                <span class="text-sm font-semibold text-indigo-600 dark:text-indigo-400">
-                                    {{ milestone.year }}
-                                </span>
-                                <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-1 mb-2">
-                                    {{ milestone.title }}
-                                </h3>
-                                <p class="text-slate-600 dark:text-slate-400">
-                                    {{ milestone.description }}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+  <!-- Main Content -->
+  <div class="container mx-auto px-4 py-16">
+    <!-- Company Introduction -->
+    <div class="mb-20 max-w-4xl mx-auto text-center">
+      <h2
+        class="text-3xl font-bold text-slate-900 dark:text-white mb-6 leading-tight"
+      >
+        Transforming the Way Africa Lights Up
+      </h2>
+      <p
+        class="text-lg text-slate-700 dark:text-slate-300 mb-8 leading-relaxed"
+      >
+        Quality LED Africa is a leading provider of top-quality LED lighting
+        solutions for businesses, governments, and households across the African
+        continent. With a commitment to delivering energy-efficient, reliable,
+        and affordable LED lighting products, we are dedicated to improving
+        lives while reducing energy costs and carbon footprint.
+      </p>
+      <div class="w-24 h-1 bg-indigo-600 mx-auto rounded-full"></div>
+    </div>
+
+    <!-- Stats Section with Animated Counters -->
+    <div id="stats" class="mb-24">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div
+          *ngFor="let stat of companyStats"
+          class="group bg-white dark:bg-slate-800 rounded-2xl p-8 text-center shadow-md hover:shadow-xl transition-all hover:-translate-y-1 border border-slate-100 dark:border-slate-700 overflow-hidden relative"
+        >
+          <!-- Decorative Background Elements -->
+          <div
+            class="absolute -right-6 -top-6 w-20 h-20 rounded-full bg-indigo-100/50 dark:bg-indigo-900/20 z-0 group-hover:scale-150 transition-transform duration-700"
+          ></div>
+          <div
+            class="absolute -left-6 -bottom-6 w-16 h-16 rounded-full bg-indigo-100/30 dark:bg-indigo-900/10 z-0 group-hover:scale-150 transition-transform duration-700"
+          ></div>
+
+          <!-- Icon & Content -->
+          <div class="relative z-10">
+            <div
+              class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-colors duration-300"
+            >
+              <i [class]="stat.icon + ' text-2xl'"></i>
             </div>
-        </div>
-
-        <!-- Team Section -->
-        <div id="team" class="mb-24">
-            <h2 class="text-3xl font-bold text-slate-900 dark:text-white text-center mb-12">
-                Meet Our Team
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div *ngFor="let member of teamMembers" 
-                     class="bg-white dark:bg-slate-800 rounded-lg overflow-hidden shadow-sm">
-                    <img [src]="member.image" 
-                         [alt]="member.name"
-                         class="w-full h-64 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-1">
-                            {{ member.name }}
-                        </h3>
-                        <p class="text-indigo-600 dark:text-indigo-400 font-medium mb-4">
-                            {{ member.role }}
-                        </p>
-                        <p class="text-slate-600 dark:text-slate-400 mb-4">
-                            {{ member.bio }}
-                        </p>
-                        <div class="flex space-x-4">
-                            <a *ngIf="member.socialLinks.linkedin" 
-                               [href]="member.socialLinks.linkedin"
-                               target="_blank"
-                               class="text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400">
-                                <i class="fab fa-linkedin text-xl"></i>
-                            </a>
-                            <a *ngIf="member.socialLinks.twitter" 
-                               [href]="member.socialLinks.twitter"
-                               target="_blank"
-                               class="text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400">
-                                <i class="fab fa-twitter text-xl"></i>
-                            </a>
-                            <a *ngIf="member.socialLinks.github" 
-                               [href]="member.socialLinks.github"
-                               target="_blank"
-                               class="text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400">
-                                <i class="fab fa-github text-xl"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Contact Section -->
-        <div id="contact" class="max-w-2xl mx-auto">
-            <div class="bg-white dark:bg-slate-800 rounded-lg p-8">
-                <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6">
-                    Get in Touch
-                </h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
-                    <div>
-                        <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">
-                            Visit Us
-                        </h3>
-                        <address class="text-slate-600 dark:text-slate-400 not-italic">
-                            Unga House<br>
-                            Muthithi Rd<br>
-                            No 1870 / IX / 58<br>
-                            1st floor, Westland<br>
-                            Nairobi, Kenya
-                        </address>
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">
-                            Contact Info
-                        </h3>
-                        <div class="space-y-2 text-slate-600 dark:text-slate-400">
-                            <p class="flex items-center">
-                                <i class="fas fa-phone-alt mr-2"></i>
-                                +254 704 188 136
-                            </p>
-                            <p class="flex items-center">
-                                <i class="fas fa-envelope mr-2"></i>
-                                sales&#64;ql-a.com
-                            </p>
-                            <p class="flex items-center">
-                                <i class="fas fa-clock mr-2"></i>
-                                Mon - Fri: 9AM - 6PM<br>
-                                Sat - 9AM - 1PM
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Contact Form -->
-                <form class="space-y-6">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        <div>
-                            <label for="name" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                                Full Name
-                            </label>
-                            <input type="text" 
-                                   id="name"
-                                   name="name"
-                                   class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 
-                                          bg-white dark:bg-slate-700 text-slate-900 dark:text-white 
-                                          focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400">
-                        </div>
-                        <div>
-                            <label for="email" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                                Email Address
-                            </label>
-                            <input type="email" 
-                                   id="email"
-                                   name="email"
-                                   class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 
-                                          bg-white dark:bg-slate-700 text-slate-900 dark:text-white 
-                                          focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400">
-                        </div>
-                    </div>
-
-                    <div>
-                        <label for="subject" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                            Subject
-                        </label>
-                        <input type="text" 
-                               id="subject"
-                               name="subject"
-                               class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 
-                                      bg-white dark:bg-slate-700 text-slate-900 dark:text-white 
-                                      focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400">
-                    </div>
-
-                    <div>
-                        <label for="message" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                            Message
-                        </label>
-                        <textarea id="message"
-                                  name="message"
-                                  rows="4"
-                                  class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 
-                                         bg-white dark:bg-slate-700 text-slate-900 dark:text-white 
-                                         focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400"></textarea>
-                    </div>
-
-                    <div class="flex justify-end">
-                        <button type="submit"
-                                class="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg 
-                                       shadow-sm transition-colors focus:outline-none focus:ring-2 
-                                       focus:ring-offset-2 focus:ring-indigo-500">
-                            Send Message
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <!-- Social Links -->
-        <div class="mt-12 text-center">
-            <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-4">
-                Follow Us
+            <h3
+              class="text-4xl font-bold text-slate-900 dark:text-white mb-3 counter-value"
+            >
+              {{ stat.value }}
             </h3>
-            <div class="flex justify-center space-x-6">
-                <a href="https://www.facebook.com/qualityledafrica" class="text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400">
-                    <i class="fab fa-facebook text-2xl"></i>
-                </a>
-                <a href="https://X.com/qlaled10121" class="text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400">
-                    <i class="fab fa-twitter text-2xl"></i>
-                </a>
-                <a href="https://www.instagram.com/qla_led/" class="text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400">
-                    <i class="fab fa-instagram text-2xl"></i>
-                </a>
-                <a href="https://www.linkedin.com/in/username/" class="text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400">
-                    <i class="fab fa-linkedin text-2xl"></i>
-                </a>
-            </div>
+            <p class="text-indigo-600 dark:text-indigo-400 font-medium mb-2">
+              {{ stat.label }}
+            </p>
+            <p class="text-slate-600 dark:text-slate-400">
+              {{ stat.description }}
+            </p>
+          </div>
         </div>
+      </div>
     </div>
-    
+
+    <!-- Company Values with Modern Cards -->
+    <div class="mb-24">
+      <div class="text-center mb-16">
+        <div
+          class="inline-block mb-2 px-3 py-1 rounded-full bg-indigo-100 dark:bg-indigo-900/50 text-indigo-800 dark:text-indigo-300 text-sm font-medium"
+        >
+          OUR CORE VALUES
+        </div>
+        <h2
+          class="text-3xl lg:text-4xl font-bold text-slate-900 dark:text-white mb-4"
+        >
+          What Drives Us Forward
+        </h2>
+        <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+          Our values define who we are and guide every decision we make.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div
+          *ngFor="let value of companyValues; let i = index"
+          class="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-md hover:shadow-xl transition-all hover:-translate-y-1 border border-slate-100 dark:border-slate-700 relative overflow-hidden group"
+        >
+          <!-- Decorative Number -->
+          <div
+            class="absolute -right-6 -top-12 text-9xl font-bold text-slate-100 dark:text-slate-800 z-0 group-hover:text-indigo-100 dark:group-hover:text-indigo-900/30 transition-colors"
+          >
+            {{ i + 1 }}
+          </div>
+
+          <!-- Content -->
+          <div class="relative z-10">
+            <div
+              class="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-colors duration-300"
+            >
+              <i [class]="value.icon + ' text-2xl'"></i>
+            </div>
+            <h3
+              class="text-xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors"
+            >
+              {{ value.title }}
+            </h3>
+            <p
+              class="text-slate-600 dark:text-slate-400 group-hover:text-slate-700 dark:group-hover:text-slate-300 transition-colors"
+            >
+              {{ value.description }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Journey Timeline with Modern Design -->
+    <div class="mb-24">
+      <div class="text-center mb-16">
+        <div
+          class="inline-block mb-2 px-3 py-1 rounded-full bg-indigo-100 dark:bg-indigo-900/50 text-indigo-800 dark:text-indigo-300 text-sm font-medium"
+        >
+          OUR JOURNEY
+        </div>
+        <h2
+          class="text-3xl lg:text-4xl font-bold text-slate-900 dark:text-white mb-4"
+        >
+          Our Path to Excellence
+        </h2>
+        <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+          A timeline of key milestones that defined our growth.
+        </p>
+      </div>
+
+      <div class="max-w-4xl mx-auto relative">
+        <!-- Timeline Line -->
+        <div
+          class="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-indigo-100 via-indigo-500 to-indigo-100 dark:from-indigo-900 dark:via-indigo-500 dark:to-indigo-900 rounded-full"
+        ></div>
+
+        <!-- Timeline Items -->
+        <div
+          *ngFor="let milestone of milestones; let i = index"
+          class="relative mb-16 md:mb-24 md:flex"
+        >
+          <!-- Date Circle for Desktop -->
+          <div
+            class="hidden md:flex absolute left-1/2 top-0 transform -translate-x-1/2 z-10"
+          >
+            <div
+              class="w-14 h-14 rounded-full bg-indigo-600 dark:bg-indigo-500 shadow-lg flex items-center justify-center text-white font-bold text-lg"
+            >
+              {{ milestone.year }}
+            </div>
+          </div>
+
+          <!-- Timeline Content -->
+          <div
+            [class.md:mr-auto]="i % 2 === 0"
+            [class.md:ml-auto]="i % 2 !== 0"
+            [class.md:text-right]="i % 2 === 0"
+            [class.md:pr-16]="i % 2 === 0"
+            [class.md:pl-16]="i % 2 !== 0"
+            class="md:w-5/12"
+          >
+            <!-- Date for Mobile -->
+            <div
+              class="md:hidden inline-block mb-3 px-3 py-1 rounded-full bg-indigo-100 dark:bg-indigo-900/50 text-indigo-800 dark:text-indigo-300 text-sm font-medium"
+            >
+              {{ milestone.year }}
+            </div>
+
+            <div
+              class="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-md hover:shadow-xl transition-all hover:-translate-y-1 border border-slate-100 dark:border-slate-700"
+            >
+              <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">
+                {{ milestone.title }}
+              </h3>
+              <p class="text-slate-600 dark:text-slate-400">
+                {{ milestone.description }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Team Section with Card Hover Effects -->
+    <div id="team" class="mb-24">
+      <div class="text-center mb-16">
+        <div
+          class="inline-block mb-2 px-3 py-1 rounded-full bg-indigo-100 dark:bg-indigo-900/50 text-indigo-800 dark:text-indigo-300 text-sm font-medium"
+        >
+          OUR TEAM
+        </div>
+        <h2
+          class="text-3xl lg:text-4xl font-bold text-slate-900 dark:text-white mb-4"
+        >
+          The Experts Behind QLA
+        </h2>
+        <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+          Meet the passionate professionals dedicated to revolutionizing LED
+          lighting across Africa.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div
+          *ngFor="let member of teamMembers"
+          class="group bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all border border-slate-100 dark:border-slate-700"
+        >
+          <!-- Image Container with Overlay Effect -->
+          <div class="relative overflow-hidden">
+            <img
+              [src]="member.image"
+              [alt]="member.name"
+              class="w-full h-80 object-cover transition-transform duration-700 group-hover:scale-110"
+            />
+
+            <!-- Gradient Overlay -->
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent opacity-70 group-hover:opacity-90 transition-opacity"
+            ></div>
+
+            <!-- Social Links with Special Positioning -->
+            <div
+              class="absolute bottom-0 left-0 w-full p-5 transform translate-y-8 group-hover:translate-y-0 transition-transform"
+            >
+              <div class="flex space-x-4">
+                <a
+                  *ngIf="member.socialLinks.linkedin"
+                  [href]="member.socialLinks.linkedin"
+                  target="_blank"
+                  class="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-indigo-600 transition-colors"
+                >
+                  <i class="fab fa-linkedin"></i>
+                </a>
+                <a
+                  *ngIf="member.socialLinks.twitter"
+                  [href]="member.socialLinks.twitter"
+                  target="_blank"
+                  class="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-indigo-600 transition-colors"
+                >
+                  <i class="fab fa-twitter"></i>
+                </a>
+                <a
+                  *ngIf="member.socialLinks.github"
+                  [href]="member.socialLinks.github"
+                  target="_blank"
+                  class="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-indigo-600 transition-colors"
+                >
+                  <i class="fab fa-github"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Content -->
+          <div class="p-6">
+            <h3
+              class="text-xl font-bold text-slate-900 dark:text-white mb-1 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors"
+            >
+              {{ member.name }}
+            </h3>
+            <p class="text-indigo-600 dark:text-indigo-400 font-medium mb-4">
+              {{ member.role }}
+            </p>
+            <p class="text-slate-600 dark:text-slate-400">
+              {{ member.bio }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact Section with Modern Card Design -->
+    <div id="contact" class="max-w-6xl mx-auto mb-16">
+      <div
+        class="grid grid-cols-1 lg:grid-cols-5 gap-8 rounded-2xl overflow-hidden shadow-xl"
+      >
+        <!-- Contact Info -->
+        <div
+          class="lg:col-span-2 bg-indigo-600 dark:bg-indigo-800 p-8 lg:p-12 text-white relative overflow-hidden"
+        >
+          <!-- Decorative Elements -->
+          <div
+            class="absolute -right-16 -top-16 w-32 h-32 rounded-full bg-white/10"
+          ></div>
+          <div
+            class="absolute -left-16 -bottom-16 w-32 h-32 rounded-full bg-white/10"
+          ></div>
+
+          <!-- Content -->
+          <div class="relative z-10">
+            <h2 class="text-2xl font-bold mb-8">Let's Connect</h2>
+
+            <div class="space-y-6">
+              <div>
+                <h3 class="text-xl font-semibold mb-3">Visit Us</h3>
+                <address class="not-italic space-y-1">
+                  <p class="flex items-start">
+                    <i class="fas fa-map-marker-alt mt-1 mr-3"></i>
+                    <span>
+                      Unga House<br />
+                      Muthithi Rd<br />
+                      No 1870 / IX / 58<br />
+                      1st floor, Westland<br />
+                      Nairobi, Kenya
+                    </span>
+                  </p>
+                </address>
+              </div>
+
+              <div>
+                <h3 class="text-xl font-semibold mb-3">Contact Info</h3>
+                <div class="space-y-4">
+                  <p class="flex items-center">
+                    <i class="fas fa-phone-alt mr-3"></i>
+                    +254 704 188 136
+                  </p>
+                  <p class="flex items-center">
+                    <i class="fas fa-envelope mr-3"></i>
+                    sales&#64;ql-a.com
+                  </p>
+                  <p class="flex items-start">
+                    <i class="fas fa-clock mt-1 mr-3"></i>
+                    <span>
+                      Mon - Fri: 9AM - 6PM<br />
+                      Sat - 9AM - 1PM
+                    </span>
+                  </p>
+                </div>
+              </div>
+
+              <!-- Social Links -->
+              <div>
+                <h3 class="text-xl font-semibold mb-3">Follow Us</h3>
+                <div class="flex space-x-4">
+                  <a
+                    href="https://www.facebook.com/qualityledafrica"
+                    class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-white hover:bg-white hover:text-indigo-600 transition-colors"
+                  >
+                    <i class="fab fa-facebook-f"></i>
+                  </a>
+                  <a
+                    href="https://X.com/qlaled10121"
+                    class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-white hover:bg-white hover:text-indigo-600 transition-colors"
+                  >
+                    <i class="fab fa-twitter"></i>
+                  </a>
+                  <a
+                    href="https://www.instagram.com/qla_led/"
+                    class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-white hover:bg-white hover:text-indigo-600 transition-colors"
+                  >
+                    <i class="fab fa-instagram"></i>
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/in/username/"
+                    class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-white hover:bg-white hover:text-indigo-600 transition-colors"
+                  >
+                    <i class="fab fa-linkedin-in"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="lg:col-span-3 bg-white dark:bg-slate-800 p-8 lg:p-12">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+            Send Us a Message
+          </h2>
+          <form class="space-y-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div>
+                <label
+                  for="name"
+                  class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
+                >
+                  Full Name
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  placeholder="John Doe"
+                  class="w-full px-4 py-3 rounded-lg border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 focus:border-transparent"
+                />
+              </div>
+              <div>
+                <label
+                  for="email"
+                  class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
+                >
+                  Email Address
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="your@email.com"
+                  class="w-full px-4 py-3 rounded-lg border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 focus:border-transparent"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label
+                for="subject"
+                class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
+              >
+                Subject
+              </label>
+              <input
+                type="text"
+                id="subject"
+                name="subject"
+                placeholder="How can we help you?"
+                class="w-full px-4 py-3 rounded-lg border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 focus:border-transparent"
+              />
+            </div>
+
+            <div>
+              <label
+                for="message"
+                class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
+              >
+                Message
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                rows="5"
+                placeholder="Your message here..."
+                class="w-full px-4 py-3 rounded-lg border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 focus:border-transparent"
+              ></textarea>
+            </div>
+
+            <div class="flex justify-end">
+              <button
+                type="submit"
+                class="px-8 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg shadow-md hover:shadow-lg transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 flex items-center"
+              >
+                <span>Send Message</span>
+                <i class="fas fa-paper-plane ml-2"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Map Section -->
+  <div
+    class="h-96 w-full bg-slate-200 dark:bg-slate-700 relative mb-0 overflow-hidden"
+  >
+    <!-- Add an iframe with your Google Maps embed here -->
+    <div
+      class="absolute inset-0 bg-slate-900/50 flex items-center justify-center"
+    >
+      <div class="text-center text-white">
+        <i class="fas fa-map-marker-alt text-5xl mb-4 text-indigo-400"></i>
+        <h3 class="text-2xl font-bold mb-3">Find Us</h3>
+        <p class="max-w-md mx-auto mb-6">
+          Conveniently located in Westlands, Nairobi
+        </p>
+        <a
+          href="https://goo.gl/maps/yourLocation"
+          target="_blank"
+          class="inline-flex items-center px-5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition-colors"
+        >
+          <i class="fas fa-directions mr-2"></i>
+          <span>Get Directions</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

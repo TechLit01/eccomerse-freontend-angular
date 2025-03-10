@@ -1,196 +1,333 @@
 <!-- home.component.html -->
- <div class="space-y-12">
+<div class="space-y-16">
+  <!-- Hero Section - Modern, Clean Design -->
+  <section
+    class="relative bg-gradient-to-br from-indigo-100 to-white dark:from-slate-900 dark:to-slate-800 rounded-xl overflow-hidden"
+  >
+    <div class="container mx-auto px-4 py-16">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <!-- Hero Text with improved spacing and typography -->
+        <div class="text-center lg:text-left">
+          <h1
+            class="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white leading-tight mb-6"
+          >
+            Quality LED Africa
+            <span class="text-indigo-600 dark:text-indigo-400"
+              >at Your Fingertips</span
+            >
+          </h1>
+          <p
+            class="text-lg text-gray-700 dark:text-slate-300 mb-8 max-w-lg mx-auto lg:mx-0"
+          >
+            Discover the latest in LED innovation. From lighting to smart home
+            devices, find tomorrow's LED technology today.
+          </p>
 
-
-
-
-
-
-
-
-
-
-  <section class="relative overflow-hidden bg-white dark:bg-slate-900">
-    <!-- Background Image -->
-    <div class="relative container mx-auto px-4 py-8 sm:py-12">
-        <!-- Hero Image (Moved to the top for responsiveness) -->
-        <div class="relative w-full mb-8 lg:hidden">
-            <img src="https://res.cloudinary.com/dpls4kcqa/image/upload/v1738576078/hero-bg_1_xcpk2m.svg" 
-                 alt="Quality Led Africa" 
-                 class="w-full max-w-md mx-auto">
+          <!-- Buttons with improved styling -->
+          <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
+            <button
+              class="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-lg font-medium transition-all shadow-md hover:shadow-lg"
+            >
+              Shop Now
+            </button>
+            <button
+              class="bg-white hover:bg-gray-100 text-indigo-600 border border-indigo-600 px-8 py-3 rounded-lg font-medium transition-all shadow-sm hover:shadow-md dark:bg-slate-800 dark:border-indigo-400 dark:text-indigo-400"
+            >
+              View Deals
+            </button>
+          </div>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-            <!-- Hero Text -->
-            <div class="text-center lg:text-left">
-                <h1 class="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-                    Quality Led Africa at Your Fingertips
-                </h1>
-                <p class="text-lg text-gray-700 dark:text-slate-300 mb-6">
-                    Discover the latest in LED innovation. From lighting to smart home devices, 
-                    find tomorrow's LED today.
-                </p>      
-
-                <!-- Buttons -->
-                <div class="flex flex-wrap gap-3 justify-center lg:justify-start">
-                    <button class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-lg font-medium">
-                        Shop Now
-                    </button>
-                    <button class="bg-gray-200 hover:bg-gray-300 text-gray-900 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-white px-6 py-2 rounded-lg font-medium">
-                        View Deals
-                    </button>
-                </div>
-            </div>
-
-            <!-- Hero Image (Hidden on smaller screens, shown on larger screens) -->
-            <div class="relative hidden lg:block">
-                <img src="https://res.cloudinary.com/dpls4kcqa/image/upload/v1738576078/hero-bg_1_xcpk2m.svg" 
-                     alt="Quality Led Africa" 
-                     class="w-full max-w-md mx-auto">
-            </div>
+        <!-- Hero Image -->
+        <div
+          class="relative transform transition-all hover:scale-105 duration-300"
+        >
+          <img
+            src="https://res.cloudinary.com/dpls4kcqa/image/upload/v1738576078/hero-bg_1_xcpk2m.svg"
+            alt="Quality Led Africa"
+            class="w-full max-w-lg mx-auto rounded-lg shadow-xl"
+          />
+          <!-- Decorative element -->
+          <div
+            class="absolute -z-10 w-64 h-64 bg-indigo-300/20 dark:bg-indigo-700/20 rounded-full -top-10 -right-10 blur-3xl"
+          ></div>
         </div>
+      </div>
     </div>
-</section>
+  </section>
 
+  <!-- Filter Controls -->
+  <section class="container mx-auto px-4">
+    <div class="bg-white dark:bg-slate-800 rounded-xl shadow-md p-6">
+      <div
+        class="flex flex-col sm:flex-row justify-between items-center gap-4 mb-4"
+      >
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white">
+          Browse Products
+        </h2>
 
-  
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-    <!-- Categories -->
-    <section class="container mx-auto px-4">
-      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6">Shop by Category</h2>
-      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-        <ng-container *ngFor="let category of categories">
-          <a [routerLink]="['/category', category.slug]" 
-             class="group relative bg-white dark:bg-slate-800 rounded-lg p-6 hover:shadow-lg transition-shadow">
-            <div class="aspect-square rounded-lg bg-slate-100 dark:bg-slate-700 flex items-center justify-center mb-4">
-              <i [class]="category.icon + ' text-3xl text-slate-600 dark:text-slate-300 group-hover:text-indigo-600 dark:group-hover:text-indigo-400'"></i>
-            </div>
-            <h3 class="text-sm font-medium text-slate-900 dark:text-white text-center group-hover:text-indigo-600 dark:group-hover:text-indigo-400">
+        <div class="flex flex-wrap gap-3">
+          <!-- Category Filter Dropdown -->
+          <select
+            [(ngModel)]="selectedCategory"
+            (change)="filterProducts()"
+            class="rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-slate-700 px-4 py-2 text-gray-900 dark:text-white"
+          >
+            <option value="">All Categories</option>
+            <option *ngFor="let category of categories" [value]="category.slug">
               {{ category.name }}
-            </h3>
-          </a>
-        </ng-container>
+            </option>
+          </select>
+
+          <!-- Sort Dropdown -->
+          <select
+            [(ngModel)]="sortOption"
+            (change)="sortProducts()"
+            class="rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-slate-700 px-4 py-2 text-gray-900 dark:text-white"
+          >
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="name">Name: A to Z</option>
+          </select>
+        </div>
       </div>
-    </section>
-  
-    <!-- Featured Products -->
-    <section class="container mx-auto px-4">
-      <div class="flex justify-between items-center mb-6">
-        <h2 class="text-2xl font-bold text-slate-900 dark:text-white">Featured Products</h2>
-        <a routerLink="/products" class="text-indigo-600 dark:text-indigo-400 hover:underline">View All</a>
+
+      <!-- Search Bar -->
+      <div class="relative">
+        <div
+          class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"
+        >
+          <i class="fas fa-search text-gray-500 dark:text-gray-400"></i>
+        </div>
+        <input
+          type="text"
+          [(ngModel)]="searchTerm"
+          (input)="filterProducts()"
+          placeholder="Search products..."
+          class="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-slate-700 ps-10 pe-4 py-2 text-gray-900 dark:text-white"
+        />
       </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <ng-container *ngFor="let product of featuredProducts">
-          <div class="group bg-white dark:bg-slate-800 rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
-            <div class="relative aspect-square overflow-hidden">
-              <img [src]="product.image" 
-                   [alt]="product.name"
-                   class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300">
-              <button class="absolute top-3 right-3 p-2 rounded-full bg-white dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:text-rose-600 dark:hover:text-rose-400">
-                <i class="fas fa-heart"></i>
-              </button>
-            </div>
-            <div class="p-4">
-              <h3 class="text-lg font-medium text-slate-900 dark:text-white mb-2">{{ product.name }}</h3>
-              <p class="text-slate-600 dark:text-slate-400 text-sm mb-4">{{ product.description }}</p>
-              <div class="flex items-center justify-between">
-                <span class="text-xl font-bold text-slate-900 dark:text-white">{{ product.price | currency }}</span>
-                <button class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-sm">
-                  Add to Cart
-                </button>
-              </div>
+    </div>
+  </section>
+
+  <!-- Categories - Card-based approach -->
+  <section class="container mx-auto px-4">
+    <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-8">
+      Shop by Category
+    </h2>
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
+      <ng-container *ngFor="let category of categories">
+        <a
+          [routerLink]="['/category', category.slug]"
+          class="group bg-white dark:bg-slate-800 rounded-xl p-6 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 dark:border-slate-700"
+        >
+          <div
+            class="aspect-square rounded-xl bg-slate-100 dark:bg-slate-700 flex items-center justify-center mb-4 group-hover:bg-indigo-100 dark:group-hover:bg-indigo-900/30 transition-colors"
+          >
+            <i
+              [class]="
+                category.icon + ' text-3xl text-indigo-600 dark:text-indigo-400'
+              "
+            ></i>
+          </div>
+          <h3
+            class="text-sm font-medium text-slate-900 dark:text-white text-center"
+          >
+            {{ category.name }}
+          </h3>
+        </a>
+      </ng-container>
+    </div>
+  </section>
+
+  <!-- Featured Products - Improved cards -->
+  <section class="container mx-auto px-4">
+    <div class="flex justify-between items-center mb-8">
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white">
+        Featured Products
+      </h2>
+      <a
+        routerLink="/products"
+        class="text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-2"
+      >
+        View All
+        <i class="fas fa-arrow-right text-sm"></i>
+      </a>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <ng-container *ngFor="let product of filteredProducts">
+        <div
+          class="group bg-white dark:bg-slate-800 rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-slate-700"
+        >
+          <div class="relative aspect-square overflow-hidden">
+            <img
+              [src]="product.image"
+              [alt]="product.name"
+              class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500"
+            />
+            <button
+              (click)="addToWishlist(product); $event.stopPropagation()"
+              class="absolute top-3 right-3 p-2 rounded-full bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm text-slate-600 dark:text-slate-300 hover:text-rose-600 dark:hover:text-rose-400 transition-colors"
+            >
+              <i class="fas fa-heart"></i>
+            </button>
+            <!-- Badge for category -->
+            <div
+              class="absolute bottom-0 left-0 m-3 px-3 py-1 bg-indigo-600 text-white text-xs rounded-full"
+            >
+              {{ getCategoryName(product.category) }}
             </div>
           </div>
-        </ng-container>
-      </div>
-    </section>
-  
-    <!-- Special Offers -->
-    <section class="container mx-auto px-4">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="relative rounded-lg overflow-hidden">
-          <img src="https://res.cloudinary.com/dfsd8beyu/image/upload/v1732995563/Apple_MacBook-Pro_14-16-inch_10182021_big.jpg.large_pdjiwf.jpg" 
-               alt="Special Offer" 
-               class="w-full h-64 object-cover">
-          <div class="absolute inset-0 bg-gradient-to-r from-slate-900/80 to-slate-900/40 p-8 flex flex-col justify-center">
-            <h3 class="text-2xl font-bold text-white mb-2">Summer Sale</h3>
-            <p class="text-slate-200 mb-4">Up to 40% off on selected laptops</p>
-            <button class="bg-white text-slate-900 px-6 py-2 rounded-lg w-fit hover:bg-slate-100">
+          <div class="p-5">
+            <h3 class="text-lg font-medium text-slate-900 dark:text-white mb-2">
+              {{ product.name }}
+            </h3>
+            <p
+              class="text-slate-600 dark:text-slate-400 text-sm mb-4 line-clamp-2"
+            >
+              {{ product.description }}
+            </p>
+            <div class="flex items-center justify-between">
+              <span
+                class="text-xl font-bold text-indigo-600 dark:text-indigo-400"
+                >{{ product.price | currency }}</span
+              >
+              <button
+                (click)="addToCart(product)"
+                class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-sm flex items-center gap-2 transition-colors group-hover:scale-105"
+              >
+                <i class="fas fa-shopping-cart"></i>
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+    <!-- No Products Found Message -->
+    <div
+      *ngIf="filteredProducts.length === 0"
+      class="flex flex-col items-center justify-center py-16 text-center"
+    >
+      <i
+        class="fas fa-search text-5xl text-gray-300 dark:text-gray-600 mb-4"
+      ></i>
+      <h3 class="text-xl font-medium text-gray-900 dark:text-white mb-2">
+        No products found
+      </h3>
+      <p class="text-gray-600 dark:text-gray-400 mb-6">
+        Try adjusting your search or filter criteria
+      </p>
+      <button
+        (click)="resetFilters()"
+        class="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2 rounded-lg"
+      >
+        Reset Filters
+      </button>
+    </div>
+  </section>
+
+  <!-- Special Offers - Improved with gradient overlays -->
+  <section class="container mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="relative rounded-xl overflow-hidden group">
+        <img
+          src="https://res.cloudinary.com/dfsd8beyu/image/upload/v1732995563/Apple_MacBook-Pro_14-16-inch_10182021_big.jpg.large_pdjiwf.jpg"
+          alt="Special Offer"
+          class="w-full h-72 sm:h-80 object-cover transition-transform duration-700 group-hover:scale-110"
+        />
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-indigo-900/80 to-indigo-600/40 p-8 flex flex-col justify-center"
+        >
+          <div
+            class="transform transition-transform duration-300 group-hover:-translate-y-2"
+          >
+            <span
+              class="inline-block px-3 py-1 bg-yellow-400 text-black text-xs font-bold rounded-full mb-3"
+              >Limited Time</span
+            >
+            <h3 class="text-2xl font-bold text-white mb-3">Summer Sale</h3>
+            <p class="text-white/90 mb-5 max-w-xs">
+              Up to 40% off on selected laptops. Offer ends soon!
+            </p>
+            <button
+              class="bg-white text-indigo-900 px-6 py-2 rounded-lg w-fit hover:bg-gray-100 transition-colors shadow-lg"
+            >
               Shop Now
             </button>
           </div>
         </div>
-        <div class="relative rounded-lg overflow-hidden">
-          <img src="https://res.cloudinary.com/dfsd8beyu/image/upload/v1732995563/Apple_MacBook-Pro_14-16-inch_10182021_big.jpg.large_pdjiwf.jpg" 
-               alt="Special Offer" 
-               class="w-full h-64 object-cover">
-          <div class="absolute inset-0 bg-gradient-to-r from-slate-900/80 to-slate-900/40 p-8 flex flex-col justify-center">
-            <h3 class="text-2xl font-bold text-white mb-2">New Arrivals</h3>
-            <p class="text-slate-200 mb-4">Latest smartphones and accessories</p>
-            <button class="bg-white text-slate-900 px-6 py-2 rounded-lg w-fit hover:bg-slate-100">
+      </div>
+      <div class="relative rounded-xl overflow-hidden group">
+        <img
+          src="https://res.cloudinary.com/dfsd8beyu/image/upload/v1732995563/Apple_MacBook-Pro_14-16-inch_10182021_big.jpg.large_pdjiwf.jpg"
+          alt="Special Offer"
+          class="w-full h-72 sm:h-80 object-cover transition-transform duration-700 group-hover:scale-110"
+        />
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-slate-900/80 to-slate-900/40 p-8 flex flex-col justify-center"
+        >
+          <div
+            class="transform transition-transform duration-300 group-hover:-translate-y-2"
+          >
+            <span
+              class="inline-block px-3 py-1 bg-emerald-400 text-black text-xs font-bold rounded-full mb-3"
+              >Just Arrived</span
+            >
+            <h3 class="text-2xl font-bold text-white mb-3">New Arrivals</h3>
+            <p class="text-white/90 mb-5 max-w-xs">
+              Latest smartphones and accessories now available in store!
+            </p>
+            <button
+              class="bg-white text-slate-900 px-6 py-2 rounded-lg w-fit hover:bg-gray-100 transition-colors shadow-lg"
+            >
               Explore
             </button>
           </div>
         </div>
       </div>
-    </section>
-  
-
-
-    <!-- Newsletter -->
-   <section class="bg-slate-100 dark:bg-slate-900 mt-6">
-    <div class="container mx-auto px-4 py-12">
-        <div class="max-w-2xl mx-auto text-center">
-            <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Stay Updated</h2>
-            <p class="text-gray-700 dark:text-slate-300 mb-6">
-                Subscribe to our newsletter for exclusive deals, new arrivals, and tech news.
-            </p>
-            <form class="flex gap-2 max-w-md mx-auto">
-                <input type="email" 
-                       placeholder="Enter your email" 
-                       class="flex-1 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-white/10 px-4 py-2 text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-slate-400 focus:ring-2 focus:ring-indigo-500">
-                <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-lg">
-                    Subscribe
-                </button>
-            </form>
-            
-            
-        </div>
     </div>
-</section>
+  </section>
 
-<script>
-    function toggleDarkMode() {
-        document.documentElement.classList.toggle('dark');
-        localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
-    }
+  <!-- Newsletter - Modern design -->
+  <section
+    class="bg-gradient-to-r from-indigo-600 to-indigo-800 dark:from-indigo-900 dark:to-slate-900 rounded-xl overflow-hidden"
+  >
+    <div class="container mx-auto px-4 py-16">
+      <div class="max-w-2xl mx-auto text-center">
+        <h2 class="text-3xl font-bold text-white mb-4">Stay Updated</h2>
+        <p class="text-indigo-100 mb-8">
+          Subscribe to our newsletter for exclusive deals, new arrivals, and
+          tech news.
+        </p>
+        <form class="flex gap-2 max-w-md mx-auto">
+          <input
+            type="email"
+            placeholder="Enter your email"
+            class="flex-1 rounded-lg border border-indigo-400 bg-white/10 px-4 py-3 text-white placeholder:text-indigo-200 focus:ring-2 focus:ring-white/50 focus:bg-white/20 outline-none"
+          />
+          <button
+            type="submit"
+            class="bg-white hover:bg-gray-100 text-indigo-700 font-medium px-6 py-3 rounded-lg transition-colors"
+          >
+            Subscribe
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
 
-    if (localStorage.getItem('theme') === 'dark') {
-        document.documentElement.classList.add('dark');
-    }
-</script>
-
-
-
-
-
-  </div>
+  <!-- Cart Link (Fixed) -->
+  <a
+    routerLink="/cart"
+    class="fixed bottom-6 right-6 bg-indigo-600 hover:bg-indigo-700 text-white p-4 rounded-full shadow-lg flex items-center justify-center transition-all hover:scale-110 z-40"
+  >
+    <i class="fas fa-shopping-cart text-xl"></i>
+    <span
+      *ngIf="cartItemsCount > 0"
+      class="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-6 h-6 rounded-full flex items-center justify-center"
+    >
+      {{ cartItemsCount }}
+    </span>
+  </a>
+</div>

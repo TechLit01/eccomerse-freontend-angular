@@ -1,0 +1,154 @@
+// home.component.scss
+
+// Variables
+$primary-color: #4f46e5; // Indigo-600
+$primary-hover: #4338ca; // Indigo-700
+$text-dark: #1e293b; // Slate-900
+$text-light: #f8fafc; // Slate-50
+$transition-standard: all 0.3s ease;
+
+// Custom scroll styling for the cart panel
+.cart-panel {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(156, 163, 175, 0.5) transparent;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  // Filter controls
+  .filter-controls {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(229, 231, 235, 0.5);
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: $transition-standard;
+
+    &:hover {
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+        0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    .filter-input {
+      border: 1px solid rgba(209, 213, 219, 0.5);
+      transition: $transition-standard;
+
+      &:focus {
+        border-color: $primary-color;
+        box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+      }
+    }
+  }
+
+  // Dark mode specific styles
+  .dark {
+    .filter-controls {
+      background: rgba(15, 23, 42, 0.8);
+      border-color: rgba(51, 65, 85, 0.5);
+    }
+
+    .cart-badge {
+      background-color: #dc2626; // Red-600 for dark mode
+    }
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(156, 163, 175, 0.5);
+    border-radius: 20px;
+  }
+}
+
+// Animations
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+// Apply animations
+.cart-open {
+  animation: fadeIn 0.3s ease-out forwards;
+
+  .cart-panel {
+    animation: slideInRight 0.3s ease-out forwards;
+  }
+}
+
+// Badge animations
+.badge {
+  animation: pulse 2s infinite;
+}
+
+// Cart notification badge
+.cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: #ef4444; // Red-500
+  color: white;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  min-width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+// Product image zoom effect
+.product-image {
+  overflow: hidden;
+
+  img {
+    transition: transform 0.7s ease;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}
+
+// Enhanced hover effects
+.category-card,
+.product-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1),
+      0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  }
+}

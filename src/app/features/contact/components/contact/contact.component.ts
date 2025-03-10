@@ -71,7 +71,7 @@ export class ContactComponent implements OnInit {
       phone: '+254 704 288 136',
       email: 'sales@ql-a.com',
       hours: 'Mon-Fri: 9:00 AM - 6:00 PM PST',
-      image: 'https://res.cloudinary.com/dfsd8beyu/image/upload/v1732995563/Apple_MacBook-Pro_14-16-inch_10182021_big.jpg.large_pdjiwf.jpg'
+      image: 'https://res.cloudinary.com/da5npawma/image/upload/v1741637120/led-panel-lights-600x600-1_zjzxdq.webp'
     }
   ];
 

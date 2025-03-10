@@ -1,0 +1,211 @@
+// products.component.scss
+
+// Variables
+$primary-color: #4f46e5; // Indigo-600
+$primary-hover: #4338ca; // Indigo-700
+$green-color: #10b981; // Green-500
+$red-color: #ef4444; // Red-500
+$yellow-color: #f59e0b; // Amber-500
+$text-dark: #1e293b; // Slate-900
+$text-light: #f8fafc; // Slate-50
+$transition-standard: all 0.3s ease;
+
+// Custom scroll styling for filter panel
+.filter-panel {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(156, 163, 175, 0.5) transparent;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(156, 163, 175, 0.5);
+    border-radius: 20px;
+  }
+}
+
+// Product card hover effects
+.product-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1),
+      0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  }
+
+  .product-image {
+    overflow: hidden;
+
+    img {
+      transition: transform 0.7s ease;
+    }
+  }
+
+  &:hover .product-image img {
+    transform: scale(1.1);
+  }
+
+  .quick-actions {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+  }
+
+  &:hover .quick-actions {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Custom checkbox and radio styles
+.custom-checkbox,
+.custom-radio {
+  position: relative;
+
+  input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #fff;
+    border: 2px solid #cbd5e1;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+  }
+
+  input:checked ~ .checkmark {
+    background-color: $primary-color;
+    border-color: $primary-color;
+  }
+
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+
+  input:checked ~ .checkmark:after {
+    display: block;
+  }
+
+  .checkmark:after {
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+}
+
+.custom-radio {
+  .checkmark {
+    border-radius: 50%;
+  }
+
+  .checkmark:after {
+    top: 5px;
+    left: 5px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: white;
+    border: none;
+    transform: none;
+  }
+}
+
+// Star rating colors
+.star-rating {
+  .fas.fa-star {
+    color: $yellow-color;
+  }
+
+  .far.fa-star {
+    color: #cbd5e1;
+  }
+}
+
+// Badge animations
+.badge {
+  transition: all 0.3s ease;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+// Mobile filter drawer animation
+.filter-drawer {
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+
+  &.open {
+    transform: translateX(0);
+  }
+}
+
+// Cart badge styles
+.cart-badge {
+  background-color: $red-color;
+  color: white;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  min-width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  animation: pulse 2s infinite;
+}
+
+// Dark mode adjustments
+:host-context(.dark) {
+  .custom-checkbox,
+  .custom-radio {
+    .checkmark {
+      background-color: #1e293b;
+      border-color: #475569;
+    }
+  }
+
+  .star-rating {
+    .far.fa-star {
+      color: #475569;
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .product-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+}

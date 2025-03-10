@@ -24,6 +24,7 @@ import { CategoriesModule } from './features/categories/categories.module';
 import { BlogsModule } from './features/blogs/blogs.module';
 import { AboutUsModule } from './features/about-us/about-us.module';
 import { AdminModule } from './features/admin/admin.module';
+import { ToastComponent } from './shared/components/toast/toast.component';
 
 @NgModule({
   declarations: [
@@ -52,14 +53,9 @@ import { AdminModule } from './features/admin/admin.module';
     BlogsModule,
     AdminModule,
     HttpClientModule,
-  
+    ToastComponent,
   ],
-  providers: [
-    provideNgVibeDialog(),
-
-  ],
-  bootstrap: [AppComponent]
+  providers: [provideNgVibeDialog()],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
-
-
+export class AppModule {}

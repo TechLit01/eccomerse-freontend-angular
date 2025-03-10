@@ -363,9 +363,9 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   formatPrice(price: number): string {
-    return new Intl.NumberFormat('en-US', {
+    return new Intl.NumberFormat('en-KE', {
       style: 'currency',
-      currency: 'USD',
+      currency: 'KES',
     }).format(price);
   }
 

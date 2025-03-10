@@ -42,10 +42,10 @@ export class AboutUsComponent implements OnInit, AfterViewInit {
   teamMembers: TeamMember[] = [
     {
       id: '1',
-      name: 'Charles Van',
+      name: 'John Doe',
       role: 'CEO & Founder',
       image:
-        'https://res.cloudinary.com/dfsd8beyu/image/upload/v1732995563/Apple_MacBook-Pro_14-16-inch_10182021_big.jpg.large_pdjiwf.jpg',
+        'https://res.cloudinary.com/da5npawma/image/upload/v1741643467/user-icon-avatar-flat-symbol-isolated-white-background-avatar-simple-icon-user-abstract-icon-black-vector-illustration-151781818_idcfqs.webp',
       bio: 'Tech enthusiast with 15+ years of experience in consumer electronics retail.',
       socialLinks: {
         linkedin: 'https://linkedin.com',
@@ -54,10 +54,10 @@ export class AboutUsComponent implements OnInit, AfterViewInit {
     },
     {
       id: '2',
-      name: 'Sarah Johnson',
+      name: 'John Doe',
       role: 'CTO',
       image:
-        'https://res.cloudinary.com/dfsd8beyu/image/upload/v1732995563/Apple_MacBook-Pro_14-16-inch_10182021_big.jpg.large_pdjiwf.jpg',
+        'https://res.cloudinary.com/da5npawma/image/upload/v1741643467/user-icon-avatar-flat-symbol-isolated-white-background-avatar-simple-icon-user-abstract-icon-black-vector-illustration-151781818_idcfqs.webp',
       bio: 'Former Silicon Valley engineer passionate about making technology accessible.',
       socialLinks: {
         linkedin: 'https://linkedin.com',
@@ -66,10 +66,10 @@ export class AboutUsComponent implements OnInit, AfterViewInit {
     },
     {
       id: '3',
-      name: 'Michael Chen',
+      name: 'John Doe',
       role: 'Head of Product',
       image:
-        'https://res.cloudinary.com/dfsd8beyu/image/upload/v1732995563/Apple_MacBook-Pro_14-16-inch_10182021_big.jpg.large_pdjiwf.jpg',
+        'https://res.cloudinary.com/da5npawma/image/upload/v1741643467/user-icon-avatar-flat-symbol-isolated-white-background-avatar-simple-icon-user-abstract-icon-black-vector-illustration-151781818_idcfqs.webp',
       bio: 'Product strategist focusing on customer-centric innovation.',
       socialLinks: {
         linkedin: 'https://linkedin.com',

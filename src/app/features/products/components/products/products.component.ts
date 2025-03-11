@@ -59,12 +59,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
       rating: 4.8,
       inStock: true,
       isNew: true,
-      specifications: [
-        '40 watts',
-        '100lm/w',
-        '28-42V',
-        'CE ROHS',
-      ],
+      specifications: ['40 watts', '100lm/w', '28-42V', 'CE ROHS'],
       tags: ['RGBW', 'Downlighters', 'Alu Profiles'],
     },
     {
@@ -123,12 +118,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
       brand: 'QLA',
       rating: 4.6,
       inStock: true,
-      specifications: [
-        '24V',
-        '5meter',
-        '60Leds/meter',
-        'rgb',
-      ],
+      specifications: ['24V', '5meter', '60Leds/meter', 'rgb'],
       tags: ['striplights', 'rgb', 'rgbw'],
     },
     {
@@ -142,11 +132,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
       brand: 'QLA',
       rating: 4.7,
       inStock: true,
-      specifications: [
-        'One Gang',
-        '2 way',
-        'Wide',
-      ],
+      specifications: ['One Gang', '2 way', 'Wide'],
       tags: ['Sockets', 'Switch', 'Panel'],
     },
   ];
@@ -160,8 +146,14 @@ export class ProductsComponent implements OnInit, OnDestroy {
   ];
 
   filters = {
-    categories: ['Backlit-panels', 'Striplights', 'Switches', 'RBG-striplights', 'Aluminium-profiles'],
-    brands: ['QLA', 'Philips', 'Ledvanve',],
+    categories: [
+      'Backlit-panels',
+      'Striplights',
+      'Switches',
+      'RBG-striplights',
+      'Aluminium-profiles',
+    ],
+    brands: ['QLA', 'Philips', 'Ledvanve'],
     priceRanges: [
       { label: 'Under $100', min: 0, max: 100 },
       { label: 'KES100 - KES500', min: 100, max: 500 },
@@ -373,6 +365,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.currentPage++;
     this.updateDisplayedProducts();
   }
+  // d
 
   private updateDisplayedProducts() {
     const startIndex = 0;

@@ -371,4 +371,5 @@ export class ProductsComponent implements OnInit, OnDestroy {
     const endIndex = this.currentPage * this.itemsPerPage;
     this.displayedProducts = this.filteredProducts.slice(startIndex, endIndex);
   }
+  // 
 }

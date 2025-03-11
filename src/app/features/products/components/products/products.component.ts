@@ -365,7 +365,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.currentPage++;
     this.updateDisplayedProducts();
   }
-  // d
 
   private updateDisplayedProducts() {
     const startIndex = 0;
